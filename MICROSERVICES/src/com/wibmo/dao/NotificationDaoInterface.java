@@ -9,7 +9,6 @@ package com.wibmo.dao;
  */
 public interface NotificationDaoInterface {
 
-	public interface NotificationDaoInterface {
 
 		/**
 		 * Send Notification using SQL commands
@@ -20,7 +19,7 @@ public interface NotificationDaoInterface {
 		 * @return notification id for the record added in the database
 		 * @throws SQLException
 		 */
-		public int sendNotification(NotificationTypeConstant type,int studentId,PaymentModeConstant modeOfPayment,double amount) throws SQLException;
+		public int sendNotification(String type,int studentId,String modeOfPayment,double amount);
 		
-	}
 }
+

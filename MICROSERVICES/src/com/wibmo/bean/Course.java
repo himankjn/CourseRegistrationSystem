@@ -1,10 +1,16 @@
 package com.wibmo.bean;
 
 public class Course {
-	private int courseId;
+	private String courseId;
 	private int credits;
-	private String name;
-	private String instrutctor;
+	private String courseName;
+	private String professorId;
+	public Course(String courseId, int credits, String courseName, String professorId) {
+		this.courseId=courseId;
+		this.credits=credits;
+		this.courseName=courseName;
+		this.professorId=professorId;
+	}
 	/**
 	 * @return the credits
 	 */
@@ -20,37 +26,37 @@ public class Course {
 	/**
 	 * @return the courseId
 	 */
-	public int getCourseId() {
+	public String getCourseId() {
 		return courseId;
 	}
 	/**
 	 * @param courseId the courseId to set
 	 */
-	public void setCourseId(int courseId) {
+	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
 	/**
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getCourseName() {
+		return courseName;
 	}
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.courseName = name;
 	}
 	/**
 	 * @return the instructor
 	 */
-	public String getInstrutctor() {
-		return instrutctor;
+	public String getProfessorId() {
+		return professorId;
 	}
 	/**
 	 * @param instrutctor the instructor to set
 	 */
-	public void setInstrutctor(String instrutctor) {
-		this.instrutctor = instrutctor;
+	public void setInstrutctor(String professorId) {
+		this.professorId = professorId;
 	}
 }

@@ -9,6 +9,11 @@ package com.wibmo.business;
 
 import java.util.List;
 
+import com.wibmo.bean.Course;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.Professor;
+import com.wibmo.bean.Student;
+
 
 /**
  * @author Himank
@@ -41,7 +46,7 @@ public interface AdminInterface
 	 * @param studentid 
 	 * @return 
 	 */
-	public List<RegisteredCourse> generateGradeCard(String Studentid);
+	public GradeCard generateGradeCard(String Studentid);
 	
 	
 	/**

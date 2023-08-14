@@ -2,6 +2,9 @@ package com.wibmo.business;
 
 import java.util.List;
 
+import com.wibmo.bean.Course;
+import com.wibmo.bean.GradeCard;
+
 /**
  * 
  * @author Himank

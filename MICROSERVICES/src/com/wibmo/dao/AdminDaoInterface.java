@@ -3,6 +3,14 @@
  */
 package com.wibmo.dao;
 
+import java.util.List;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.Professor;
+import com.wibmo.bean.Student;
+import com.wibmo.bean.User;
+
 /**
  * @author Shanmukh
  *
@@ -12,7 +20,7 @@ public interface AdminDaoInterface {
 	public List<Course>viewCourses();
 	public List<Professor> viewProfessors();
 	
-	public List<RegisteredCourse> generateGradeCard(String Studentid);
+	public GradeCard generateGradeCard(String Studentid);
 	public List<Student> viewPendingAdmissions();
 	public void approveStudent(String studentId);
 	public void addProfessor(Professor professor);

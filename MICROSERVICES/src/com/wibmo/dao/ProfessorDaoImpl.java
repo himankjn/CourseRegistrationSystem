@@ -3,6 +3,7 @@ package com.wibmo.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +125,35 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	 * @param grade : The grade for the student
 	 */
 	public Boolean addGrade(String studentId,String courseCode,String grade) {
-		return null;
+		Connection connection=DBUtils.getConnection();
+		try {
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.ADD_GRADE);
+			
+			statement.setString(1, grade);
+			statement.setString(2, courseCode);
+			statement.setString(3, studentId);
+			
+			int row = statement.executeUpdate();
+			
+			if(row==1)
+				return true;
+			else
+				return false;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	
 	}
 

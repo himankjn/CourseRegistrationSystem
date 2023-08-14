@@ -56,7 +56,6 @@ public class ProfessorClient {
 				addGrade(profID);
 				break;
 			case 4:
-				pin.close();
 				System.exit(0);
 				return;
 			default:

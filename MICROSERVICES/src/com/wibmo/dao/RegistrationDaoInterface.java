@@ -2,11 +2,11 @@
  * 
  */
 package com.wibmo.dao;
+import java.sql.*;
+import java.util.*;
 
-/**
- * @author Shanmukh
- *
- */
+import com.wibmo.bean.*;
+
 public interface RegistrationDaoInterface {
 	
 	
@@ -98,7 +98,7 @@ public interface RegistrationDaoInterface {
 	 * @throws SQLException 
 	 * @return Studen's grade card
 	 */
-	public List<Grade> viewGradeCard(String studentId) throws SQLException;
+	public List<GradeCard> viewGradeCard(String studentId) throws SQLException;
 
 
 	public boolean isReportGenerated(String studentId) throws SQLException;

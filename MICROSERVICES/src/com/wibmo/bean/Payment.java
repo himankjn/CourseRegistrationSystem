@@ -2,6 +2,9 @@ package com.wibmo.bean;
 
 public class Payment {
 	private String studentId;
+	private String invoiceId;
+	private double amount;
+	private boolean status;
 	/**
 	 * @return the studentId
 	 */
@@ -50,7 +53,4 @@ public class Payment {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	private String invoiceId;
-	private double amount;
-	private boolean status;
 }

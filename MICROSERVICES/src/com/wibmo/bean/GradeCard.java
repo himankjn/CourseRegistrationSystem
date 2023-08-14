@@ -16,6 +16,8 @@ public class GradeCard {
 	 */
 	public void setCgpa(double cgpa) {
 		this.cgpa = cgpa;
+		
+		
 	}
 	/**
 	 * @return the studentId

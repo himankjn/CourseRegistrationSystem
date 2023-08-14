@@ -1,27 +1,18 @@
 package com.wibmo.bean;
 
 public class Course {
-	private String courseId;
 	private int credits;
+	private String courseId;
 	private String courseName;
-	private String professorId;
-	public Course(String courseId, int credits, String courseName, String professorId) {
+	private String instructorId;
+	private int studentsEnrolled;
+	
+	public Course(String courseId, int credits, String courseName, String instructorId) {
 		this.courseId=courseId;
 		this.credits=credits;
 		this.courseName=courseName;
-		this.professorId=professorId;
-	}
-	/**
-	 * @return the credits
-	 */
-	public int getCredits() {
-		return credits;
-	}
-	/**
-	 * @param credits the credits to set
-	 */
-	public void setCredits(int credits) {
-		this.credits = credits;
+		this.instructorId=instructorId;
+		this.studentsEnrolled = 0;
 	}
 	/**
 	 * @return the courseId
@@ -29,34 +20,68 @@ public class Course {
 	public String getCourseId() {
 		return courseId;
 	}
+
 	/**
 	 * @param courseId the courseId to set
 	 */
 	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
+
 	/**
-	 * @return the name
+	 * @return the credits
+	 */
+	public int getCredits() {
+		return credits;
+	}
+
+	/**
+	 * @param credits the credits to set
+	 */
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	/**
+	 * @return the courseName
 	 */
 	public String getCourseName() {
 		return courseName;
 	}
+
 	/**
-	 * @param name the name to set
+	 * @param courseName the courseName to set
 	 */
-	public void setName(String name) {
-		this.courseName = name;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
+
 	/**
-	 * @return the instructor
+	 * @return the instructorId
 	 */
-	public String getProfessorId() {
-		return professorId;
+	public String getInstructorId() {
+		return instructorId;
 	}
+
 	/**
-	 * @param instrutctor the instructor to set
+	 * @param instructorId the instructorId to set
 	 */
-	public void setInstrutctor(String professorId) {
-		this.professorId = professorId;
+	public void setInstructorId(String instructorId) {
+		this.instructorId = instructorId;
 	}
+
+	/**
+	 * @return the studentsEnrolled
+	 */
+	public int getStudentsEnrolled() {
+		return studentsEnrolled;
+	}
+
+	/**
+	 * @param studentsEnrolled the studentsEnrolled to set
+	 */
+	public void setStudentsEnrolled(int studentsEnrolled) {
+		this.studentsEnrolled = studentsEnrolled;
+	}
+
 }

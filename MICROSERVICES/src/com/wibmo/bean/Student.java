@@ -3,7 +3,9 @@ package com.wibmo.bean;
 public class Student extends User{
 	String studentId;
 	String department;
-
+	boolean feePaid;
+	boolean isApproved;
+	
 	public Student(int userId,String name,String password,String address,String studentId,String department) {
 		super(userId,name,password,address);
 		this.studentId = studentId;
@@ -36,6 +38,33 @@ public class Student extends User{
 	 */
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+	/**
+	 * @return the feePaid
+	 */
+	public boolean isFeePaid() {
+		return feePaid;
+	}
+
+	/**
+	 * @param feePaid the feePaid to set
+	 */
+	public void setFeePaid(boolean feePaid) {
+		this.feePaid = feePaid;
+	}
+
+	/**
+	 * @return the isApproved
+	 */
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	/**
+	 * @param isApproved the isApproved to set
+	 */
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 
 }

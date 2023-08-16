@@ -5,9 +5,19 @@ package com.wibmo.constants;
 
 /**
  * @author Himank
- *
+ * 
  */
+/**
+ * User queries
+ * @author Bhuvan
+ */
+
 public class SQLQueriesConstant {
+		// user queries
+		public static final String GET_USER="SELECT * FROM user WHERE userId=?,password=?";
+		public static final String UPDATE_USER="UPDATE user SET password=? WHERE userId=?";
+		public static final String GET_ROLE="SELECT role FROM user WHERE userId=?";
+		
 		//professor queries
 		public static final String GET_COURSES="select * from course where professorId=?";
 		public static final String GET_ENROLLED_STUDENTS = "select * from student inner join registeredcourse on student.studentId=registeredcourse.studentId where registeredcourse.courseid=?";

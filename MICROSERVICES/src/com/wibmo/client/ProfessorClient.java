@@ -38,7 +38,7 @@ public class ProfessorClient {
 			System.out.println("3. Add Grades");
 			System.out.println("4. Exit");
 			System.out.println("================================");
-			System.out.printf("Choose From Menu: ");
+			System.out.println("Choose From Menu: ");
 			
 			input = in.nextInt();
 			switch (input) {

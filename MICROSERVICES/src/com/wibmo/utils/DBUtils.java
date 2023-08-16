@@ -30,23 +30,20 @@ public class DBUtils {
         	}
         } else {
             try {
-            	Properties prop = new Properties();
-                InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("./config.properties");
-                prop.load(inputStream);
-                String driver = prop.getProperty("driver");
-                String url = prop.getProperty("url");
-                String user = prop.getProperty("user");
-                String password = prop.getProperty("password");
-                Class.forName(driver);
-                connection = DriverManager.getConnection(url,user,password);
+//            	Properties prop = new Properties();
+//                InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("./config.properties");
+//                prop.load(inputStream);
+//                String driver = prop.getProperty("driver");
+//                String url = prop.getProperty("url");
+//                String user = prop.getProperty("user");
+//                String password = prop.getProperty("password");
+                Class.forName("com.mysql.jdbc.Driver");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/wibmo_crs","root","micromaxQ3!");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            } 
 //            } catch (FileNotFoundException e) {
 //            	System.out.println("Not found");
 //                e.printStackTrace();

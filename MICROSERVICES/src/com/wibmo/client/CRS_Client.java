@@ -2,7 +2,6 @@
  * 
  */
 package com.wibmo.client;
-
 import java.time.LocalDateTime;
 import java.util.Scanner;
 

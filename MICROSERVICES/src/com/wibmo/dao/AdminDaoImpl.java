@@ -171,39 +171,38 @@ public class AdminDaoImpl implements AdminDaoInterface{
 		return pendingAdmissionedStudents;
 	}
 
-	@Override
 	public void approveStudents() {
-		// TODO Auto-generated method stub
-		Connection connection = DBUtils.getConnection();
-		List<int>invalidCoursesIds = new ArrayList<int>();
-		Cou
-		try {
-			PreparedStatement stmt = connection.prepareStatement(SQLQueriesConstant.INVALID_COURSES_IDS);
-			stmt.setString(1,Studentid);
-			ResultSet results = stmt.executeQuery();
+//		// TODO Auto-generated method stub
+//		Connection connection = DBUtils.getConnection();
+//		List<int>invalidCoursesIds = new ArrayList<int>();
+//		Cou
+//		try {
+//			PreparedStatement stmt = connection.prepareStatement(SQLQueriesConstant.INVALID_COURSES_IDS);
+//			stmt.setString(1,Studentid);
+//			ResultSet results = stmt.executeQuery();
+//			
+//			while(results.next()) {
+//				int id = results.getInt(1);
+//				invalidCoursesIds.add(id);
+//			}
+//			
+//			for(int invalidCourseId: invalidCoursesIds) {
+//				List
+//				
+//	
+//			}
 			
-			while(results.next()) {
-				int id = results.getInt(1);
-				invalidCoursesIds.add(id);
-			}
 			
-			for(int invalidCourseId: invalidCoursesIds) {
-				List
-				
-	
-			}
-			
-			
-			
-		}catch(Exception e) {
-			System.out.println(e.getStackTrace());
-		}finally {
-			try {
-				connection.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
+//			
+//		}catch(Exception e) {
+//			System.out.println(e.getStackTrace());
+//		}finally {
+//			try {
+//				connection.close();
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 
 	@Override
@@ -232,6 +231,12 @@ public class AdminDaoImpl implements AdminDaoInterface{
 
 	@Override
 	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void approveStudent(String studentId) {
 		// TODO Auto-generated method stub
 		
 	}

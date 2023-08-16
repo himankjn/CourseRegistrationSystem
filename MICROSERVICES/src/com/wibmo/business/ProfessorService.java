@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Student;
-import com.wibmo.dao.ProfessorDaoInterface;
 import com.wibmo.dao.ProfessorDaoImpl;
+import com.wibmo.dao.ProfessorDaoInterface;
 
 /**
  * @author Himank

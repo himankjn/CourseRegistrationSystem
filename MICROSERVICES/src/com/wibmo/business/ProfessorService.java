@@ -41,7 +41,8 @@ public class ProfessorService implements ProfessorInterface {
 	@Override
 	
 	public boolean submitGrade(String studentId,String courseCode,String grade){
-		return false;
+		professorDAOInterface.addGrade(studentId, courseCode, grade);
+		return true;
 	}
 	
 	

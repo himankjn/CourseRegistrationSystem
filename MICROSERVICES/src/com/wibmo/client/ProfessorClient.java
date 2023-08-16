@@ -29,14 +29,15 @@ public class ProfessorClient {
 		
 		int input;
 		while (true) {
-			System.out.println("--------------------------------");
-			System.out.println("-------Professor Menu-----------");
-			System.out.println("--------------------------------");
+			System.out.println("================================");
+							   
+			System.out.println("========Professor Menu========");
+			System.out.println("================================");
 			System.out.println("1. View Courses");
 			System.out.println("2. View Enrolled Students");
 			System.out.println("3. Add Grades");
 			System.out.println("4. Exit");
-			System.out.println("--------------------------------");
+			System.out.println("================================");
 			System.out.printf("Choose From Menu: ");
 			
 			input = in.nextInt();
@@ -46,6 +47,7 @@ public class ProfessorClient {
 				getCourses(profID);
 				break;
 			case 2:
+				getCourses(profID);
 				System.out.println("Enter the courseID for veiwing enrolled Students: ");
 				String courseId= in.next();
 				viewEnrolledStudents(courseId);
@@ -54,7 +56,6 @@ public class ProfessorClient {
 				addGrade(profID);
 				break;
 			case 4:
-				in.close();
 				System.exit(0);
 				return;
 			default:
@@ -90,7 +91,24 @@ public class ProfessorClient {
 	}
 	
 	public void addGrade(String profId) {	
-		
+		Scanner in = new Scanner(System.in);
+		String courseId, grade, studentId;
+		try {
+			System.out.println("==============Add Grade==============");
+			getCourses(profId);	
+			System.out.printf("Enter course code: ");
+			courseId = in.nextLine();
+			viewEnrolledStudents(courseId);
+			System.out.printf("Enter student id: ");
+			studentId = in.nextLine();
+			System.out.println("Enter grade: ");
+			grade = in.nextLine();
+			professorInterface.submitGrade(studentId, courseId, grade);
+			System.out.println("GradeConstant added successfully for "+studentId);
+		} catch(Exception ex) {
+			System.out.println("GradeConstant cannot be added for"+ex.getStackTrace());
+			
+		} 
 	}
 
 }

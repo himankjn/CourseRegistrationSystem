@@ -148,7 +148,6 @@ public class AdminDaoImpl implements AdminDaoInterface{
 		List<Student> pendingAdmissionedStudents=new ArrayList<Student>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_PENDING_ADMINSSIONED_STUDENTS);
-			
 			ResultSet results = statement.executeQuery();
 			while(results.next())
 			{
@@ -169,13 +168,42 @@ public class AdminDaoImpl implements AdminDaoInterface{
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return pendingAdmissionedStudents;
 	}
 
 	@Override
-	public void approveStudent(String studentId) {
+	public void approveStudents() {
 		// TODO Auto-generated method stub
-		
+		Connection connection = DBUtils.getConnection();
+		List<int>invalidCoursesIds = new ArrayList<int>();
+		Cou
+		try {
+			PreparedStatement stmt = connection.prepareStatement(SQLQueriesConstant.INVALID_COURSES_IDS);
+			stmt.setString(1,Studentid);
+			ResultSet results = stmt.executeQuery();
+			
+			while(results.next()) {
+				int id = results.getInt(1);
+				invalidCoursesIds.add(id);
+			}
+			
+			for(int invalidCourseId: invalidCoursesIds) {
+				List
+				
+	
+			}
+			
+			
+			
+		}catch(Exception e) {
+			System.out.println(e.getStackTrace());
+		}finally {
+			try {
+				connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override

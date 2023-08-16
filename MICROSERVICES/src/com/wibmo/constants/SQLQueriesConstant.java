@@ -19,4 +19,6 @@ public class SQLQueriesConstant {
 		public static final String ADD_COURSE = "insert into course(`courseId`,`credits`,`courseName`) values(?,?,?,?)";
 		public static final String REMOVE_COURSE = "DELETE  FROM course WHERE course.courseId=?";
 		public static final String assignCourse = "UPDATE course SET course.professorId=? WHERE course.courseId=?";
+		public static final String UNENROLL_COURSE = "DELETE FROM RegisteredCourse WHERE courseId=?";
+		public static final String INVALID_COURSES_IDS = "SELECT courseId from course where studentsEnrolled<3";
 }

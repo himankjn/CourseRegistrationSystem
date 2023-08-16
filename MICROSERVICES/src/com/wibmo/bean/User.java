@@ -2,15 +2,14 @@ package com.wibmo.bean;
 
 public abstract class User {
 	private int userId;
-	private String name;
 	private String password;
-	private String address;
-	public User(int userId,String name,String password,String address)
+	private String role;
+	
+	public User(int userId,String password,String role)
 	{
 		this.userId = userId;
-		this.name = name;
 		this.password = password;
-		this.address = address;
+		this.role = role;
 	}
 	/**
 	 * @return the userId
@@ -25,30 +24,6 @@ public abstract class User {
 		this.userId = userId;
 	}
 	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @return the address
-	 */
-	public String getAddress() {
-		return address;
-	}
-	/**
-	 * @param address the address to set
-	 */
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	/**
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -59,5 +34,18 @@ public abstract class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

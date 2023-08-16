@@ -2,9 +2,9 @@ package com.wibmo.bean;
 
 public class Admin extends User{
 	private String adminId;
-	public Admin(int userID, String name, String password, String address,String adminId) 
+	public Admin(int userID, String role, String password, String address,String adminId) 
 	{
-		super(userID, name, password,address);
+		super(userID,password,role);
 		this.adminId = adminId;
 	}
 	/**

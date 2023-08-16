@@ -70,7 +70,7 @@ public class ProfessorClient {
 			List<Student> enrolledStudents = new ArrayList<Student>();
 			enrolledStudents = professorInterface.viewEnrolledStudents(courseId);
 			for (Student obj: enrolledStudents) {
-				System.out.println(String.format("%20s %20s %20s",obj.getStudentId(), obj.getName(),obj.getAddress()));
+				System.out.println(String.format("%20s %20s",obj.getStudentId(), obj.getName()));
 			}
 			
 		} catch(Exception ex) {

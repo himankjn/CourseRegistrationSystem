@@ -11,26 +11,26 @@ import com.wibmo.utils.*;
 /**
  * UserDAOInterface implementation 
  */
-public class UserDAOInterfaceImpl implements UserDAOInterface{
+public class UserDAOImpl implements UserDAOInterface{
 	PreparedStatement stmt = null;
 	private static final Connection conn = DBUtils.getConnection();
-	private static volatile UserDAOInterfaceImpl instance = null;
+	private static volatile UserDAOImpl instance = null;
 	
 	/**
 	 * Default constructor
 	 */
-	private UserDAOInterfaceImpl() {
+	private UserDAOImpl() {
 		
 	}
 	/**
 	 * Method to make UserDAOInterfaceImpl Singleton
 	 * @return
 	 */
-	public static UserDAOInterfaceImpl getInstance() {
+	public static UserDAOImpl getInstance() {
 		if(instance==null)
 		{
-			synchronized(UserDAOInterfaceImpl.class){
-				instance=new UserDAOInterfaceImpl();
+			synchronized(UserDAOImpl.class){
+				instance=new UserDAOImpl();
 			}
 		}
 		return instance;

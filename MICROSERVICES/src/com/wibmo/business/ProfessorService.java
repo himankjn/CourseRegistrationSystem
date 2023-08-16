@@ -38,8 +38,6 @@ public class ProfessorService implements ProfessorInterface {
 	 * @param courseCode
 	 * @param grade
 	 */
-	@Override
-	
 	public boolean submitGrade(String studentId,String courseCode,String grade){
 		professorDAOInterface.addGrade(studentId, courseCode, grade);
 		return true;
@@ -48,10 +46,9 @@ public class ProfessorService implements ProfessorInterface {
 	
 	/**
 	 * Method to view all the enrolled students
-	 * @param courseId: Course id 
+	 * @param coursxeId: Course id 
 	 */
 	
-	@Override
 	public List<Student> viewEnrolledStudents(String profId) {
 		List<Student> enrolledStudents=new ArrayList<Student>();
 		try
@@ -71,7 +68,6 @@ public class ProfessorService implements ProfessorInterface {
 	 * @param profId: professor id
 	 */
 	
-	@Override
 	public List<Course> viewCourses(String profId) {
 		List<Course> coursesOffered=new ArrayList<Course>();
 		try

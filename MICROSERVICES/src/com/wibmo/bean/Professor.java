@@ -2,12 +2,14 @@ package com.wibmo.bean;
 
 public class Professor extends User{
 	private String professorId;
+	private String name;
 	private String department;
 	private String position;
 	
-	public Professor(int userId,String name,String password,String address,String professorId,String department,String position)
+	public Professor(int userId,String name,String password,String professorId,String department,String position)
 	{
-		super(userId,name,password,address);
+		super(userId,name,password);
+		this.name = name;
 		this.department = department;
 		this.position = position;
 	}
@@ -24,6 +26,21 @@ public class Professor extends User{
 	public void setProfessorId(String professorId) {
 		this.professorId = professorId;
 	}
+	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	/**
 	 * @return the department
 	 */

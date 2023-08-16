@@ -2,12 +2,13 @@ package com.wibmo.bean;
 
 public class Student extends User{
 	String studentId;
+	String name;
 	String department;
 	boolean feePaid;
 	boolean isApproved;
 	
-	public Student(int userId,String name,String password,String address,String studentId,String department) {
-		super(userId,name,password,address);
+	public Student(int userId,String password,String role,String name,String studentId,String department) {
+		super(userId,password,role);
 		this.studentId = studentId;
 		this.department = department;
 	}
@@ -25,7 +26,20 @@ public class Student extends User{
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
-	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	/**
 	 * @return the department
 	 */

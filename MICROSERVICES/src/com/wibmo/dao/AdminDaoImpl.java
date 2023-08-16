@@ -87,7 +87,7 @@ public class AdminDaoImpl implements AdminDaoInterface{
 			ResultSet results = stmt.executeQuery();
 			
 			while(results.next()) {
-				professorList.add(new Professor(results.getInt("userId"),results.getString("name"),results.getString("password"),results.getString("address"),results.getString("professorId"),results.getString("department"),results.getString(results.getString("position"))));
+				professorList.add(new Professor(results.getInt("userId"),results.getString("name"),results.getString("password"),results.getString("professorId"),results.getString("department"),results.getString(results.getString("position"))));
 			}
 			
 		}catch(Exception e) {

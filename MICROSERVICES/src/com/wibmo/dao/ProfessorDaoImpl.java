@@ -50,7 +50,6 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	 * @param userId, prof id of the professor
 	 * @return get the courses offered by the professor.
 	 */
-	@Override
 	public List<Course> getCoursesByProfessor(String profId) {
 		Connection connection=DBUtils.getConnection();
 		List<Course> courseList=new ArrayList<Course>();
@@ -87,7 +86,6 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	 * @param: courseCode: course code of the professor
 	 * @return: return the enrolled students for the corresponding professor and course code.
 	 */
-	@Override
 	public List<Student> getEnrolledStudents(String courseId) {
 		Connection connection=DBUtils.getConnection();
 		List<Student> enrolledStudents=new ArrayList<Student>();

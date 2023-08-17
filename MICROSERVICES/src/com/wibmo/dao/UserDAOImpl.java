@@ -1,103 +1,190 @@
 package com.wibmo.dao;
 
-import java.sql.*;
-import com.wibmo.constants.*;
-import com.wibmo.utils.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+
+import com.wibmo.constants.SQLQueriesConstant;
+import com.wibmo.exception.UserNotFoundException;
+import com.wibmo.utils.DBUtils;
 
 /**
- * @author Bhuvan
- */
-
-/**
- * UserDAOInterface implementation 
+ * 
+ * @author bhuvan
  */
 public class UserDAOImpl implements UserDAOInterface{
-	PreparedStatement stmt = null;
-	private static final Connection conn = DBUtils.getConnection();
-	private static volatile UserDAOImpl instance = null;
+	private static volatile UserDAOImpl instance=null;
 	
 	/**
-	 * Default constructor
+	 * Default Constructor
 	 */
-	private UserDAOImpl() {
+	private UserDAOImpl()
+	{
 		
 	}
+	
 	/**
-	 * Method to make UserDAOInterfaceImpl Singleton
+	 * Method to make UserDaoOperation Singleton
 	 * @return
 	 */
-	public static UserDAOImpl getInstance() {
+	public static UserDAOImpl getInstance()
+	{
 		if(instance==null)
 		{
+			// This is a synchronized block, when multiple threads will access this instance
 			synchronized(UserDAOImpl.class){
 				instance=new UserDAOImpl();
 			}
 		}
 		return instance;
 	}
-	
+
 	/**
-	 * method to verify credentials
-	 * @param userId, password to verify user
-	 * @return boolean
-	 */
-	@Override
-	public boolean verifyCredentials(String userId, String password) {
-		int status = 1;
-		try {
-			stmt = conn.prepareStatement(SQLQueriesConstant.GET_USER);
-			stmt.setString(1, userId);
-			stmt.setString(2, password);
-			status = stmt.executeUpdate();
-		}catch(SQLException se)
-		{
-			se.printStackTrace();
-		}
-		return status>0;
-	}
-	
-	/**
-	 * method to update password of user with Id userId
-	 * @param userId, newPassword 
-	 * @return update Status
+	 * Method to update password of user in DataBase
+	 * @param userID
+	 * @param newPassword
+	 * @return Update Password operation Status
 	 */
 	@Override
 	public boolean updatePassword(String userId, String newPassword) {
-		int status = 1;
+		Connection connection=DBUtils.getConnection();
 		try {
-			stmt = conn.prepareStatement(SQLQueriesConstant.UPDATE_USER);
-			stmt.setString(1, newPassword);
-			stmt.setString(2, userId);
-			status = stmt.executeUpdate();
-		}catch(SQLException se)
-		{
-			se.printStackTrace();
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.UPDATE_PASSWORD);
+			
+			statement.setString(1, newPassword);
+			statement.setString(2, userId);
+			
+			int row = statement.executeUpdate();
+			
+			if(row==1)
+				return true;
+			else
+				return false;
 		}
-		return status>0;
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 	
 	/**
-	 * method to get role of user
-	 * @param userId 
-	 * @return Role of user
+	 * Method to verify credentials of Users from DataBase
+	 * @param userId
+	 * @param password
+	 * @return Verify credentials operation status
+	 * @throws UserNotFoundException
 	 */
 	@Override
-	public String getRole(String userId) {
-		String role = null;
-		try {
-			stmt = conn.prepareStatement(SQLQueriesConstant.GET_ROLE);
-			stmt.setString(1, userId);
-			ResultSet rs = stmt.executeQuery(SQLQueriesConstant.GET_ROLE);
-			if(rs.next())
+	public boolean verifyCredentials(String userId, String password) throws UserNotFoundException {
+		Connection connection = DBUtils.getConnection();
+		try
+		{
+			//open db connection
+			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstant.VERIFY_CREDENTIALS);
+			preparedStatement.setString(1,userId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			System.out.println("inside verify");
+			
+			if(!resultSet.next())
+				throw new UserNotFoundException(userId);
+
+			else if(password.equals(resultSet.getString("password")))
 			{
-				role = rs.getString("role");
+				System.out.println("inside equals");
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 			
-		}catch(SQLException se)
-		{
-			se.printStackTrace();
 		}
-		return role;
+		catch(SQLException ex)
+		{
+			System.out.println("Something went wrong, please try again! "+ ex.getMessage());
+		}
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
+	/**
+	 * Method to update password of user in DataBase
+	 * @param userID
+	 * @return Update Password operation Status
+	 */
+	@Override
+	public boolean updatePassword(String userID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/**
+	 * Method to get RoleConstant of User from DataBase
+	 * @param userId
+	 * @return RoleConstant
+	 */
+	@Override
+	public String getRole(String userId) 
+	{
+		Connection connection=DBUtils.getConnection();
+		try {
+			System.out.println(userId);
+			connection=DBUtils.getConnection();
+			
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_ROLE);
+			statement.setString(1, userId);
+			ResultSet rs = statement.executeQuery();
+			
+			
+			
+			System.out.println("query executed");
+			
+			if(rs.next())
+			{
+				System.out.println(rs.getString("role"));
+				return rs.getString("role");
+			}
+				
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+			
+		}
+		
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	
 }

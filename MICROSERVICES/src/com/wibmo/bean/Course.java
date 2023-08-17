@@ -1,47 +1,33 @@
 package com.wibmo.bean;
 
 public class Course {
-	private int credits;
 	private String courseId;
 	private String courseName;
 	private String instructorId;
-	private int studentsEnrolled;
+	private int seats = 10;
 	
-	public Course(String courseId, int credits, String courseName, String instructorId) {
-		this.courseId=courseId;
-		this.credits=credits;
-		this.courseName=courseName;
-		this.instructorId=instructorId;
-		this.studentsEnrolled = 0;
+	public Course()
+	{
+		
 	}
-	/**
-	 * @return the courseId
-	 */
+	
+	public Course(String crsCode,String crsName,String professorId,int seats) {
+		this.courseId=crsCode;
+		this.courseName=crsName;
+		this.instructorId=professorId;
+		this.setSeats(seats);
+	}
+
 	public String getCourseId() {
 		return courseId;
 	}
-
+	/**
 	/**
 	 * @param courseId the courseId to set
 	 */
 	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
-
-	/**
-	 * @return the credits
-	 */
-	public int getCredits() {
-		return credits;
-	}
-
-	/**
-	 * @param credits the credits to set
-	 */
-	public void setCredits(int credits) {
-		this.credits = credits;
-	}
-
 	/**
 	 * @return the courseName
 	 */
@@ -70,18 +56,14 @@ public class Course {
 		this.instructorId = instructorId;
 	}
 
-	/**
-	 * @return the studentsEnrolled
-	 */
-	public int getStudentsEnrolled() {
-		return studentsEnrolled;
+	public int getSeats() {
+		return seats;
 	}
 
-	/**
-	 * @param studentsEnrolled the studentsEnrolled to set
-	 */
-	public void setStudentsEnrolled(int studentsEnrolled) {
-		this.studentsEnrolled = studentsEnrolled;
+	public void setSeats(int seats) {
+		this.seats = seats;
 	}
+
+	
 
 }

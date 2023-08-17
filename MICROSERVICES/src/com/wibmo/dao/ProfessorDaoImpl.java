@@ -7,24 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.wibmo.bean.Course;
-import com.wibmo.bean.Student;
+import com.wibmo.bean.EnrolledStudent;
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.utils.DBUtils;
 
-
-
 /**
- * @author himank
+ * @author bhuvan
  */
-public class ProfessorDaoImpl implements ProfessorDaoInterface {
+public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
-	private static volatile ProfessorDaoImpl instance=null;
-
+	private static volatile ProfessorDAOImpl instance=null;
+	
 	/**
 	 * Default Constructor
 	 */
-	private ProfessorDaoImpl()
+	private ProfessorDAOImpl()
 	{
 		
 	}
@@ -33,12 +32,13 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	 * Method to make ProfessorDaoOperation Singleton
 	 * @return
 	 */
-	public static ProfessorDaoImpl getInstance()
+	public static ProfessorDAOImpl getInstance()
 	{
 		if(instance==null)
 		{
-			synchronized(ProfessorDaoImpl.class){
-				instance=new ProfessorDaoImpl();
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(ProfessorDAOImpl.class){
+				instance=new ProfessorDAOImpl();
 			}
 		}
 		return instance;
@@ -46,10 +46,11 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	
 	
 	/**
-	 * Method to get Courses by Professor Id 
+	 * Method to get Courses by Professor Id using SQL Commands
 	 * @param userId, prof id of the professor
 	 * @return get the courses offered by the professor.
 	 */
+	@Override
 	public List<Course> getCoursesByProfessor(String profId) {
 		Connection connection=DBUtils.getConnection();
 		List<Course> courseList=new ArrayList<Course>();
@@ -61,19 +62,19 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 			ResultSet results=statement.executeQuery();
 			while(results.next())
 			{
-				courseList.add(new Course(results.getString("courseId"),results.getInt("credits"), results.getString("courseName"),results.getString("professorId")));
+				courseList.add(new Course(results.getString("courseCode"),results.getString("courseName"),results.getString("professorId"),results.getInt("seats")));
 			}
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
-			System.out.println(e.getStackTrace());
+			System.out.println(e.getMessage());
 		}
 		finally
 		{
 			try {
 				connection.close();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -82,13 +83,15 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	}
 
 	/**
-	 * Method to view list of enrolled Students
+	 * Method to view list of enrolled Students using SQL Commands
+	 * @param: profId: professor id 
 	 * @param: courseCode: course code of the professor
 	 * @return: return the enrolled students for the corresponding professor and course code.
 	 */
-	public List<Student> getEnrolledStudents(String courseId) {
+	@Override
+	public List<EnrolledStudent> getEnrolledStudents(String courseId) {
 		Connection connection=DBUtils.getConnection();
-		List<Student> enrolledStudents=new ArrayList<Student>();
+		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_ENROLLED_STUDENTS);
 			statement.setString(1, courseId);
@@ -96,19 +99,19 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 			ResultSet results = statement.executeQuery();
 			while(results.next())
 			{
-				enrolledStudents.add(new Student(results.getInt("userId"),results.getString("name"),results.getString("password"),results.getString("address"),
-						results.getString("studentId"),results.getString("department")));
+				//public EnrolledStudent(String courseCode, String courseName, int studentId) 
+				enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getString("studentId")));
 			}
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
-			System.out.println(e.getStackTrace());
+			System.out.println(e.getMessage());
 		}
 		finally
 		{
 			try {
 				connection.close();
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -117,10 +120,10 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	}
 	
 	/**
-	 * Method to submit grade for a student for a course.
+	 * Method to GradeConstant a student using SQL Commands
 	 * @param: profId: professor id 
-	 * @param: courseCode: course code for the corresponding course
-	 * @param grade : The grade for the student
+	 * @param: courseCode: course code for the corresponding 
+	 * @return: returns the status after adding the grade
 	 */
 	public Boolean addGrade(String studentId,String courseCode,String grade) {
 		Connection connection=DBUtils.getConnection();
@@ -138,7 +141,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 			else
 				return false;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
 			System.out.println(e.getMessage());
 		}
@@ -152,8 +155,45 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 			}
 		}
 		return false;
-	
 	}
+	
 
-
+	/**
+	 * Method to Get professor name by id
+	 * @param profId
+	 * @return Professor Id in string
+	 */
+	@Override
+	public String getProfessorById(String profId)
+	{
+		String prof_Name = null;
+		Connection connection=DBUtils.getConnection();
+		try 
+		{
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_PROF_NAME);
+			
+			statement.setString(1, profId);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			
+			prof_Name = rs.getString(1);
+			
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			try 
+			{
+				connection.close();
+			} catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return prof_Name;
+	}
 }

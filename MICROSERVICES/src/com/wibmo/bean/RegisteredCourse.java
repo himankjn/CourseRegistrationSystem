@@ -1,43 +1,74 @@
+/**
+ * 
+ */
 package com.wibmo.bean;
 
-public class RegisteredCourse {
-	private String courseId;
-	private String studentId;
-	private String grade;
+
+/*
+ * @author bhuvan
+ *
+ */
+
+import com.wibmo.constants.GradeConstant;
+
+public class RegisteredCourse 
+{
+	Course course;
+	String studentId;
+	GradeConstant grade;
+	
+	
+	
 	/**
-	 * @return the courseId
+	 * @return the course
 	 */
-	public String getCourseId() {
-		return courseId;
+	public Course getCourse() {
+		return course;
 	}
+	
+	
 	/**
-	 * @param courseId the courseId to set
+	 * @param course the course to set
 	 */
-	public void setCourseId(String courseId) {
-		this.courseId = courseId;
+	public void setCourse(Course course) {
+		this.course = new Course(course.getCourseId(), course.getCourseName(), course.getInstructorId() ,course.getSeats());
 	}
-	/**
+	
+	
+	/*
 	 * @return the studentId
 	 */
-	public String getStudentId() {
+	public String getstudentId() {
 		return studentId;
 	}
+	
+	
 	/**
 	 * @param studentId the studentId to set
 	 */
-	public void setStudentId(String studentId) {
+	public void setstudentId(String studentId) {
 		this.studentId = studentId;
 	}
+	
+	
 	/**
 	 * @return the grade
 	 */
-	public String getGrade() {
+	public GradeConstant getGrade() {
 		return grade;
 	}
+	
+	
+	
 	/**
 	 * @param grade the grade to set
 	 */
 	public void setGrade(String grade) {
-		this.grade = grade;
+		this.grade = GradeConstant.valueOf(grade);
 	}
+	
+	
+	
+	
+
 }

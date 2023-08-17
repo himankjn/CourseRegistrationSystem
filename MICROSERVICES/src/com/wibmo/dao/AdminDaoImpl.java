@@ -112,7 +112,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			statement.setString(2, course.getCourseName());
 			
 			statement.setInt(3, 10);
-			statement.setString(4, "NOT_GRADED");
+			statement.setString(4, "NOT_ASSIGNED");
 			int row = statement.executeUpdate();
 			
 			System.out.println(row + " course added");
@@ -279,8 +279,9 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, professor.getUserId());
-			statement.setString(2, professor.getDepartment());
-			statement.setString(3, professor.getDesignation());
+			statement.setString(2, professor.getUserId());
+			statement.setString(3, professor.getDepartment());
+			statement.setString(4, professor.getDesignation());
 			int row = statement.executeUpdate();
 
 			System.out.println(row + " professor added.");
@@ -289,7 +290,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 				throw new ProfessorNotAddedException(professor.getUserId());
 			}
 			
-			System.out.println("Professor with professorId: " + professor.getUserId() + " added."); 
+			System.out.println("I'm here! Professor with professorId: " + professor.getUserId() + " added."); 
 			
 		}catch(SQLException se) {
 			

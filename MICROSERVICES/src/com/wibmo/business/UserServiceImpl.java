@@ -2,6 +2,7 @@ package com.wibmo.business;
 
 import com.wibmo.dao.UserDAOImpl;
 import com.wibmo.dao.UserDAOInterface;
+import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.UserNotFoundException;
 import com.wibmo.business.UserServiceInterface;
 
@@ -58,7 +59,14 @@ public class UserServiceImpl implements UserServiceInterface {
 
 	@Override
 	public boolean verifyCredentials(String userID, String password) throws UserNotFoundException {
-			return userDaoInterface.verifyCredentials(userID, password);		
+		try {
+			return userDaoInterface.verifyCredentials(userID, password);
+		}
+		catch(UserNotFoundException e){
+			System.out.println("User with given user id: "+ userID+" not found!");
+			return false;
+		}
+		
 		
 	}
 	
@@ -70,6 +78,22 @@ public class UserServiceImpl implements UserServiceInterface {
 	@Override
 	public String getRole(String userId) {
 		return userDaoInterface.getRole(userId);
+	}
+
+	@Override
+	public void verifyUserRole(String userId, int roleNum) throws RoleMismatchException {
+		String role="";
+		switch(roleNum) {
+			case 1: role="ADMIN";
+			break;
+			case 2: role="PROFESSOR";
+			break;
+			case 3: role="STUDENT";
+			break;
+		}
+		String actualRole=getRole(userId);
+		if(!actualRole.equals(role))
+			throw new RoleMismatchException(userId,role);
 	}
 
 	

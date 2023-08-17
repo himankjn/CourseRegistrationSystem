@@ -1,19 +1,22 @@
 package com.wibmo.bean;
 
+import com.wibmo.constants.GenderConstant;
+import com.wibmo.constants.RoleConstant;
+
 public class Professor extends User{
 	private String professorId;
-	private String name;
 	private String department;
-	private String position;
+	private String designation;
 	
-	public Professor(int userId,String name,String password,String professorId,String department,String position)
-	{
-		super(userId,name,password);
-		this.name = name;
-		this.department = department;
-		this.position = position;
+	public Professor(String userID) {
+		super(userID);
 	}
-	
+	public Professor(String userID, String name, GenderConstant gender, RoleConstant role, String password, String address) {
+		super(userID, name, role, password, gender, address);
+	}
+	public Professor() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @return the professorId
 	 */
@@ -27,19 +30,6 @@ public class Professor extends User{
 		this.professorId = professorId;
 	}
 	
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	/**
 	 * @return the department
@@ -53,16 +43,11 @@ public class Professor extends User{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	/**
-	 * @return the position
-	 */
-	public String getPosition() {
-		return position;
+	public String getDesignation() {
+		return designation;
 	}
-	/**
-	 * @param position the position to set
-	 */
-	public void setPosition(String position) {
-		this.position = position;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
+	
 }

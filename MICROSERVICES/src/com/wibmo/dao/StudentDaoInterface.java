@@ -4,12 +4,13 @@
 package com.wibmo.dao;
 
 import com.wibmo.bean.Student;
+import com.wibmo.exception.StudentNotRegisteredException;
 
 /**
  * @author Shanmukh
  *
  */
-public interface StudentDaoInterface {
+public interface StudentDAOInterface {
 	
 	
 	/**
@@ -18,7 +19,7 @@ public interface StudentDaoInterface {
 	 * @return true if student is added, else false
 	 * @throws StudentNotRegisteredException
 	 */
-	public String addStudent(Student student);
+	public String addStudent(Student student) throws StudentNotRegisteredException;
 	
 	
 	/**

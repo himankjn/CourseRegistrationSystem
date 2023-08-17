@@ -3,11 +3,16 @@
  */
 package com.wibmo.dao;
 
+import java.sql.SQLException;
+
+import com.wibmo.constants.NotificationTypeConstant;
+import com.wibmo.constants.PaymentModeConstant;
+
 /**
  * @author Shanmukh
  *
  */
-public interface NotificationDaoInterface {
+public interface NotificationDAOInterface {
 
 
 		/**
@@ -19,7 +24,7 @@ public interface NotificationDaoInterface {
 		 * @return notification id for the record added in the database
 		 * @throws SQLException
 		 */
-		public int sendNotification(String type,int studentId,String modeOfPayment,double amount);
+		public int sendNotification(NotificationTypeConstant type,int studentId,PaymentModeConstant modeOfPayment,double amount) throws SQLException;
 		
 }
 

@@ -1,23 +1,22 @@
 package com.wibmo.bean;
 
+import com.wibmo.constants.GenderConstant;
+import com.wibmo.constants.RoleConstant;
+
 public class Admin extends User{
-	private String adminId;
-	public Admin(int userID, String role, String password, String address,String adminId) 
+	private String adminID;
+	
+	public Admin(String userID, String name, GenderConstant gender, RoleConstant role, String password, String address) 
 	{
-		super(userID,password,role);
-		this.adminId = adminId;
+		super(userID, name, role, password, gender, address);
 	}
-	/**
-	 * @return the adminId
-	 */
-	public String getAdminId() {
-		return adminId;
+
+	public String getAdminID() {
+		return adminID;
 	}
-	/**
-	 * @param adminId the adminId to set
-	 */
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
-	}
+
+	public void setAdminID(String adminID) {
+		this.adminID = adminID;
+	}	
 
 }

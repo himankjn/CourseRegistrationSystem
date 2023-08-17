@@ -1,18 +1,35 @@
 package com.wibmo.bean;
 
+import com.wibmo.constants.GenderConstant;
+import com.wibmo.constants.RoleConstant;
+
 public class Student extends User{
-	String studentId;
-	String name;
-	String department;
-	boolean feePaid;
+	private String department;
+	private String studentId;
+	private int gradYear;
 	boolean isApproved;
 	
-	public Student(int userId,String password,String role,String name,String studentId,String department) {
-		super(userId,password,role);
-		this.studentId = studentId;
-		this.department = department;
+	public int getGradYear() {
+		return gradYear;
 	}
+
+	public void setGradYear(int gradYear) {
+		this.gradYear = gradYear;
+	}
+
 	
+	
+	public Student(String userId, String name, RoleConstant role, String password, GenderConstant gender, String address,String department,String studentId,int gradYear,boolean isApproved) {
+		super(userId, name, role, password,gender,address);
+		this.department = department;
+		this.studentId = studentId;
+		this.gradYear = gradYear;
+		this.isApproved = isApproved;
+	}
+
+	public Student() {
+		
+	}
 	/**
 	 * @return the studentId
 	 */
@@ -25,19 +42,6 @@ public class Student extends User{
 	 */
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
-	}
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**
@@ -53,19 +57,7 @@ public class Student extends User{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	/**
-	 * @return the feePaid
-	 */
-	public boolean isFeePaid() {
-		return feePaid;
-	}
-
-	/**
-	 * @param feePaid the feePaid to set
-	 */
-	public void setFeePaid(boolean feePaid) {
-		this.feePaid = feePaid;
-	}
+	
 
 	/**
 	 * @return the isApproved

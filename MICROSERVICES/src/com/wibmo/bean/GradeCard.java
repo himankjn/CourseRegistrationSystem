@@ -1,47 +1,74 @@
 package com.wibmo.bean;
 
-public class GradeCard {
-	private String studentId;
-	private int semester;
-	private double cgpa;
+import java.util.List;
+
+public class GradeCard 
+{
+	Student stud;
+	int sem;
+	float cgpa;
+	List<RegisteredCourse> reg_list ;
 	
+	/*public float calCGPA()
+	{
+		return 0;
+	}*/
+
+	/**
+	 * @return the stud
+	 */
+	public Student getStud() {
+		return stud;
+	}
+
+	/**
+	 * @param stud the stud to set
+	 */
+	public void setStud(Student stud) {
+		this.stud = stud;
+	}
+
+	/**
+	 * @return the sem
+	 */
+	public int getSem() {
+		return sem;
+	}
+
+	/**
+	 * @param sem the sem to set
+	 */
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
+
 	/**
 	 * @return the cgpa
 	 */
-	public double getCgpa() {
+	public float getCgpa() {
 		return cgpa;
 	}
+
 	/**
 	 * @param cgpa the cgpa to set
 	 */
-	public void setCgpa(double cgpa) {
+	public void setCgpa(float cgpa) {
 		this.cgpa = cgpa;
-		
-		
 	}
+
 	/**
-	 * @return the studentId
+	 * @return the reg_list
 	 */
-	public String getStudentId() {
-		return studentId;
+	public List<RegisteredCourse> getReg_list() {
+		return reg_list;
 	}
+
 	/**
-	 * @param studentId the studentId to set
+	 * @param reg_list the reg_list to set
 	 */
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+	public void setReg_list(List<RegisteredCourse> reg_list) {
+		this.reg_list = reg_list;
 	}
-	/**
-	 * @return the semester
-	 */
-	public int getSemester() {
-		return semester;
-	}
-	/**
-	 * @param semester the semester to set
-	 */
-	public void setSemester(int semester) {
-		this.semester = semester;
-	}
+	
 	
 }

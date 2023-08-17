@@ -2,7 +2,7 @@ package com.wibmo.bean;
 
 public class Notification {
 	private int notifId;
-	private int userId;
+	private String userId;
 	private String message;
 	/**
 	 * @return the notifId
@@ -19,13 +19,13 @@ public class Notification {
 	/**
 	 * @return the userId
 	 */
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	/**

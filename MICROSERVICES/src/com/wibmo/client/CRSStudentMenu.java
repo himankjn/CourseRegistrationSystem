@@ -48,7 +48,7 @@ public class CRSStudentMenu {
 				System.out.println("1. Course Registration");
 				System.out.println("2. Add Course");
 				System.out.println("3. Drop Course");
-				System.out.println("4. View Course");
+				System.out.println("4. View Available Courses");
 				System.out.println("5. View Registered Courses");
 				System.out.println("6. View grade card");
 				System.out.println("7. Make Payment");
@@ -127,7 +127,7 @@ private void registerCourses(String studentId)
 		String courseCode = sc.next();
 		
 		try {
-			if(registrationServiceInterface.addCourse(courseCode,studentId,courseList))
+			if(registrationServiceInterface.addCourse(courseCode,studentId))
 			{
 				System.out.println("Course " + courseCode + " registered sucessfully.");
 			}
@@ -176,15 +176,11 @@ private void registerCourses(String studentId)
 private void addCourse(String studentId) {
 	if(is_registered)
 	{
-		List<Course> availableCourseList=viewAvailableCourse(studentId);
 		
-		if(availableCourseList==null)
-			return;
-
-		System.out.println("Enter Course Code : " );
+		System.out.println("Enter Course Id : " );
 		String courseCode = sc.next();
 		try {
-			if(registrationServiceInterface.addCourse(courseCode, studentId,availableCourseList))
+			if(registrationServiceInterface.addCourse(courseCode, studentId))
 			{
 				System.out.println(" You have successfully registered for Course : " + courseCode);
 			}

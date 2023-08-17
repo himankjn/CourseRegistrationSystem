@@ -55,11 +55,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 */
 	@Override
 	
-	public boolean addCourse(String courseCode, String studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException 
+	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException 
 	{
        
 		
-
+		List<Course> availableCourseList=viewCourses(studentId);
 		if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 6)
 		{	
 			throw new CourseLimitExceededException(6);

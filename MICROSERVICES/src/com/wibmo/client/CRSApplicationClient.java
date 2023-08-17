@@ -3,16 +3,23 @@
  */
 package com.wibmo.client;
 import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import com.wibmo.business.NotificationServiceImpl;
+import com.wibmo.business.NotificationServiceInterface;
 import com.wibmo.business.StudentServiceImpl;
 import com.wibmo.business.UserServiceImpl;
 import com.wibmo.business.StudentServiceInterface;
 import com.wibmo.business.UserServiceInterface;
+import com.wibmo.exception.PasswordMismatchException;
+import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.StudentNotRegisteredException;
 import com.wibmo.exception.UserNotFoundException;
+import com.wibmo.validator.StudentValidator;
 import com.wibmo.constants.GenderConstant;
+import com.wibmo.constants.RoleConstant;
 
 /**
  * 
@@ -22,19 +29,17 @@ public class CRSApplicationClient {
 	static boolean loggedin = false;
 	static StudentServiceInterface studentInterface=StudentServiceImpl.getInstance();
 	static UserServiceInterface userInterface =UserServiceImpl.getInstance();
-	//NotificationInterface notificationInterface=NotificationOperation.getInstance();
-	/**
-	 * @param args
-	 * @throws UserNotFoundException 
-	 */
+	NotificationServiceInterface notificationInterface=NotificationServiceImpl.getInstance();
+
 	public static void main(String[] args) throws UserNotFoundException {
 		while(true) {
 			LocalDateTime date= LocalDateTime.now();
 			System.out.println("===================!WELCOME TO CRS APPLICATION!====================");
-			System.out.println("=================="+date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))+"=====================");
-			
-			System.out.println("Enter you choice:");
-			System.out.println("1. Student Registration\n2. Login\n3. Update Password\n4. Exit");
+			System.out.println("======================="+date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))+"========================\n\n\n");
+			System.out.println("======================================");
+			System.out.println("|         Enter you choice:          |");
+			System.out.println("|         1. Student Registration    |\n|         2. Login                   |\n|         3. Update Password         |\n|         4. Exit                    |");
+			System.out.println("======================================");
 			Scanner sc = new Scanner(System.in);
 			int choice=sc.nextInt();
 			switch(choice) {
@@ -56,17 +61,22 @@ public class CRSApplicationClient {
 		Scanner in = new Scanner(System.in);
 
 		String userId,password;
+		int roleInp;
 		System.out.println("-----------------Login------------------");
 		System.out.println("Email:");
 		userId = in.next();
 		System.out.println("Password:");
 		password = in.next();
+		System.out.println("Role: 1.Admin 2.Professor 3.Student");
+		roleInp = in.nextInt();
 		loggedin = userInterface.verifyCredentials(userId, password);
-		
-		//2 cases1
-		
-		
-		//true->role->student->approved
+		try {
+			userInterface.verifyUserRole(userId,roleInp);
+			}
+		catch(RoleMismatchException e) {
+				System.out.println(e.getMessage());
+				loggedin=false;
+		}
 		if(loggedin)
 		{
 			 
@@ -125,24 +135,27 @@ public class CRSApplicationClient {
 	{
 		Scanner sc=new Scanner(System.in);
 
-		String userId,name,password,address,branchName;
+		String userId,name,password,confirmPassword,address,branchName;
 		GenderConstant gender;
-		int genderV, batch;
+		int genderInput, batch;
 		try
 		{
 			//input all the student details
 			System.out.println("---------------Student Registration-------------");
-			System.out.println("Name:");
+			System.out.println("Your Name:");
 			name=sc.nextLine();
-			System.out.println("Email:");
+			System.out.println("Your Email:");
 			userId=sc.next();
-			System.out.println("Password:");
+			System.out.println("Your Password:");
 			password=sc.next();
-			System.out.println("GenderConstant: \t 1: Male \t 2.Female\t 3.Other");
-			genderV=sc.nextInt();
+			System.out.println("Confirm Password:");
+			confirmPassword=sc.next(); 
+			StudentValidator.verifySamePassword(password,confirmPassword);
+			System.out.println("GenderConstant: \t 1: Male \t 2.Female\t 3.Others");
+			genderInput=sc.nextInt();
 			sc.nextLine();
 			
-			switch(genderV)
+			switch(genderInput)
 			{
 			case 1:
 				gender=GenderConstant.MALE;
@@ -176,6 +189,9 @@ public class CRSApplicationClient {
 		{
 			System.out.println("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
 		}
+		catch(PasswordMismatchException e) {
+			System.out.println(e.getMessage());
+		}
 		//sc.close();
 	}
 	
@@ -184,22 +200,31 @@ public class CRSApplicationClient {
 	 */
 	public static void updatePassword() {
 		Scanner in = new Scanner(System.in);
-		String userId,newPassword;
+		String userId,newPassword,confirmPassword;
 		try {
 			System.out.println("------------------Update Password--------------------");
 			System.out.println("Email");
 			userId=in.next();
 			System.out.println("New Password:");
 			newPassword=in.next();
+			System.out.println("Confirm Password:");
+			confirmPassword=in.next(); 
+			StudentValidator.verifySamePassword(newPassword,confirmPassword);
 			boolean isUpdated=userInterface.updatePassword(userId, newPassword);
 			if(isUpdated)
 				System.out.println("Password updated successfully!");
 
 			else
 				System.out.println("Something went wrong, please try again!");
-		} catch(Exception ex) {
+		}
+		catch(PasswordMismatchException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception ex) {
 			System.out.println("Error Occured "+ex.getMessage());
 		}
+		
+		
 		
 	}
 }

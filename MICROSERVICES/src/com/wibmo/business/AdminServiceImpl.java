@@ -78,7 +78,8 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws CourseNotFoundException 
 	 */
 	@Override
-	public void removeCourse(String dropCourseCode, List<Course> courseList) throws CourseNotFoundException, CourseNotDeletedException {
+	public void removeCourse(String dropCourseCode) throws CourseNotFoundException, CourseNotDeletedException {
+		List<Course> courseList = viewCourses();
 		if(!AdminValidator.isValidDropCourse(dropCourseCode, courseList)) {
 			System.out.println("courseCode: " + dropCourseCode + " not present in catalog!");
 			throw new CourseNotFoundException(dropCourseCode);
@@ -94,10 +95,10 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws CourseFoundException
 	 */
 	@Override
-	public void addCourse(Course newCourse, List<Course> courseList) throws CourseExistsAlreadyException 
+	public void addCourse(Course newCourse) throws CourseExistsAlreadyException 
 	{
 		
-		
+		List<Course> courseList = viewCourses();
 		try {
 			if(!AdminValidator.isValidNewCourse(newCourse, courseList)) {
 				System.out.println("courseCode: " + newCourse.getCourseId() + " already present in catalog!");

@@ -5,6 +5,7 @@ import java.util.List;
 import com.wibmo.bean.Course;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
+import com.wibmo.exception.PasswordMismatchException;
 import com.wibmo.exception.SeatNotAvailableException;
 
 /**
@@ -55,6 +56,13 @@ public class StudentValidator {
 		
 		return false;
 	
+	}
+	
+	public static void verifySamePassword(String password, String confirmPassword) throws PasswordMismatchException
+	{
+		if(!password.equals(confirmPassword)) {
+			throw new PasswordMismatchException(password,confirmPassword);
+		}
 	}
 	
 

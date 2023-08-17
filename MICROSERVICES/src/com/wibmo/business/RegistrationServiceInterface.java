@@ -18,7 +18,7 @@ import com.wibmo.exception.SeatNotAvailableException;
  */
 public interface RegistrationServiceInterface {
 	
-		public boolean addCourse(String courseCode, String studentId, List<Course> availableCourseList)
+		public boolean addCourse(String courseCode, String studentId)
 			throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException;
 
 	/**

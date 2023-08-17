@@ -3,6 +3,8 @@
  */
 package com.wibmo.business;
 
+import com.wibmo.constants.RoleConstant;
+import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.UserNotFoundException;
 
 /**
@@ -32,5 +34,7 @@ public interface UserServiceInterface {
 	 * @param newPassword
 	 */
 	boolean updatePassword(String userID, String newPassword);
+	
+	void verifyUserRole(String userId, int role) throws RoleMismatchException;
 	
 }

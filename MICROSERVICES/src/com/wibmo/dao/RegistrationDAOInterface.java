@@ -7,7 +7,7 @@ import java.util.*;
 
 import com.wibmo.bean.*;
 
-public interface RegistrationDaoInterface {
+public interface RegistrationDAOInterface {
 	
 	
 	/**
@@ -98,7 +98,7 @@ public interface RegistrationDaoInterface {
 	 * @throws SQLException 
 	 * @return Studen's grade card
 	 */
-	public List<GradeCard> viewGradeCard(String studentId) throws SQLException;
+	public List<Grade> viewGradeCard(String studentId) throws SQLException;
 
 
 	public boolean isReportGenerated(String studentId) throws SQLException;

@@ -5,8 +5,9 @@ package com.wibmo.validator;
 
 import java.util.List;
 
-import com.wibmo.bean.*;
 import com.wibmo.exception.UserNotFoundException;
+
+import com.wibmo.bean.*;
 
 /**
  * @author nikita

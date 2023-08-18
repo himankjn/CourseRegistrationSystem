@@ -14,11 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Professor;
-import com.wibmo.bean.RegisteredCourse;
-import com.wibmo.bean.Student;
-import com.wibmo.bean.User;
 import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
 import com.wibmo.constants.SQLQueriesConstant;
@@ -31,6 +26,12 @@ import com.wibmo.exception.UserIdAlreadyInUseException;
 import com.wibmo.exception.UserNotAddedException;
 import com.wibmo.exception.UserNotFoundException;
 import com.wibmo.utils.DBUtils;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Professor;
+import com.wibmo.bean.RegisteredCourse;
+import com.wibmo.bean.Student;
+import com.wibmo.bean.User;
 
 /**
  * @author nikita

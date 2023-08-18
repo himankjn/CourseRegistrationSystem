@@ -3,12 +3,13 @@ package com.wibmo.business;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Grade;
-import com.wibmo.bean.GradeCard;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
 
 /**
  * 

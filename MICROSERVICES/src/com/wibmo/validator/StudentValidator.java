@@ -2,11 +2,12 @@ package com.wibmo.validator;
 
 import java.util.List;
 
-import com.wibmo.bean.Course;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.PasswordMismatchException;
 import com.wibmo.exception.SeatNotAvailableException;
+
+import com.wibmo.bean.Course;
 
 /**
  * 

@@ -3,8 +3,9 @@
  */
 package com.wibmo.dao;
 
-import com.wibmo.bean.Student;
 import com.wibmo.exception.StudentNotRegisteredException;
+
+import com.wibmo.bean.Student;
 
 /**
  * @author Shanmukh

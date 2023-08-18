@@ -5,14 +5,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.EnrolledStudent;
-import com.wibmo.bean.Student;
 import com.wibmo.dao.ProfessorDAOImpl;
 import com.wibmo.dao.ProfessorDAOInterface;
 import com.wibmo.exception.CourseAlreadyAssignedException;
 import com.wibmo.exception.InvalidCourseAssignmentRequestException;
 import com.wibmo.validator.ProfessorValidator;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.EnrolledStudent;
+import com.wibmo.bean.Student;
 
 /**
  * @author Himank

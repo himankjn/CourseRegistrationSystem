@@ -5,10 +5,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Notification;
-import com.wibmo.bean.Grade;
-import com.wibmo.bean.GradeCard;
 import com.wibmo.constants.PaymentModeConstant;
 import com.wibmo.dao.RegistrationDAOInterface;
 import com.wibmo.dao.RegistrationDAOImpl;
@@ -16,6 +12,11 @@ import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
 import com.wibmo.validator.StudentValidator;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.Notification;
 
 /**
  * @author bhuvan

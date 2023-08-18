@@ -9,10 +9,12 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.wibmo.business.ProfessorServiceInterface;
+
 import com.wibmo.bean.Course;
 import com.wibmo.bean.EnrolledStudent;
 import com.wibmo.bean.Student;
-import com.wibmo.business.ProfessorServiceInterface;
+
 import com.wibmo.business.ProfessorServiceImpl;
 
 

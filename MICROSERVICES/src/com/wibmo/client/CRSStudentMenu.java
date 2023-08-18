@@ -19,12 +19,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author himank
  *
  */
 public class CRSStudentMenu {
-	
+	Logger logger = Logger.getLogger(CRSStudentMenu.class);
 	Scanner sc = new Scanner(System.in);
 	RegistrationServiceInterface registrationServiceInterface = RegistrationServiceImpl.getInstance();
 	NotificationServiceInterface notificationInterface = NotificationServiceImpl.getInstance();

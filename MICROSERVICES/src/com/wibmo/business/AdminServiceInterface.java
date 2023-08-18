@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -49,7 +50,10 @@ public interface AdminServiceInterface
 	 * studentlist
 	 */
 	
-	public void approveStudent(String studentid, List<Student> studentlist) throws StudentNotFoundForApprovalException;
+	public void approveSingleStudent(String studentid, List<Student> studentlist) throws StudentNotFoundForApprovalException;
+	
+	
+	public void approveAllStudents(List<Student> studentList);
 	
 	/**
 	 * Method to add Professor to DB
@@ -86,4 +90,10 @@ public interface AdminServiceInterface
 	 */
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException;
 	
+	/**
+	 * Method to view professors who requested for a particular course
+	 * @param courseId
+	 * @return
+	 */
+	public List<String> viewProfCourseRequests(String courseId);
 }

@@ -19,7 +19,11 @@ public interface ProfessorDAOInterface {
 	 */
 	public List<Course> getCoursesByProfessor(String userId);
 	
-	
+	/**
+	 * Method to get list of courses currently unassigned
+	 * @return List of Courses
+	 */
+	public List<Course> getUnassignedCourses();	
 	/**
 	 * Method to view list of enrolled Students using SQL Commands
 	 * @param: profId: professor id 
@@ -43,4 +47,12 @@ public interface ProfessorDAOInterface {
 	 * @return Professor Id in string
 	 */
 	public String getProfessorById(String profId);
+	
+	/**
+	 * Method to request course assignment from admin
+	 * @param userId
+	 * @param courseId
+	 * @return
+	 */
+	public boolean sendCourseAssignmentRequest(String userId, String courseId);
 }

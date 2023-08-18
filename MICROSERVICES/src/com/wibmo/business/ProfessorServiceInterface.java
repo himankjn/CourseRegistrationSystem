@@ -25,10 +25,17 @@ public interface ProfessorServiceInterface {
 	/**
 	 * Method to view all courses taught by a professor
 	 * @param profID
-	 * @return
+	 * @return List of Courses
 	 */
 	
-	public List<Course> viewCourses(String profID);
+	public List<Course> viewAssignedCourses(String profID);
+	
+	/**
+	 * Method to view all courses currently unassigned and available for professor
+	 * @return List of Courses
+	 */
+	public List<Course> getUnassignedCourses();
+
 
 	/**
 	 * Method to view all the enrolled students for a course
@@ -37,5 +44,11 @@ public interface ProfessorServiceInterface {
 	 */
 	public List<EnrolledStudent> viewEnrolledStudents(String courseId);
 
-	
+	/**
+	 * Method used to request course Assignment from admin
+	 * @param userId
+	 * @param courseId
+	 * @return
+	 */
+	public boolean requestCourseAssignment(String userId, String courseId);
 }

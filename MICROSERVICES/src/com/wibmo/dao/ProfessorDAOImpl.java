@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.EnrolledStudent;
@@ -17,7 +18,7 @@ import com.wibmo.utils.DBUtils;
  * @author bhuvan
  */
 public class ProfessorDAOImpl implements ProfessorDAOInterface {
-
+	private static final Logger logger = Logger.getLogger(ProfessorDAOImpl.class);
 	private static volatile ProfessorDAOImpl instance=null;
 	
 	/**
@@ -62,12 +63,12 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			ResultSet results=statement.executeQuery();
 			while(results.next())
 			{
-				courseList.add(new Course(results.getString("courseCode"),results.getString("courseName"),results.getString("professorId"),results.getInt("seats")));
+				courseList.add(new Course(results.getString("courseId"),results.getString("courseName"),results.getString("professorId"),results.getInt("seats")));
 			}
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		finally
 		{
@@ -105,7 +106,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		finally
 		{
@@ -143,7 +144,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		finally
 		{
@@ -181,7 +182,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		finally
 		{
@@ -196,4 +197,58 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		
 		return prof_Name;
 	}
+
+
+	@Override
+	public boolean sendCourseAssignmentRequest(String userId, String courseId) {
+		Connection connection=DBUtils.getConnection();
+		try 
+		{
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.REQUEST_COURSE_ASSIGNMENT);
+			
+			statement.setString(1, userId);
+			statement.setString(2,courseId);
+			int rs = statement.executeUpdate();
+			if(rs>0)return true;
+			else return false;
+			
+		}
+		catch(SQLException e)
+		{
+			logger.info(e.getMessage());
+		}
+		finally
+		{
+			try 
+			{
+				connection.close();
+			} catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+	
+
+		return false;
+	}
+	
+	@Override
+    public List<Course> getUnassignedCourses() {
+        List<Course> unassignedCourses = new ArrayList<Course>();
+        Connection connection=DBUtils.getConnection();
+        try
+        {
+            PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_UNASSIGNED_COURSES);
+            statement.setString(1, "NOT_ASSIGNED");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                unassignedCourses.add(new Course(rs.getString("courseId"),rs.getString("courseName"),rs.getString("professorId"),rs.getInt("seats")));
+            }
+        }
+        catch(SQLException e)
+        {
+            logger.info(e.getMessage());
+        }
+        return unassignedCourses;
+    }
 }

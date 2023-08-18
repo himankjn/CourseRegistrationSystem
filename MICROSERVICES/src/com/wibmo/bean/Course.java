@@ -11,9 +11,9 @@ public class Course {
 		
 	}
 	
-	public Course(String crsCode,String crsName,String professorId,int seats) {
-		this.courseId=crsCode;
-		this.courseName=crsName;
+	public Course(String courseId,String courseName,String professorId,int seats) {
+		this.courseId=courseId;
+		this.courseName=courseName;
 		this.instructorId=professorId;
 		this.setSeats(seats);
 	}

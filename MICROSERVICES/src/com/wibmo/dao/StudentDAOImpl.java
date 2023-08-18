@@ -96,14 +96,6 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		{
 			throw new StudentNotRegisteredException(ex.getMessage());
 		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				logger.info(e.getStackTrace());
-			}
-		}
 		return studentId;
 	}
 	
@@ -128,7 +120,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return null;
@@ -155,7 +147,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return false;

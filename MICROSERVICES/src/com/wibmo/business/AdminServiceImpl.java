@@ -144,7 +144,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 			adminDAOImpl.approveAllStudents(studentList);
 		}
 		catch(Exception e) {
-			logger.info("Could not approve students. Something went wrong!");
+			logger.error("Could not approve students. Something went wrong!");
 		}
 	}
 
@@ -173,7 +173,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 		adminDAOImpl.assignCourse(courseCode, professorId);
 		}
 		catch(UserNotFoundException e) {
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 

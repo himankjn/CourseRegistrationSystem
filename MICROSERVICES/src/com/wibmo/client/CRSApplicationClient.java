@@ -78,16 +78,15 @@ public class CRSApplicationClient {
 		logger.info("Role:\n1.Admin \n2.Professor \n3.Student");
 		roleInp = in.nextInt();
 		loggedin = userInterface.verifyCredentials(userId, password);
-		try {
-			userInterface.verifyUserRole(userId,roleInp);
-			}
-		catch(RoleMismatchException e) {
-				logger.info(e.getMessage());
-				loggedin=false;
-		}
 		if(loggedin)
 		{
-			 
+			try {
+				userInterface.verifyUserRole(userId,roleInp);
+				}
+			catch(RoleMismatchException e) {
+					logger.info(e.getMessage());
+					loggedin=false;
+			}
 			 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
 			 
 			 LocalDateTime myDateObj = LocalDateTime.now();

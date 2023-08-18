@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Notification;
 import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
 import com.wibmo.constants.PaymentModeConstant;
 import com.wibmo.dao.RegistrationDAOInterface;
 import com.wibmo.dao.RegistrationDAOImpl;
@@ -64,7 +65,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		List<Course> availableCourseList=viewCourses(studentId);
 		if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 6)
 		{	
-			throw new CourseLimitExceededException(6);
+			logger.info("You have already registered for 6 courses");
 		}
 		else if (registrationDAOInterface.isRegistered(courseCode, studentId)) 
 		{
@@ -122,12 +123,12 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	/**
 	 * Method to view grade card for students
 	 * @param studentId
-	 * @return List of Student's Grades
+	 * @return GradeCard
 	 * @throws SQLException 
 	 */
 	@Override
 	
-	public List<Grade> viewGradeCard(String studentId) throws SQLException {
+	public GradeCard viewGradeCard(String studentId) throws SQLException {
 		return registrationDAOInterface.viewGradeCard(studentId);
 	}
 

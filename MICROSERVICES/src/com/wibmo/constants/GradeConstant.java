@@ -15,6 +15,7 @@ public enum GradeConstant {
 	C_MINUS(5),
     D(4),
     E(3),
+    F(2),
     NOT_GRADED(0);
 
     final private int value;
@@ -26,6 +27,7 @@ public enum GradeConstant {
     private GradeConstant(int value) {
         this.value = value;
     }
+    
 
     /**
      * Method to get GradeConstant Value

@@ -63,8 +63,8 @@ public class RegisteredCourse
 	/**
 	 * @param grade the grade to set
 	 */
-	public void setGrade(String grade) {
-		this.grade = GradeConstant.valueOf(grade);
+	public void setGrade(GradeConstant grade) {
+		this.grade = grade;
 	}
 	
 	

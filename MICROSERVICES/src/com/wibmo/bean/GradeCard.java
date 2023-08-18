@@ -4,9 +4,8 @@ import java.util.List;
 
 public class GradeCard 
 {
-	Student stud;
-	int sem;
-	float cgpa;
+	String studentId;
+	double cgpa;
 	List<RegisteredCourse> reg_list ;
 	
 	/*public float calCGPA()
@@ -17,43 +16,31 @@ public class GradeCard
 	/**
 	 * @return the stud
 	 */
-	public Student getStud() {
-		return stud;
+	public String getStudentId() {
+		return studentId;
 	}
 
 	/**
 	 * @param stud the stud to set
 	 */
-	public void setStud(Student stud) {
-		this.stud = stud;
+	public void setStudentId(String stud) {
+		this.studentId = stud;
 	}
 
-	/**
-	 * @return the sem
-	 */
-	public int getSem() {
-		return sem;
-	}
-
-	/**
-	 * @param sem the sem to set
-	 */
-	public void setSem(int sem) {
-		this.sem = sem;
-	}
+	
 
 	/**
 	 * @return the cgpa
 	 */
-	public float getCgpa() {
+	public double getCgpa() {
 		return cgpa;
 	}
 
 	/**
-	 * @param cgpa the cgpa to set
+	 * @param d the cgpa to set
 	 */
-	public void setCgpa(float cgpa) {
-		this.cgpa = cgpa;
+	public void setCgpa(double d) {
+		this.cgpa = d;
 	}
 
 	/**

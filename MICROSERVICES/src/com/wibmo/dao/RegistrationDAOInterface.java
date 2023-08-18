@@ -98,7 +98,7 @@ public interface RegistrationDAOInterface {
 	 * @throws SQLException 
 	 * @return Studen's grade card
 	 */
-	public List<Grade> viewGradeCard(String studentId) throws SQLException;
+	public GradeCard viewGradeCard(String studentId) throws SQLException;
 
 
 	public boolean isReportGenerated(String studentId) throws SQLException;

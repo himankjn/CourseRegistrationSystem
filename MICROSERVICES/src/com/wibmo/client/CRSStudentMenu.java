@@ -5,6 +5,8 @@ package com.wibmo.client;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.RegisteredCourse;
 import com.wibmo.business.RegistrationServiceInterface;
 import com.wibmo.constants.NotificationTypeConstant;
 import com.wibmo.constants.PaymentModeConstant;
@@ -43,19 +45,17 @@ public class CRSStudentMenu {
 		}
 		
 		while(CRSApplicationClient.loggedin) {
-			
-				System.out.println("*****************************");
-				System.out.println("**********Student Menu*********");
-				System.out.println("*****************************");
-				System.out.println("1. Course Registration");
-				System.out.println("2. Add Course");
-				System.out.println("3. Drop Course");
-				System.out.println("4. View Available Courses");
-				System.out.println("5. View Registered Courses");
-				System.out.println("6. View grade card");
-				System.out.println("7. Make Payment");
-				System.out.println("8. Logout");
-				System.out.println("*****************************");
+				logger.info("===========Student Menu===========");
+				logger.info("==================================");
+				logger.info("1. Course Registration");
+				logger.info("2. Add Course");
+				logger.info("3. Drop Course");
+				logger.info("4. View Available Courses");
+				logger.info("5. View Registered Courses");
+				logger.info("6. View grade card");
+				logger.info("7. Make Payment");
+				logger.info("8. Logout");
+				logger.info("==================================");
 			
 				int choice = sc.nextInt();
 			
@@ -94,7 +94,7 @@ public class CRSStudentMenu {
 					break;			
 					
 				default:
-					System.out.println("Incorrect Choice!");
+					logger.info("Incorrect Choice!");
 		
 		
 			}
@@ -114,7 +114,7 @@ private void registerCourses(String studentId)
 	
 	if(is_registered)
 	{
-		System.out.println(" Registration is already completed");
+		logger.info(" Registration is already completed");
 		return;
 	}
 	
@@ -125,17 +125,17 @@ private void registerCourses(String studentId)
 		if(courseList==null)
 			return;
 		
-		System.out.println("Enter Course Code : " + (i));
+		logger.info("Enter Course Code " + (i)+": ");
 		String courseCode = sc.next();
 		
 		try {
 			if(registrationServiceInterface.addCourse(courseCode,studentId))
 			{
-				System.out.println("Course " + courseCode + " registered sucessfully.");
+				logger.info("Course " + courseCode + " registered sucessfully.");
 			}
 			else
 			{
-				System.out.println(" You have already registered for Course : " + courseCode);
+				logger.info(" You have already registered for Course : " + courseCode);
 			}
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -152,9 +152,7 @@ private void registerCourses(String studentId)
 		}
 	}
 	
-	System.out.println("\n*******************************************************");
-	System.out.println("Registration Successful");
-	System.out.println("*******************************************************\n");
+	logger.info("Registration Successful");
 	
 	try {
 		registrationServiceInterface.setRegistrationStatus(studentId);
@@ -170,7 +168,7 @@ private void registerCourses(String studentId)
 //	} 
 //    catch (SQLException e) 
 //    {
-//    	System.out.println(e.getMessage());
+//    	logger.info(e.getMessage());
 //	}
 }
 
@@ -179,16 +177,16 @@ private void addCourse(String studentId) {
 	if(is_registered)
 	{
 		
-		System.out.println("Enter Course Id : " );
+		logger.info("Enter Course Id : " );
 		String courseCode = sc.next();
 		try {
 			if(registrationServiceInterface.addCourse(courseCode, studentId))
 			{
-				System.out.println(" You have successfully registered for Course : " + courseCode);
+				logger.info(" Successfully registered for Course : " + courseCode);
 			}
 			else
 			{
-				System.out.println(" You have already registered for Course : " + courseCode);
+				logger.info(" Registered for Course : " + courseCode);
 			}
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -206,7 +204,7 @@ private void addCourse(String studentId) {
 	}
 	else 
 	{
-		System.out.println("Please complete registration first!");
+		logger.info("Please complete registration first!");
 	}
 
 }
@@ -235,7 +233,7 @@ private void dropCourse(String studentId) {
 		if(registeredCourseList==null)
 			return;
 		
-		System.out.println("Enter the Course Code : ");
+		logger.info("Enter the Course Code : ");
 		String courseCode = sc.next();
 		
 		try {
@@ -247,11 +245,11 @@ private void dropCourse(String studentId) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("You have successfully dropped Course : " + courseCode);
+		logger.info("Successfully dropped Course : " + courseCode);
 	}
 	else
 	{
-		System.out.println("Please complete registration");
+		logger.info("Please complete registration");
 	}
 }
 
@@ -263,27 +261,25 @@ private void dropCourse(String studentId) {
  */
 private List<Course> viewAvailableCourse(String studentId){
 	List<Course> course_available=null;
-	
-	
 	try {
 		course_available = registrationServiceInterface.viewCourses(studentId);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		logger.error(e.getMessage());
 	}
 
 
 	if(course_available.isEmpty())
 	{
-		System.out.println("NO COURSE AVAILABLE");
+		logger.info("NO COURSE AVAILABLE");
 		return null;
 	}
 	
 
-	System.out.println(String.format("%-20s %-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR", "SEATS"));
+	logger.info(String.format("%-20s %-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "PROFESSOR", "SEATS"));
 	for(Course obj : course_available)
 	{
-		System.out.println(String.format("%-20s %-20s %-20s %-20s",obj.getCourseId(), obj.getCourseName(),obj.getInstructorId(), obj.getSeats()));
+		logger.info(String.format("%-20s %-20s %-20s %-20s",obj.getCourseId(), obj.getCourseName(),obj.getInstructorId(), obj.getSeats()));
 	}
 	
 	return course_available;
@@ -306,17 +302,17 @@ private List<Course> viewRegisteredCourse(String studentId){
 	
 	if(course_registered.isEmpty())
 	{
-		System.out.println("You haven't registered for any course");
+		logger.info("You haven't registered for any course");
 		return null;
 	}
 	
-	System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
+	logger.info(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "PROFESSOR"));
 	
 	for(Course obj : course_registered)
 	{
 		 
 		
-		System.out.println(String.format("%-20s %-20s %-20s ",obj.getCourseId(), obj.getCourseName(),obj.getInstructorId()));
+		logger.info(String.format("%-20s %-20s %-20s ",obj.getCourseId(), obj.getCourseName(),obj.getInstructorId()));
 	}
 	
 	return course_registered;
@@ -327,7 +323,7 @@ private List<Course> viewRegisteredCourse(String studentId){
  * @param studentId
  */
 private void viewGradeCard(String studentId) {
-	List<Grade> grade_card=null;
+	GradeCard grade_card=null;
 	boolean isReportGenerated = false;
 	
 	try 
@@ -335,26 +331,28 @@ private void viewGradeCard(String studentId) {
 		isReportGenerated = registrationServiceInterface.isReportGenerated(studentId);
 		if(isReportGenerated) {
 			grade_card = registrationServiceInterface.viewGradeCard(studentId);
-			System.out.println(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
+			logger.info(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
 			
-			if(grade_card.isEmpty())
+			if(grade_card.getReg_list().isEmpty())
 			{
-				System.out.println("You haven't registered for any course");
+				logger.info("You haven't registered for any course");
 				return;
 			}
 			
-			for(Grade obj : grade_card)
+			for(RegisteredCourse obj : grade_card.getReg_list())
 			{
-				System.out.println(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
+				logger.info(String.format("%-20s %-20s %-20s",obj.getCourse().getCourseId(), obj.getCourse().getCourseName(),obj.getGrade()));
 			}
+			
+			logger.info("CGPA:"+ grade_card.getCgpa());
 		}
 		else
-			System.out.println("Report card not yet generated");
+			logger.info("Report card not yet generated");
 	} 
 	catch (SQLException e) 
 	{
 
-		System.out.println(e.getMessage());
+		logger.info(e.getMessage());
 	}
 	
 	
@@ -375,47 +373,47 @@ private void make_payment(String studentId)
 	catch (SQLException e) 
 	{
 
-        System.out.println(e.getMessage());
+        logger.info(e.getMessage());
 	}
 
 	
 	if(!isreg)
 	{
-		System.out.println("You have not registered yet");
+		logger.info("You have not registered yet");
 	}
 	else if(isreg && !ispaid)
 	{
 		
-		System.out.println("Your total fee  = " + fee);
-		System.out.println("Want to continue Fee Payment(y/n)");
+		logger.info("Your total fee  = " + fee);
+		logger.info("Want to continue Fee Payment(y/n)");
 		String ch = sc.next();
 		if(ch.equals("y"))
 		{
-			System.out.println("Select Mode of Payment:");
+			logger.info("Select Mode of Payment:");
 			
 			int index = 1;
 			for(PaymentModeConstant mode : PaymentModeConstant.values())
 			{
-				System.out.println(index + " " + mode);
+				logger.info(index + " " + mode);
 				index = index + 1;
 			}
 			
 			PaymentModeConstant mode = PaymentModeConstant.getPaymentMode(sc.nextInt());
 			
 			if(mode == null)
-				System.out.println("Invalid Input");
+				logger.info("Invalid Input");
 			else
 			{
 				try 
 				{
 					notificationInterface.sendNotification(NotificationTypeConstant.PAYED, studentId, mode, fee);
-					System.out.println("Payment Successful by StudentId :" + studentId);
+					logger.info("Payment Successful by StudentId :" + studentId);
 					registrationServiceInterface.setPaymentStatus(studentId);				
 				}
 				catch (Exception e) 
 				{
 
-		            System.out.println(e.getMessage());
+		            logger.info(e.getMessage());
 				}
 			}
 			
@@ -428,7 +426,7 @@ private void make_payment(String studentId)
 	
 	else
 	{
-		System.out.println("You have already paid the fees");
+		logger.info("You have already paid the fees");
 	}
 	
 }

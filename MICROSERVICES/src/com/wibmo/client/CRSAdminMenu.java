@@ -373,7 +373,6 @@ public class CRSAdminMenu {
 		for(String professorID: professorIds) {
 			System.out.print(professorID+ "  ");
 		}
-		logger.info();
 	}
 
 }

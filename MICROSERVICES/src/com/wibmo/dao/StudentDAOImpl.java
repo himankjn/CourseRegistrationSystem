@@ -11,10 +11,11 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
-import com.wibmo.bean.Student;
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.exception.StudentNotRegisteredException;
 import com.wibmo.utils.DBUtils;
+
+import com.wibmo.bean.Student;
 
 
 /**

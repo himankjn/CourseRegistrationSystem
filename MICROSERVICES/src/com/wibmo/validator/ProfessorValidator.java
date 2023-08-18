@@ -2,9 +2,10 @@ package com.wibmo.validator;
 
 import java.util.List;
 
-import com.wibmo.bean.EnrolledStudent;
 import com.wibmo.exception.InvalidCourseAssignmentRequestException;
+
 import com.wibmo.bean.Course;
+import com.wibmo.bean.EnrolledStudent;
 
 
 /**

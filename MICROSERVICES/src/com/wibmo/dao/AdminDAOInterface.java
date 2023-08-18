@@ -5,11 +5,6 @@ package com.wibmo.dao;
 
 import java.util.List;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Professor;
-import com.wibmo.bean.RegisteredCourse;
-import com.wibmo.bean.Student;
-import com.wibmo.bean.User;
 import com.wibmo.exception.CourseExistsAlreadyException;
 import com.wibmo.exception.CourseNotDeletedException;
 import com.wibmo.exception.CourseNotFoundException;
@@ -18,6 +13,12 @@ import com.wibmo.exception.StudentNotFoundForApprovalException;
 import com.wibmo.exception.UserIdAlreadyInUseException;
 import com.wibmo.exception.UserNotAddedException;
 import com.wibmo.exception.UserNotFoundException;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Professor;
+import com.wibmo.bean.RegisteredCourse;
+import com.wibmo.bean.Student;
+import com.wibmo.bean.User;
 
 /**
  * @author shanmukh

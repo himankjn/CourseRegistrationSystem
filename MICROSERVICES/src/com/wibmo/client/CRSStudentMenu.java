@@ -3,16 +3,18 @@
  */
 package com.wibmo.client;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Grade;
-import com.wibmo.bean.GradeCard;
-import com.wibmo.bean.RegisteredCourse;
 import com.wibmo.business.RegistrationServiceInterface;
 import com.wibmo.constants.NotificationTypeConstant;
 import com.wibmo.constants.PaymentModeConstant;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.RegisteredCourse;
+
 import com.wibmo.business.NotificationServiceImpl;
 import com.wibmo.business.NotificationServiceInterface;
 import com.wibmo.business.RegistrationServiceImpl;

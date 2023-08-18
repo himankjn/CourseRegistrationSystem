@@ -9,12 +9,6 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Grade;
-import com.wibmo.bean.GradeCard;
-import com.wibmo.bean.Professor;
-import com.wibmo.bean.RegisteredCourse;
-import com.wibmo.bean.Student;
 import com.wibmo.business.AdminServiceInterface;
 import com.wibmo.business.NotificationServiceImpl;
 import com.wibmo.business.NotificationServiceInterface;
@@ -30,6 +24,14 @@ import com.wibmo.exception.ProfessorNotAddedException;
 import com.wibmo.exception.StudentNotFoundForApprovalException;
 import com.wibmo.exception.UserIdAlreadyInUseException;
 import com.wibmo.exception.UserNotFoundException;
+
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.Professor;
+import com.wibmo.bean.RegisteredCourse;
+import com.wibmo.bean.Student;
+
 import com.wibmo.business.AdminServiceImpl;
 
 

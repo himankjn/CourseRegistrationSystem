@@ -2,12 +2,13 @@ package com.wibmo.business;
 
 import org.apache.log4j.Logger;
 
-import com.wibmo.bean.Student;
 import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
 import com.wibmo.dao.StudentDAOImpl;
 import com.wibmo.dao.StudentDAOInterface;
 import com.wibmo.exception.StudentNotRegisteredException;
+
+import com.wibmo.bean.Student;
 
 /**
  * 

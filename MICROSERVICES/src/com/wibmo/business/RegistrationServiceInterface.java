@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Grade;
-
+import com.wibmo.bean.GradeCard;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
@@ -60,7 +60,7 @@ public interface RegistrationServiceInterface {
 	 * @return List of Student's Grades
 	 * @throws SQLException 
 	 */
-	List<Grade> viewGradeCard(String studentId) throws SQLException;
+	GradeCard viewGradeCard(String studentId) throws SQLException;
 
 	/** Method for Fee Calculation for selected courses
 	 * Fee calculation for selected courses

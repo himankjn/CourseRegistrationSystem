@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserServiceInterface {
 			return userDaoInterface.verifyCredentials(userID, password);
 		}
 		catch(UserNotFoundException e){
-			logger.info("User with given user id: "+ userID+" not found!");
+			logger.error("User with given user id: "+ userID+" not found!");
 			return false;
 		}
 		

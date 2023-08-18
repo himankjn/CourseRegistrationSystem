@@ -39,7 +39,7 @@ public class CRSProfessorMenu {
 			logger.info("2. View Enrolled Students");
 			logger.info("3. Add Grades");
 			logger.info("4. Request for course assignmnet");
-			logger.info("5. Exit");
+			logger.info("5. Logout");
 			logger.info("================================");
 			logger.info("Choose From Menu: ");
 			
@@ -68,7 +68,7 @@ public class CRSProfessorMenu {
 				requestCourseAssignment(profID,courseId);
 				break;
 			case 5:
-				System.exit(0);
+				CRSApplicationClient.loggedin = false;
 				return;
 			default:
 				logger.info("Please select appropriate option...");
@@ -100,10 +100,14 @@ public class CRSProfessorMenu {
 	}
 	
 	public void viewEnrolledStudents(String profID) {
-		logger.info(String.format("%20s %20s %20s","COURSE ID","COURSE NAME","Student" ));
 		try {
 			List<EnrolledStudent> enrolledStudents = new ArrayList<EnrolledStudent>();
 			enrolledStudents = professorInterface.viewEnrolledStudents(profID);
+			if(enrolledStudents.isEmpty()) {
+				logger.info("No students enrolled for this course!");
+				return;
+			}
+			logger.info(String.format("%20s %20s %20s","COURSE ID","COURSE NAME","Student" ));
 			for (EnrolledStudent obj: enrolledStudents) {
 				logger.info(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
 			}
@@ -139,7 +143,7 @@ public class CRSProfessorMenu {
 			logger.info("Enter grade: ");
 			grade = in.nextLine();
 			professorInterface.submitGrade(studentId, courseId, grade);
-			logger.info("GradeConstant added successfully for "+studentId);
+			logger.info("grade added successfully for "+studentId);
 		} catch(Exception ex) {
 			logger.info("GradeConstant cannot be added for"+ex.getStackTrace());
 			

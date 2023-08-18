@@ -68,16 +68,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
-		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			logger.error(e.getMessage());
 		}
 		return courseList;
 		
@@ -86,7 +77,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	/**
 	 * Method to view list of enrolled Students using SQL Commands
 	 * @param: profId: professor id 
-	 * @param: courseCode: course code of the professor
+	 * @param: courseId: course code of the professor
 	 * @return: return the enrolled students for the corresponding professor and course code.
 	 */
 	@Override
@@ -100,22 +91,12 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			ResultSet results = statement.executeQuery();
 			while(results.next())
 			{
-				//public EnrolledStudent(String courseCode, String courseName, int studentId) 
-				enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getString("studentId")));
+				enrolledStudents.add(new EnrolledStudent(results.getString("courseId"),results.getString("courseName"),results.getString("studentId")));
 			}
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
-		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			logger.error(e.getMessage());
 		}
 		return enrolledStudents;
 	}
@@ -123,16 +104,16 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	/**
 	 * Method to GradeConstant a student using SQL Commands
 	 * @param: profId: professor id 
-	 * @param: courseCode: course code for the corresponding 
+	 * @param: courseId: course code for the corresponding 
 	 * @return: returns the status after adding the grade
 	 */
-	public Boolean addGrade(String studentId,String courseCode,String grade) {
+	public Boolean addGrade(String studentId,String courseId,String grade) {
 		Connection connection=DBUtils.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.ADD_GRADE);
 			
 			statement.setString(1, grade);
-			statement.setString(2, courseCode);
+			statement.setString(2, courseId);
 			statement.setString(3, studentId);
 			
 			int row = statement.executeUpdate();
@@ -144,16 +125,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
-		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			logger.error(e.getMessage());
 		}
 		return false;
 	}
@@ -182,17 +154,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
-		}
-		finally
-		{
-			try 
-			{
-				connection.close();
-			} catch (SQLException e) 
-			{
-				e.printStackTrace();
-			}
+			logger.error(e.getMessage());
 		}
 		
 		return prof_Name;
@@ -215,17 +177,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
-		}
-		finally
-		{
-			try 
-			{
-				connection.close();
-			} catch (SQLException e) 
-			{
-				e.printStackTrace();
-			}
+			logger.error(e.getMessage());
 		}
 	
 
@@ -247,7 +199,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
         }
         catch(SQLException e)
         {
-            logger.info(e.getMessage());
+            logger.error(e.getMessage());
         }
         return unassignedCourses;
     }

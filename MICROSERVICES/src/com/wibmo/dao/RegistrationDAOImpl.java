@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.RegisteredCourse;
+import com.wibmo.constants.GradeConstant;
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.utils.DBUtils;
@@ -50,7 +53,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 
 
 	@Override
-	public boolean addCourse(String courseCode, String studentId) throws SQLException{
+	public boolean addCourse(String courseId, String studentId) throws SQLException{
 		
 		Connection conn = DBUtils.getConnection();
 		
@@ -58,23 +61,22 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		{
 			stmt = conn.prepareStatement(SQLQueriesConstant.ADD_COURSE);
 			stmt.setString(1, studentId);
-			stmt.setString(2, courseCode);
+			stmt.setString(2, courseId);
 			stmt.setString(3, "-");
 			stmt.executeUpdate();
 			
 			stmt = conn.prepareStatement(SQLQueriesConstant.DECREMENT_COURSE_SEATS);
-			stmt.setString(1, courseCode);
+			stmt.setString(1, courseId);
 			stmt.executeUpdate();
 			return true;
 		}
 		catch (SQLException e) 
 		{
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 		return false;
 		
@@ -107,18 +109,17 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		catch (SQLException se) 
 		{
 
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 
 		} 
 		catch (Exception e)
 		{
 
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 		
 		return count;
@@ -127,18 +128,18 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 
 	/**
 	 * Check if seat is available for that particular course
-	 * @param courseCode
+	 * @param courseId
 	 * @return status of seat availablity
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean seatAvailable(String courseCode) throws SQLException {
+	public boolean seatAvailable(String courseId) throws SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		try 
 		{
 			stmt = conn.prepareStatement(SQLQueriesConstant.GET_SEATS);
-			stmt.setString(1, courseCode);
+			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				return (rs.getInt("seats") > 0);
@@ -146,12 +147,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 		
 		return true;
@@ -163,13 +163,13 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 
 	/**
 	 * Method checks if the student is registered for that course
-	 * @param courseCode
+	 * @param courseId
 	 * @param studentId
 	 * @return Students registration status
 	 * @throws SQLException 
 	 */
 	@Override
-	public boolean isRegistered(String courseCode, String studentId) throws SQLException{
+	public boolean isRegistered(String courseId, String studentId) throws SQLException{
 		
 		Connection conn = DBUtils.getConnection();
 		
@@ -177,7 +177,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		try
 		{
 			stmt = conn.prepareStatement(SQLQueriesConstant.IS_REGISTERED);
-			stmt.setString(1, courseCode);
+			stmt.setString(1, courseId);
 			stmt.setString(2, studentId);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -188,12 +188,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		}
 		catch(Exception e)
 		{
-			logger.info(e.getStackTrace());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 		
 		return check;
@@ -203,13 +202,13 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 
 	/**
 	 * Drop Course selected by student
-	 * @param courseCode : code for selected course
+	 * @param courseId : code for selected course
 	 * @param studentId
 	 * @return status of drop course operation
 	 * @throws CourseNotFoundException 
 	 */
 	@Override
-	public boolean dropCourse(String courseCode, String studentId) throws SQLException {
+	public boolean dropCourse(String courseId, String studentId) throws SQLException {
 	
 		Connection conn = DBUtils.getConnection();
 		
@@ -217,12 +216,12 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			try
 			{
 				stmt = conn.prepareStatement(SQLQueriesConstant.DROP_COURSE_QUERY);
-				stmt.setString(1, courseCode);
+				stmt.setString(1, courseId);
 				stmt.setString(2, studentId);
 				stmt.execute();
 				
 				stmt = conn.prepareStatement(SQLQueriesConstant.INCREMENT_SEAT_QUERY);
-				stmt.setString(1, courseCode);
+				stmt.setString(1, courseId);
 				stmt.execute();
 				
 				stmt.close();
@@ -231,13 +230,12 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			}
 			catch(Exception e)
 			{
-				logger.info(e.getStackTrace());
+				logger.error(e.getMessage());
 			}
 			finally
 			{
 	
 				stmt.close();
-				conn.close();
 			}
 			
 		
@@ -267,16 +265,15 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getStackTrace());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e)
 		{
-			logger.info(e.getStackTrace());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 		
 		return fee;
@@ -289,41 +286,83 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 	 * @return Studen's grade card
 	 */
 	@Override
-	public List<Grade> viewGradeCard(String studentId) throws SQLException {
+	public GradeCard viewGradeCard(String studentId) throws SQLException {
 		
-		Connection conn = DBUtils.getConnection();
-		List<Grade> grade_List = new ArrayList<Grade>();
-		try
-		{
-			stmt = conn.prepareStatement(SQLQueriesConstant.VIEW_GRADE);
-			stmt.setString(1, studentId);
-			ResultSet rs = stmt.executeQuery();
+			List<RegisteredCourse> CoursesOfStudent = new ArrayList<RegisteredCourse>();
+			double cgpa=0;
+			try {
+					Connection conn = DBUtils.getConnection();
+					String sql = SQLQueriesConstant.VIEW_REGISTERED_COURSES;
+					stmt = conn.prepareStatement(sql);
+					stmt.setString(1, studentId);
+					ResultSet resultSet = stmt.executeQuery();
+					
+					
+					while(resultSet.next()) {
+						
+						Course course = new Course();
+						RegisteredCourse temp = new RegisteredCourse() ;
+						course.setCourseId(resultSet.getString("courseId"));
+						course.setCourseName(resultSet.getString("courseName"));
+						course.setInstructorId(resultSet.getString("professorId"));
+						course.setSeats(resultSet.getInt("seats"));
+						
+						
+						temp.setCourse(course);
+						logger.info("course object generated");
+						temp.setstudentId(studentId);
+						
+						String gradeCon=resultSet.getString("grade");
+						switch(gradeCon) {
+					    	case "A": temp.setGrade(GradeConstant.A);
+					    	cgpa+= GradeConstant.A.hasValue();
+					    	break;
+					    	case "A-": temp.setGrade(GradeConstant.A_MINUS);
+					    	cgpa+= GradeConstant.A_MINUS.hasValue();
+					    	break;
+					    	case "B": temp.setGrade(GradeConstant.B);
+					    	cgpa+= GradeConstant.B.hasValue();
+					    	break;
+					    	case "B-": temp.setGrade(GradeConstant.B_MINUS);
+					    	cgpa+= GradeConstant.B_MINUS.hasValue();
+					    	break;
+					    	case "C":temp.setGrade(GradeConstant.C);
+					    	cgpa+= GradeConstant.C.hasValue();
+					    	break;
+					    	case "C-": temp.setGrade(GradeConstant.C_MINUS);
+					    	cgpa+= GradeConstant.C_MINUS.hasValue();
+					    	break;
+					    	case "D": temp.setGrade(GradeConstant.D);
+					    	cgpa+= GradeConstant.D.hasValue();
+					    	break;
+					    	case "E": temp.setGrade(GradeConstant.E);
+					    	cgpa+= GradeConstant.E.hasValue();
+					    	break;
+					    	case "F": temp.setGrade(GradeConstant.F);
+					    	cgpa+= GradeConstant.F.hasValue();
+					    	break;
+					    	default: temp.setGrade(GradeConstant.NOT_GRADED);
+					    	cgpa+= GradeConstant.NOT_GRADED.hasValue();
+					    	
+						}
+						
+						
+						logger.info("graded");
+						CoursesOfStudent.add(temp);
+						
+					}	
+						
+					}catch(SQLException se) {
+						
+						logger.error(se.getMessage());
+						
+					}
 			
-			while(rs.next())
-			{
-				String courseCode = rs.getString("courseCode");
-				String courseName = rs.getString("courseName");
-				String grade = rs.getString("grade");
-				Grade obj = new Grade(courseCode, courseName,grade);
-				grade_List.add(obj);
-			}
-		}
-		catch(SQLException e)
-		{
-			logger.info(e.getStackTrace());
-		}
-		catch(Exception e)
-		{
-			logger.info(e.getStackTrace());;
-		}
-		finally
-		{
-			stmt.close();
-			conn.close();
-			
-		}
-		
-		return grade_List;
+			GradeCard gradeCard= new GradeCard();
+			gradeCard.setReg_list(CoursesOfStudent);
+			gradeCard.setStudentId(studentId);
+			gradeCard.setCgpa(cgpa/(double)CoursesOfStudent.size());
+			return gradeCard;
 	}
 
 	/**
@@ -342,11 +381,10 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		{
 			stmt = conn.prepareStatement(SQLQueriesConstant.VIEW_AVAILABLE_COURSES);
 			stmt.setString(1, studentId);
-			//stmt.setBoolean(2, true);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				availableCourseList.add(new Course(rs.getString("courseCode"), rs.getString("courseName"),
+				availableCourseList.add(new Course(rs.getString("courseId"), rs.getString("courseName"),
 						rs.getString("professorId"), rs.getInt("seats")));
 
 			}
@@ -355,16 +393,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			logger.info(e.getStackTrace());
+			logger.error(e.getMessage());
 		} 
 		catch (Exception e)
 		{
-			logger.info(e.getStackTrace());
-		}
-		finally
-		{
-			stmt.close();
-			conn.close();
+			logger.error(e.getMessage());
 		}
 		
 		return availableCourseList;
@@ -390,20 +423,19 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
-				registeredCourseList.add(new Course(rs.getString("courseCode"), rs.getString("courseName"),
+				registeredCourseList.add(new Course(rs.getString("courseId"), rs.getString("courseName"),
 						rs.getString("professorId"), rs.getInt("seats")));
 
 			}
 		} 
 		catch (SQLException e) 
 		{
-			logger.info(e.getStackTrace());
+			logger.error(e.getMessage());
 
 		} 
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 		
 		return registeredCourseList;
@@ -431,14 +463,12 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			logger.info(e.getStackTrace());
+			logger.error(e.getMessage());
 
 		} 
 		finally
 		{
-			stmt.close();
-			conn.close();
-		}
+			stmt.close();		}
 
 		return status;
 	}
@@ -465,7 +495,6 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 
 	}
@@ -486,13 +515,12 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 	
 		} 
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 	
 		return status;
@@ -515,13 +543,12 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			} 
 			catch (SQLException e) 
 			{
-				logger.info(e.getMessage());
+				logger.error(e.getMessage());
 
 			} 
 			finally
 			{
 				stmt.close();
-				conn.close();
 			}
 
 			return status;
@@ -542,13 +569,12 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 
 		} 
 		finally
 		{
 			stmt.close();
-			conn.close();
 		}
 
 	}

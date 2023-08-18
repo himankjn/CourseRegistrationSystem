@@ -4,6 +4,7 @@
 package com.wibmo.dao;
 
 import java.util.ArrayList;  
+import com.wibmo.constants.GradeConstant;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -66,33 +67,33 @@ public class AdminDAOImpl implements AdminDAOInterface{
 	
 	/**
 	 * Remove Course using SQL commands
-	 * @param courseCode
+	 * @param courseId
 	 * @throws CourseNotFoundException
 	 * @throws CourseNotDeletedException 
 	 */
 	@Override
-	public void removeCourse(String courseCode) throws CourseNotFoundException, CourseNotDeletedException{
+	public void removeCourse(String courseId) throws CourseNotFoundException, CourseNotDeletedException{
 		
 		statement = null;
 		try {
 			String sql = SQLQueriesConstant.DELETE_COURSE_QUERY;
 			statement = connection.prepareStatement(sql);
 			
-			statement.setString(1,courseCode);
+			statement.setString(1,courseId);
 			int row = statement.executeUpdate();
 			
 			logger.info(row + " entries deleted.");
 			if(row == 0) {
-				logger.info(courseCode + " not in catalog!");
-				throw new CourseNotFoundException(courseCode);
+				logger.info(courseId + " not in catalog!");
+				throw new CourseNotFoundException(courseId);
 			}
 
-			logger.info("Course with courseCode: " + courseCode + " deleted.");
+			logger.info("Course with courseId: " + courseId + " deleted.");
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
-			throw new CourseNotDeletedException(courseCode);
+			logger.error(se.getMessage());
+			throw new CourseNotDeletedException(courseId);
 		}
 		
 	}
@@ -120,15 +121,15 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 			logger.info(row + " course added");
 			if(row == 0) {
-				logger.info("Course with courseCode: " + course.getCourseId() + "not added to catalog.");
+				logger.info("Course with courseId: " + course.getCourseId() + "not added to catalog.");
 				throw new CourseExistsAlreadyException(course.getCourseId());
 			}
 			
-			logger.info("Course with courseCode: " + course.getCourseId() + " is added to catalog."); 
+			logger.info("Course with courseId: " + course.getCourseId() + " is added to catalog."); 
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			throw new CourseExistsAlreadyException(course.getCourseId());
 			
 		}
@@ -168,7 +169,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			
 		}
 		
@@ -202,7 +203,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			
 		}
 		
@@ -217,7 +218,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			int row = statement.executeUpdate();
 			logger.info(row + " student approved.");
 		}catch(SQLException se) {
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 		}
 	}
 	/**
@@ -254,7 +255,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			throw new UserIdAlreadyInUseException(user.getUserId());
 			
 		}
@@ -276,12 +277,12 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 		}catch (UserNotAddedException e) {
 			
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 			throw new ProfessorNotAddedException(professor.getUserId());
 			
 		}catch (UserIdAlreadyInUseException e) {
 			
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 			throw e;
 			
 		}
@@ -309,7 +310,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			throw new UserIdAlreadyInUseException(professor.getUserId());
 			
 		} 
@@ -318,13 +319,13 @@ public class AdminDAOImpl implements AdminDAOInterface{
 	
 	/**
 	 * Assign courses to Professor using SQL commands
-	 * @param courseCode
+	 * @param courseId
 	 * @param professorId
 	 * @throws CourseNotFoundException
 	 * @throws UserNotFoundException 
 	 */
 	@Override
-	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException{
+	public void assignCourse(String courseId, String professorId) throws CourseNotFoundException, UserNotFoundException{
 		
 		statement = null;
 		try {
@@ -332,16 +333,16 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1,professorId);
-			statement.setString(2,courseCode);
+			statement.setString(2,courseId);
 			int row = statement.executeUpdate();
 			
 			if(row == 0) {
-				logger.info(courseCode + " not found");
-				throw new CourseNotFoundException(courseCode);
+				logger.info(courseId + " not found");
+				throw new CourseNotFoundException(courseId);
 			}
-			logger.info("Course with courseCode: " + courseCode + " is assigned to professor with professorId: " + professorId + ".");
+			logger.info("Course with courseId: " + courseId + " is assigned to professor with professorId: " + professorId + ".");
 		}catch(SQLException se) {
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			
 		}
 		
@@ -377,7 +378,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			
 		}
 		
@@ -416,7 +417,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			}
 		}catch(SQLException se) {
 			
-			logger.info(se.getMessage());
+			logger.error(se.getMessage());
 			
 		}
 		return professorList;
@@ -451,18 +452,39 @@ public class AdminDAOImpl implements AdminDAOInterface{
 						
 						Course course = new Course();
 						RegisteredCourse temp = new RegisteredCourse() ;
-						course.setCourseId(resultSet.getString(1));
-						course.setCourseName(resultSet.getString(2));
-						course.setInstructorId(resultSet.getString(3));
-						course.setSeats(resultSet.getInt(4));
+						course.setCourseId(resultSet.getString("courseId"));
+						course.setCourseName(resultSet.getString("courseName"));
+						course.setInstructorId(resultSet.getString("professorId"));
+						course.setSeats(resultSet.getInt("seats"));
 						
 						
 						temp.setCourse(course);
 						logger.info("course object generated");
 						temp.setstudentId(Studentid);
 						
-						
-						temp.setGrade(resultSet.getString(8));
+						String gradeCon=resultSet.getString("grade");
+						switch(gradeCon) {
+					    	case "A": temp.setGrade(GradeConstant.A);
+					    	break;
+					    	case "A-": temp.setGrade(GradeConstant.A_MINUS);
+					    	break;
+					    	case "B": temp.setGrade(GradeConstant.B);
+					    	break;
+					    	case "B-": temp.setGrade(GradeConstant.B_MINUS);
+					    	break;
+					    	case "C":temp.setGrade(GradeConstant.C);
+					    	break;
+					    	case "C-": temp.setGrade(GradeConstant.C_MINUS);
+					    	break;
+					    	case "D": temp.setGrade(GradeConstant.D);
+					    	break;
+					    	case "E": temp.setGrade(GradeConstant.E);
+					    	break;
+					    	case "F": temp.setGrade(GradeConstant.F);
+					    	break;
+					    	default: temp.setGrade(GradeConstant.NOT_GRADED);
+					    	
+						}
 						
 						logger.info("graded");
 						CoursesOfStudent.add(temp);
@@ -477,7 +499,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 					
 				}catch(SQLException se) {
 					
-					logger.info(se.getMessage());
+					logger.error(se.getMessage());
 					
 				}
 		
@@ -501,7 +523,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return null;
 	}

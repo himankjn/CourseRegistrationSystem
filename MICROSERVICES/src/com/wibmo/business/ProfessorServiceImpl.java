@@ -63,7 +63,7 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 		}
 		catch(Exception ex)
 		{
-			logger.info(ex.getStackTrace());
+			logger.error(ex.getStackTrace());
 		}
 		return enrolledStudents;
 	}
@@ -82,7 +82,7 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 		}
 		catch(Exception ex)
 		{
-			logger.info(ex.getStackTrace());
+			logger.error(ex.getStackTrace());
 		}
 		return coursesOffered;
 	}
@@ -98,15 +98,14 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
         }
         catch(Exception ex)
         {
-            logger.info(ex.getStackTrace());
+            logger.error(ex.getStackTrace());
         }
         return coursesUnAssigned;
     }
 	
 	@Override
 	public boolean requestCourseAssignment(String userId, String courseId) {
-		//call dao here only for validator
-
+		
 		try {
 			List<Course> unassignedCourses=getUnassignedCourses();
 			ProfessorValidator.verifyValidCourseRequest(courseId, unassignedCourses);
@@ -114,10 +113,10 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 			return res;
 		}
 		catch(InvalidCourseAssignmentRequestException e){
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e) {
-			logger.info("Something went wrong!");
+			logger.error("Something went wrong!");
 		}
 		return false;
 	}

@@ -30,7 +30,7 @@ public class SQLQueriesConstant {
 		// StudentDao Queries
 		//public static final String GET_COURSES_OF_STUDENT="select * from";
 		public static final String VIEW_REGISTERED_COURSES=" select * from course inner join registeredcourse on course.courseId = registeredcourse.courseId where registeredcourse.studentId = ?";
-		public static final String VIEW_AVAILABLE_COURSES=" select * from course where courseId not in  (select courseId  from registeredcourse where studentId = ?) and seats > 0";
+		public static final String VIEW_AVAILABLE_COURSES="select * from course where courseId not in  (select courseId  from registeredcourse where studentId = ?) and seats > 0";
 		public static final String CHECK_COURSE_AVAILABILITY=" select courseId from registeredcourse where studentId = ? ";
 		public static final String DECREMENT_COURSE_SEATS="update course set seats = seats-1 where courseId = ? ";
 		public static final String ADD_COURSE="insert into registeredcourse (studentId,courseId,grade) values ( ? , ?, ?)";
@@ -57,8 +57,8 @@ public class SQLQueriesConstant {
 		public static final String VERIFY_CREDENTIALS="select password from user where userId = ?";
 		public static final String GET_ROLE="select role from user where userId = ?";
 		public static final String GET_COURSES="select * from course where professorId=?";
-		public static final String GET_ENROLLED_STUDENTS="select course.courseId,course.courseName,registeredcourse.studentId from course inner join registeredcourse on course.courseId = registeredcourse.courseId where course.professorId = ? order by course.courseId";
-		public static final String ADD_GRADE="update registeredcourse set GradeConstant=? where courseId=? and studentId=?";
+		public static final String GET_ENROLLED_STUDENTS="select course.courseId,course.courseName,registeredcourse.studentId from course inner join registeredcourse on course.courseId = registeredcourse.courseId where course.courseId=?";
+		public static final String ADD_GRADE="update registeredcourse set grade=? where courseId=? and studentId=?";
 		public static final String GET_PROF_NAME = "select name from user where userId = ?";
 		public static final String REQUEST_COURSE_ASSIGNMENT = "insert into prof_course_request(userId,courseId) values(?,?)";
 		public static final String GET_UNASSIGNED_COURSES = "select * from course where professorId=?";

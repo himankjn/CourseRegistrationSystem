@@ -58,8 +58,8 @@ public class ProfessorValidator {
 			if(course.getCourseId().equals(courseId)) {
 				return;
 			}
-		throw new InvalidCourseAssignmentRequestException(courseId);
 		}
+		throw new InvalidCourseAssignmentRequestException(courseId);
 	}
 	
 

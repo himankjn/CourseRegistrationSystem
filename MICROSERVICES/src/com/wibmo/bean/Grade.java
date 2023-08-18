@@ -23,7 +23,7 @@ public class Grade
 	/**
 	 * @return the crsCode
 	 */
-	public String getCrsCode() {
+	public String getCourseCode() {
 		return courseCode;
 	}
 	
@@ -31,7 +31,7 @@ public class Grade
 	/**
 	 * @param crsCode the crsCode to set
 	 */
-	public void setCrsCode(String crsCode) {
+	public void setCourseCode(String crsCode) {
 		this.courseCode = crsCode;
 	}
 	
@@ -39,7 +39,7 @@ public class Grade
 	/**
 	 * @return the crsName
 	 */
-	public String getCrsName() {
+	public String getCourseName() {
 		return courseName;
 	}
 	
@@ -47,7 +47,7 @@ public class Grade
 	/**
 	 * @param crsName the crsName to set
 	 */
-	public void setCrsName(String crsName) {
+	public void setCourseName(String crsName) {
 		this.courseName = crsName;
 	}
 	

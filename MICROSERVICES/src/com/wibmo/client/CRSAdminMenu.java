@@ -11,7 +11,9 @@ import org.apache.log4j.Logger;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
 import com.wibmo.bean.Professor;
+import com.wibmo.bean.RegisteredCourse;
 import com.wibmo.bean.Student;
 import com.wibmo.business.AdminServiceInterface;
 import com.wibmo.business.NotificationServiceImpl;
@@ -109,7 +111,7 @@ public class CRSAdminMenu {
 	private void generateReportCard() 
 	{
 		
-		List<Grade> grade_card=null;
+		GradeCard grade_card=null;
 		boolean isReportGenerated = true;
 		
 		Scanner in = new Scanner(System.in);
@@ -127,15 +129,15 @@ public class CRSAdminMenu {
 			}
 			logger.info(String.format("%-20s %-20s %-20s","COURSE CODE", "COURSE NAME", "GRADE"));
 			
-			if(grade_card.isEmpty())
+			if(grade_card.getReg_list().isEmpty())
 			{
 				logger.info("You haven't registered for any course");
 				return;
 			}
 			
-			for(Grade obj : grade_card)
+			for(RegisteredCourse obj : grade_card.getReg_list())
 			{
-				logger.info(String.format("%-20s %-20s %-20s",obj.getCrsCode(), obj.getCrsName(),obj.getGrade()));
+				logger.info(String.format("%-20s %-20s %-20s",obj.getCourse().getCourseId(), obj.getCourse().getCourseName(),obj.getGrade()));
 			}
 		}
 		else
@@ -171,7 +173,7 @@ public class CRSAdminMenu {
 		
 		viewCourseRequests(courseId);
 		
-		logger.info("Enter Professor's User Id:");
+		logger.info("\nEnter Professor's User Id:");
 		String userId = in.next();
 		try {
 			adminService.assignCourse(courseId, userId);
@@ -373,7 +375,6 @@ public class CRSAdminMenu {
 		for(String professorID: professorIds) {
 			System.out.print(professorID+ "  ");
 		}
-		logger.info();
 	}
 
 }

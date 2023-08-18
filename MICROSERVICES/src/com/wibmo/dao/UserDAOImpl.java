@@ -70,16 +70,7 @@ public class UserDAOImpl implements UserDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
-		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			logger.error(e.getMessage());
 		}
 		return false;
 	}
@@ -116,17 +107,9 @@ public class UserDAOImpl implements UserDAOInterface{
 		}
 		catch(SQLException ex)
 		{
-			System.out.println("Something went wrong, please try again! "+ ex.getMessage());
+			logger.error("Something went wrong, please try again! "+ ex.getMessage());
 		}
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 		return false;
 	}
 
@@ -166,19 +149,11 @@ public class UserDAOImpl implements UserDAOInterface{
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			
 		}
 		
-		finally
-		{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			}
-		}
+		
 		return null;
 	}
 

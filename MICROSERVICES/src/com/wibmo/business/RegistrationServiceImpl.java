@@ -3,6 +3,8 @@ package com.wibmo.business;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Notification;
 import com.wibmo.bean.Grade;
@@ -20,7 +22,7 @@ import com.wibmo.validator.StudentValidator;
  * 
  */
 public class RegistrationServiceImpl implements RegistrationServiceInterface {
-
+	private static final Logger logger = Logger.getLogger(RegistrationServiceImpl.class);
 	private static volatile RegistrationServiceImpl instance = null;
 
 	private RegistrationServiceImpl() {

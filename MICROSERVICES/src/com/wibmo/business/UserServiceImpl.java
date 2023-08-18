@@ -4,6 +4,9 @@ import com.wibmo.dao.UserDAOImpl;
 import com.wibmo.dao.UserDAOInterface;
 import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.UserNotFoundException;
+
+import org.apache.log4j.Logger;
+
 import com.wibmo.business.UserServiceInterface;
 
 /**
@@ -13,7 +16,7 @@ import com.wibmo.business.UserServiceInterface;
  *
  */
 public class UserServiceImpl implements UserServiceInterface {
-	
+	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 	private static volatile UserServiceImpl instance=null;
 	UserDAOInterface userDaoInterface= UserDAOImpl.getInstance();
 	private UserServiceImpl()
@@ -63,7 +66,7 @@ public class UserServiceImpl implements UserServiceInterface {
 			return userDaoInterface.verifyCredentials(userID, password);
 		}
 		catch(UserNotFoundException e){
-			System.out.println("User with given user id: "+ userID+" not found!");
+			logger.info("User with given user id: "+ userID+" not found!");
 			return false;
 		}
 		

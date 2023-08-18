@@ -3,18 +3,23 @@ package com.wibmo.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.wibmo.bean.Course;
 import com.wibmo.bean.EnrolledStudent;
 import com.wibmo.bean.Student;
 import com.wibmo.dao.ProfessorDAOImpl;
 import com.wibmo.dao.ProfessorDAOInterface;
+import com.wibmo.exception.CourseAlreadyAssignedException;
+import com.wibmo.exception.InvalidCourseAssignmentRequestException;
+import com.wibmo.validator.ProfessorValidator;
 
 /**
  * @author Himank
  */
 public class ProfessorServiceImpl implements ProfessorServiceInterface {
-	
-	private static volatile ProfessorServiceImpl instance=null;
+	private static final Logger logger = Logger.getLogger(ProfessorServiceImpl.class);
+	private static ProfessorServiceImpl instance=null;
 	ProfessorDAOInterface professorDAOInterface=ProfessorDAOImpl.getInstance();
 	private ProfessorServiceImpl()
 	{
@@ -58,7 +63,7 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 		}
 		catch(Exception ex)
 		{
-			System.out.println(ex.getStackTrace());
+			logger.info(ex.getStackTrace());
 		}
 		return enrolledStudents;
 	}
@@ -69,7 +74,7 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 	 * @param profId: professor id
 	 */
 	
-	public List<Course> viewCourses(String profId) {
+	public List<Course> viewAssignedCourses(String profId) {
 		List<Course> coursesOffered=new ArrayList<Course>();
 		try
 		{
@@ -77,9 +82,44 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 		}
 		catch(Exception ex)
 		{
-			System.out.println(ex.getStackTrace());
+			logger.info(ex.getStackTrace());
 		}
 		return coursesOffered;
+	}
+
+	@Override
+
+    public List<Course> getUnassignedCourses() {
+        List<Course> coursesUnAssigned=new ArrayList<Course>();
+        try
+
+        {
+            coursesUnAssigned = professorDAOInterface.getUnassignedCourses();
+        }
+        catch(Exception ex)
+        {
+            logger.info(ex.getStackTrace());
+        }
+        return coursesUnAssigned;
+    }
+	
+	@Override
+	public boolean requestCourseAssignment(String userId, String courseId) {
+		//call dao here only for validator
+
+		try {
+			List<Course> unassignedCourses=getUnassignedCourses();
+			ProfessorValidator.verifyValidCourseRequest(courseId, unassignedCourses);
+			boolean res=professorDAOInterface.sendCourseAssignmentRequest(userId,courseId);
+			return res;
+		}
+		catch(InvalidCourseAssignmentRequestException e){
+			logger.info(e.getMessage());
+		}
+		catch(Exception e) {
+			logger.info("Something went wrong!");
+		}
+		return false;
 	}
 	
 }

@@ -6,6 +6,7 @@ package com.wibmo.validator;
 import java.util.List;
 
 import com.wibmo.bean.*;
+import com.wibmo.exception.UserNotFoundException;
 
 /**
  * @author nikita
@@ -57,5 +58,14 @@ public class AdminValidator {
 			}
 		}
 		return false;
+	}
+	
+	public static void verifyValidProfessor(String professorId,List<Professor> professors) throws UserNotFoundException {
+		for(Professor prof: professors) {
+			if(prof.getUserId().equals(professorId)) {
+				return;
+			}
+		}
+		throw new UserNotFoundException(professorId);
 	}
 }

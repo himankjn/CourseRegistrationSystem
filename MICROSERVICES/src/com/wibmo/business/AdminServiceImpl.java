@@ -6,7 +6,10 @@ package com.wibmo.business;
 import com.wibmo.exception.*;
 import com.wibmo.validator.AdminValidator;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.wibmo.bean.*;
 import com.wibmo.dao.AdminDAOInterface;
@@ -17,7 +20,7 @@ import com.wibmo.dao.AdminDAOImpl;
  */
 
 public class AdminServiceImpl implements AdminServiceInterface{
-	
+	private static final Logger logger = Logger.getLogger(AdminServiceImpl.class);
 	private static volatile AdminServiceImpl instance = null;
 	
 	private AdminServiceImpl()
@@ -81,7 +84,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	public void removeCourse(String dropCourseCode) throws CourseNotFoundException, CourseNotDeletedException {
 		List<Course> courseList = viewCourses();
 		if(!AdminValidator.isValidDropCourse(dropCourseCode, courseList)) {
-			System.out.println("courseCode: " + dropCourseCode + " not present in catalog!");
+			logger.info("courseCode: " + dropCourseCode + " not present in catalog!");
 			throw new CourseNotFoundException(dropCourseCode);
 		}
 		
@@ -101,7 +104,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 		List<Course> courseList = viewCourses();
 		try {
 			if(!AdminValidator.isValidNewCourse(newCourse, courseList)) {
-				System.out.println("courseCode: " + newCourse.getCourseId() + " already present in catalog!");
+				logger.info("courseCode: " + newCourse.getCourseId() + " already present in catalog!");
 				throw new CourseExistsAlreadyException(newCourse.getCourseId());
 			}
 			adminDAOImpl.addCourse(newCourse);
@@ -118,7 +121,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws StudentNotFoundException 
 	 */
 	@Override
-	public void approveStudent(String studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
+	public void approveSingleStudent(String studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
 		
 		
 		try {
@@ -127,11 +130,21 @@ public class AdminServiceImpl implements AdminServiceInterface{
 				
 				throw new StudentNotFoundForApprovalException(studentId);
 			}
-			adminDAOImpl.approveStudent(studentId);
+			adminDAOImpl.approveSingleStudent(studentId);
 		}
 		catch(StudentNotFoundForApprovalException e) {
 			
 			throw e;
+		}
+	}
+	
+	@Override
+	public void approveAllStudents(List<Student> studentList) {
+		try {
+			adminDAOImpl.approveAllStudents(studentList);
+		}
+		catch(Exception e) {
+			logger.info("Could not approve students. Something went wrong!");
 		}
 	}
 
@@ -154,13 +167,30 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 */
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
 	{
+		try {
+		List<Professor> professors= viewProfessors();
+		AdminValidator.verifyValidProfessor(professorId,professors);
 		adminDAOImpl.assignCourse(courseCode, professorId);
+		}
+		catch(UserNotFoundException e) {
+			logger.info(e.getMessage());
+		}
 	}
 
 	@Override
 	public void setGeneratedReportCardTrue(String Studentid) {
 		adminDAOImpl.setGeneratedReportCardTrue(Studentid);
 		
+	}
+	
+	/**
+	 * Method to view professors who requested for a particular course
+	 * @param courseId
+	 * @return
+	 */
+	public List<String> viewProfCourseRequests(String courseId){
+		List<String> profIDs= adminDAOImpl.getProfCourseRequests(courseId);
+		return profIDs;
 	}
 
 }

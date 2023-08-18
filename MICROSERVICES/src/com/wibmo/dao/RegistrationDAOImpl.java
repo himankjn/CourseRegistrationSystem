@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.Grade;
@@ -23,8 +24,7 @@ import com.wibmo.utils.DBUtils;
  *
  */
 public class RegistrationDAOImpl implements RegistrationDAOInterface{
-    
-	
+	private static final Logger logger = Logger.getLogger(RegistrationDAOImpl.class);
 	private static volatile RegistrationDAOImpl instance=null;
 	private PreparedStatement stmt = null;
 	
@@ -69,7 +69,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		}
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		finally
 		{
@@ -107,13 +107,13 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		catch (SQLException se) 
 		{
 
-			System.out.println(se.getMessage());
+			logger.info(se.getMessage());
 
 		} 
 		catch (Exception e)
 		{
 
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		finally
 		{
@@ -188,7 +188,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 		}
 		finally
 		{
@@ -231,7 +231,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			}
 			catch(Exception e)
 			{
-				System.out.println(e.getStackTrace());
+				logger.info(e.getStackTrace());
 			}
 			finally
 			{
@@ -267,11 +267,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 		}
 		finally
 		{
@@ -310,11 +310,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getStackTrace());;
+			logger.info(e.getStackTrace());;
 		}
 		finally
 		{
@@ -355,11 +355,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 		} 
 		catch (Exception e)
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 		}
 		finally
 		{
@@ -397,7 +397,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 
 		} 
 		finally
@@ -427,11 +427,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			status = rs.getBoolean(1);
-			//System.out.println(status);	
+			//logger.info(status);	
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getStackTrace());
+			logger.info(e.getStackTrace());
 
 		} 
 		finally
@@ -482,11 +482,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			status = rs.getBoolean(1);
-			//System.out.println(status);	
+			//logger.info(status);	
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 	
 		} 
 		finally
@@ -511,11 +511,11 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 				ResultSet rs = stmt.executeQuery();
 				rs.next();
 				status = rs.getBoolean(1);
-				//System.out.println(status);	
+				//logger.info(status);	
 			} 
 			catch (SQLException e) 
 			{
-				System.out.println(e.getMessage());
+				logger.info(e.getMessage());
 
 			} 
 			finally
@@ -542,7 +542,7 @@ public class RegistrationDAOImpl implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 
 		} 
 		finally

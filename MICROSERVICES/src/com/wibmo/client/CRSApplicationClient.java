@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.wibmo.business.NotificationServiceImpl;
 import com.wibmo.business.NotificationServiceInterface;
 import com.wibmo.business.StudentServiceImpl;
@@ -26,6 +28,9 @@ import com.wibmo.constants.RoleConstant;
  */
 public class CRSApplicationClient {
 
+	//logger injection
+	private static final Logger logger = Logger.getLogger(CRSApplicationClient.class);
+	
 	static boolean loggedin = false;
 	static StudentServiceInterface studentInterface=StudentServiceImpl.getInstance();
 	static UserServiceInterface userInterface =UserServiceImpl.getInstance();
@@ -34,12 +39,15 @@ public class CRSApplicationClient {
 	public static void main(String[] args) throws UserNotFoundException {
 		while(true) {
 			LocalDateTime date= LocalDateTime.now();
-			System.out.println("===================!WELCOME TO CRS APPLICATION!====================");
-			System.out.println("======================="+date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))+"========================\n\n\n");
-			System.out.println("======================================");
-			System.out.println("|         Enter you choice:          |");
-			System.out.println("|         1. Student Registration    |\n|         2. Login                   |\n|         3. Update Password         |\n|         4. Exit                    |");
-			System.out.println("======================================");
+			logger.info("\n===================!WELCOME TO CRS APPLICATION!===================="
+					+ "\n======================="+date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))+"========================\n|"
+					+ "====================================|\n"
+					+ "|         Enter you choice:          |\n|         "
+					+ "1. Student Registration    |\n|         "
+					+ "2. Login                   |\n|         "
+					+ "3. Update Password         |\n|         "
+					+ "4. Exit                    |\n|"
+					+ "====================================|");
 			Scanner sc = new Scanner(System.in);
 			int choice=sc.nextInt();
 			switch(choice) {
@@ -49,7 +57,7 @@ public class CRSApplicationClient {
 					break;
 			case 3: updatePassword();
 			 		break;
-			case 4: System.out.println("Exit!");
+			case 4: logger.info("Exit!");
 					System.exit(choice);
 			}
 		}
@@ -62,19 +70,19 @@ public class CRSApplicationClient {
 
 		String userId,password;
 		int roleInp;
-		System.out.println("-----------------Login------------------");
-		System.out.println("Email:");
+		logger.info("\n-----------------Login------------------");
+		logger.info("Email:");
 		userId = in.next();
-		System.out.println("Password:");
+		logger.info("Password:");
 		password = in.next();
-		System.out.println("Role: 1.Admin 2.Professor 3.Student");
+		logger.info("Role:\n1.Admin \n2.Professor \n3.Student");
 		roleInp = in.nextInt();
 		loggedin = userInterface.verifyCredentials(userId, password);
 		try {
 			userInterface.verifyUserRole(userId,roleInp);
 			}
 		catch(RoleMismatchException e) {
-				System.out.println(e.getMessage());
+				logger.info(e.getMessage());
 				loggedin=false;
 		}
 		if(loggedin)
@@ -93,12 +101,12 @@ public class CRSApplicationClient {
 			 
 			switch(role) {
 			case "ADMIN":
-				System.out.println(formattedDate + " Login Successful");
+				logger.info(formattedDate + " Login Successful");
 				CRSAdminMenu adminMenu = new CRSAdminMenu();
 				adminMenu.createMenu();
 				break;
 			case "PROFESSOR":
-				System.out.println(formattedDate + " Login Successful");
+				logger.info(formattedDate + " Login Successful");
 				CRSProfessorMenu professorMenu=new CRSProfessorMenu();
 				professorMenu.createMenu(userId);
 				
@@ -108,12 +116,12 @@ public class CRSApplicationClient {
 				String studentId = userId;
 				boolean isApproved=studentInterface.isApproved(studentId);
 				if(isApproved) {
-					System.out.println(formattedDate + " Login Successful");
+					logger.info(formattedDate + " Login Successful");
 					CRSStudentMenu studentMenu=new CRSStudentMenu();
 					studentMenu.create_menu(studentId);
 					
 				} else {
-					System.out.println("Failed to login, you have not been approved by the administration!");
+					logger.info("Failed to login, you have not been approved by the administration!");
 					loggedin=false;
 				}
 				break;
@@ -123,7 +131,7 @@ public class CRSApplicationClient {
 		}
 		else
 		{
-			System.out.println("Invalid Credentials!");
+			logger.info("Invalid Credentials!");
 		}
 		
 	}
@@ -141,17 +149,17 @@ public class CRSApplicationClient {
 		try
 		{
 			//input all the student details
-			System.out.println("---------------Student Registration-------------");
-			System.out.println("Your Name:");
+			logger.info("---------------Student Registration-------------");
+			logger.info("Your Name:");
 			name=sc.nextLine();
-			System.out.println("Your Email:");
+			logger.info("Your Email:");
 			userId=sc.next();
-			System.out.println("Your Password:");
+			logger.info("Your Password:");
 			password=sc.next();
-			System.out.println("Confirm Password:");
+			logger.info("Confirm Password:");
 			confirmPassword=sc.next(); 
 			StudentValidator.verifySamePassword(password,confirmPassword);
-			System.out.println("GenderConstant: \t 1: Male \t 2.Female\t 3.Others");
+			logger.info("GenderConstant: \t 1: Male \t 2.Female\t 3.Others");
 			genderInput=sc.nextInt();
 			sc.nextLine();
 			
@@ -171,12 +179,12 @@ public class CRSApplicationClient {
 				gender=GenderConstant.OTHER;
 			}
 			
-			System.out.println("Branch:");
+			logger.info("Branch:");
 			branchName=sc.nextLine();
-			System.out.println("Batch:");
+			logger.info("Batch:");
 			batch=sc.nextInt();
 			sc.nextLine();
-			System.out.println("Address:");
+			logger.info("Address:");
 			address=sc.nextLine();
 			
 			
@@ -187,10 +195,10 @@ public class CRSApplicationClient {
 		}
 		catch(StudentNotRegisteredException ex)
 		{
-			System.out.println("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
+			logger.info("Something went wrong! "+ex.getStudentName() +" not registered. Please try again");
 		}
 		catch(PasswordMismatchException e) {
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		//sc.close();
 	}
@@ -202,26 +210,26 @@ public class CRSApplicationClient {
 		Scanner in = new Scanner(System.in);
 		String userId,newPassword,confirmPassword;
 		try {
-			System.out.println("------------------Update Password--------------------");
-			System.out.println("Email");
+			logger.info("------------------Update Password--------------------");
+			logger.info("Email");
 			userId=in.next();
-			System.out.println("New Password:");
+			logger.info("New Password:");
 			newPassword=in.next();
-			System.out.println("Confirm Password:");
+			logger.info("Confirm Password:");
 			confirmPassword=in.next(); 
 			StudentValidator.verifySamePassword(newPassword,confirmPassword);
 			boolean isUpdated=userInterface.updatePassword(userId, newPassword);
 			if(isUpdated)
-				System.out.println("Password updated successfully!");
+				logger.info("Password updated successfully!");
 
 			else
-				System.out.println("Something went wrong, please try again!");
+				logger.info("Something went wrong, please try again!");
 		}
 		catch(PasswordMismatchException e) {
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		catch(Exception ex) {
-			System.out.println("Error Occured "+ex.getMessage());
+			logger.info("Error Occured "+ex.getMessage());
 		}
 		
 		

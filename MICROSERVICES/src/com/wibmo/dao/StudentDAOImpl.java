@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 import com.wibmo.bean.Student;
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.exception.StudentNotRegisteredException;
@@ -22,7 +24,7 @@ import com.wibmo.utils.DBUtils;
  *
  */
 public class StudentDAOImpl implements StudentDAOInterface {
-	
+	private static final Logger logger = Logger.getLogger(StudentDAOImpl.class);
 	private static volatile StudentDAOImpl instance=null;
 	/**
 	 * Default Constructor
@@ -99,7 +101,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				System.out.println(e.getStackTrace());
+				logger.info(e.getStackTrace());
 			}
 		}
 		return studentId;
@@ -126,7 +128,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		
 		return null;
@@ -153,7 +155,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 		
 		return false;

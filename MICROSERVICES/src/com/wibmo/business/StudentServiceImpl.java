@@ -1,5 +1,7 @@
 package com.wibmo.business;
 
+import org.apache.log4j.Logger;
+
 import com.wibmo.bean.Student;
 import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
@@ -14,7 +16,7 @@ import com.wibmo.exception.StudentNotRegisteredException;
  *
  */
 public class StudentServiceImpl implements StudentServiceInterface {
-	
+	private static final Logger logger = Logger.getLogger(StudentServiceImpl.class);
 	private static volatile StudentServiceImpl instance=null;
 	
 	StudentDAOInterface studentDaoInterface=StudentDAOImpl.getInstance();
@@ -53,7 +55,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
 		String studentId;
 		Student newStudent=new Student(userId,name,RoleConstant.STUDENT,password,gender,address,branch,userId,batch,false);
 		studentId=studentDaoInterface.addStudent(newStudent);
-		System.out.println("\nYour account has been created and pending for Approval by Admin.\n");
+		logger.info("\nYour account has been created and pending for Approval by Admin.\n");
 		return studentId;
 	}
 

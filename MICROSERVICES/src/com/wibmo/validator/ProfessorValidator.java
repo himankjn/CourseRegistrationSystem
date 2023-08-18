@@ -3,12 +3,13 @@ package com.wibmo.validator;
 import java.util.List;
 
 import com.wibmo.bean.EnrolledStudent;
+import com.wibmo.exception.InvalidCourseAssignmentRequestException;
 import com.wibmo.bean.Course;
 
 
 /**
  * 
- * @author Goenka
+ * @author Himank
  * Class for Professor Validator
  * 
  */
@@ -51,5 +52,15 @@ public class ProfessorValidator {
 		}
 		return result;
 	}
+	
+	public static void verifyValidCourseRequest(String courseId, List<Course>unassignedCourses) throws InvalidCourseAssignmentRequestException {
+		for(Course course:unassignedCourses) {
+			if(course.getCourseId().equals(courseId)) {
+				return;
+			}
+		throw new InvalidCourseAssignmentRequestException(courseId);
+		}
+	}
+	
 
 }

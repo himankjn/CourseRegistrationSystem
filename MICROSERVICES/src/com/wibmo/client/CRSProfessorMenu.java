@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.wibmo.bean.Course;
 import com.wibmo.bean.EnrolledStudent;
 import com.wibmo.bean.Student;
@@ -19,7 +21,7 @@ import com.wibmo.business.ProfessorServiceImpl;
  *
  */
 public class CRSProfessorMenu {
-	
+	Logger logger = Logger.getLogger(CRSProfessorMenu.class);
 	ProfessorServiceInterface professorInterface = ProfessorServiceImpl.getInstance();
 
 	/**
@@ -30,64 +32,96 @@ public class CRSProfessorMenu {
 		
 		int input;
 		while (true) {
-			System.out.println("================================");
-							   
-			System.out.println("========Professor Menu========");
-			System.out.println("================================");
-			System.out.println("1. View Courses");
-			System.out.println("2. View Enrolled Students");
-			System.out.println("3. Add Grades");
-			System.out.println("4. Exit");
-			System.out.println("================================");
-			System.out.println("Choose From Menu: ");
+			logger.info("================================");	   
+			logger.info("========Professor Menu========");
+			logger.info("================================");
+			logger.info("1. View Assigned Courses");
+			logger.info("2. View Enrolled Students");
+			logger.info("3. Add Grades");
+			logger.info("4. Request for course assignmnet");
+			logger.info("5. Exit");
+			logger.info("================================");
+			logger.info("Choose From Menu: ");
 			
 			input = in.nextInt();
+			String courseId;
 			switch (input) {
 			case 1:
-				System.out.println("PROF ID: "+profID);
-				getCourses(profID);
+				logger.info("PROF ID: "+profID);
+				getAssignedCourses(profID);
 				break;
 			case 2:
-				getCourses(profID);
-				System.out.println("Enter the courseID for veiwing enrolled Students: ");
-				String courseId= in.next();
+				getAssignedCourses(profID);
+				logger.info("Enter the courseID for veiwing enrolled Students: ");
+				in.nextLine();
+				courseId= in.nextLine();
 				viewEnrolledStudents(courseId);
 				break;
 			case 3:
 				addGrade(profID);
 				break;
 			case 4:
+				getUnassignedCourses();
+				logger.info("Enter the courseID you want to request:");
+				in.nextLine();
+				courseId= in.nextLine();
+				requestCourseAssignment(profID,courseId);
+				break;
+			case 5:
 				System.exit(0);
 				return;
 			default:
-				System.out.println("Please select appropriate option...");
+				logger.info("Please select appropriate option...");
 			}
 		}
 	}
 	
+	
+	public void getUnassignedCourses() {
+		try {
+			List<Course> unassignedCourses= professorInterface.getUnassignedCourses();
+			logger.info(String.format("|      %20s       |           %20s       |", "COURSE Id","COURSE NAME" ));
+			for(Course course: unassignedCourses) {
+				logger.info(String.format("|      %20s       |           %20s       |",course.getCourseId(), course.getCourseName()));
+			}		
+		} catch(Exception ex) {
+			logger.info("Something went wrong!"+ex.getMessage());
+		}
+	}
+	
+	public void requestCourseAssignment(String profID,String courseId) {
+		if(professorInterface.requestCourseAssignment(profID, courseId)) {
+			logger.info("Request sent to admin for approval!");
+		}
+		else {
+			logger.info("Request unsuccessful! Something went wrong. Please contact admin.");
+		}
+		
+	}
+	
 	public void viewEnrolledStudents(String profID) {
-		System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","Student" ));
+		logger.info(String.format("%20s %20s %20s","COURSE ID","COURSE NAME","Student" ));
 		try {
 			List<EnrolledStudent> enrolledStudents = new ArrayList<EnrolledStudent>();
 			enrolledStudents = professorInterface.viewEnrolledStudents(profID);
 			for (EnrolledStudent obj: enrolledStudents) {
-				System.out.println(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
+				logger.info(String.format("%20s %20s %20s",obj.getCourseCode(), obj.getCourseName(),obj.getStudentId()));
 			}
 			
 		} catch(Exception ex) {
-			System.out.println(ex.getMessage()+"Something went wrong, please try again later!");
+			logger.info(ex.getMessage()+"Something went wrong, please try again later!");
 		}
 	}
 	
-	public void getCourses(String profId) {
+	public void getAssignedCourses(String profId) {
 		try {
-			List<Course> coursesEnrolled = professorInterface.viewCourses(profId);
-			System.out.println(String.format("%20s %20s %20s","COURSE CODE","COURSE NAME","CREDITS" ));
-			for(Course obj: coursesEnrolled) {
-				System.out.println(String.format("%20s %20s %20d",obj.getCourseId(), obj.getCourseName()));
+			List<Course> coursesEnrolled = professorInterface.viewAssignedCourses(profId);
+			logger.info(String.format("|      %20s       |           %20s       |", "COURSE ID","COURSE NAME" ));
+			for(Course course: coursesEnrolled) {
+				logger.info(String.format("|      %20s       |           %20s       |",course.getCourseId(), course.getCourseName()));
 			}		
 		} catch(Exception ex) {
-			System.out.println("Something went wrong!"+ex.getMessage());
+			logger.info("Something went wrong!"+ex.getMessage());
 		}
 	}
 	
@@ -95,19 +129,19 @@ public class CRSProfessorMenu {
 		Scanner in = new Scanner(System.in);
 		String courseId, grade, studentId;
 		try {
-			System.out.println("==============Add Grade==============");
-			getCourses(profId);	
-			System.out.printf("Enter course code: ");
+			logger.info("==============Add Grade==============");
+			getAssignedCourses(profId);	
+			System.out.printf("Enter COURSE ID: ");
 			courseId = in.nextLine();
 			viewEnrolledStudents(courseId);
 			System.out.printf("Enter student id: ");
 			studentId = in.nextLine();
-			System.out.println("Enter grade: ");
+			logger.info("Enter grade: ");
 			grade = in.nextLine();
 			professorInterface.submitGrade(studentId, courseId, grade);
-			System.out.println("GradeConstant added successfully for "+studentId);
+			logger.info("GradeConstant added successfully for "+studentId);
 		} catch(Exception ex) {
-			System.out.println("GradeConstant cannot be added for"+ex.getStackTrace());
+			logger.info("GradeConstant cannot be added for"+ex.getStackTrace());
 			
 		} 
 	}

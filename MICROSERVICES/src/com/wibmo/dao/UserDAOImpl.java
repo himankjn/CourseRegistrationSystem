@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+import org.apache.log4j.Logger;
 
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.exception.UserNotFoundException;
@@ -16,6 +16,10 @@ import com.wibmo.utils.DBUtils;
  * @author bhuvan
  */
 public class UserDAOImpl implements UserDAOInterface{
+	//logger injection
+	private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
+
+	
 	private static volatile UserDAOImpl instance=null;
 	
 	/**

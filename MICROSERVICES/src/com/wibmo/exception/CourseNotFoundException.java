@@ -3,11 +3,12 @@
  */
 package com.wibmo.exception;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author nikita
  */
 public class CourseNotFoundException extends Exception{
-	
 	private String courseCode;
 	
 	public CourseNotFoundException(String courseCode)

@@ -54,7 +54,9 @@ public interface AdminDAOInterface {
 	 */
 	
 	
-	public void approveStudent(String studentid) throws StudentNotFoundForApprovalException;
+	public void approveSingleStudent(String studentid) throws StudentNotFoundForApprovalException;
+	
+	public void approveAllStudents(List<Student> studentList);
 	
 	/**
 	 * Method to add Professor to DB
@@ -92,4 +94,6 @@ public interface AdminDAOInterface {
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException;
 	
 	public void addUser(User user) throws UserNotAddedException, UserIdAlreadyInUseException;
+
+	public List<String> getProfCourseRequests(String courseId);
 }

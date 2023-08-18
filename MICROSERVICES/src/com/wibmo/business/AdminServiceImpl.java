@@ -66,7 +66,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	
 	/**
 	 * Method to generate grade card of a Student 
-	 * studentid 
+	 * @param studentid 
 	 */
 	
 	public List<RegisteredCourse> generateGradeCard(String Studentid)

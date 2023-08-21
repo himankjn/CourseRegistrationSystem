@@ -44,28 +44,34 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	 * @return notification id for the record added in the database
 	 */
 	@Override
-	public int sendNotification(NotificationTypeConstant type, int studentId,PaymentModeConstant modeOfPayment,double amount) {
-		return 0;
-		
+	public int sendNotification(NotificationTypeConstant type, String studentId,PaymentModeConstant modeOfPayment,double amount) {
+		int notificationId = -1; 
+		try {
+			notificationId = notificationDaoInterface.sendNotification(type, studentId, modeOfPayment, amount);
+		}
+		catch(Exception ex){
+			System.out.println(ex.getStackTrace());
+		}
+		return notificationId;
 	}
 
-	@Override
-	public int sendNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment, double amount) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public UUID getReferenceId(int notificationId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/**
+		/**
 	 * Method to return UUID for a transaction
 	 * @param notificationId: notification id added in the database
 	 * @return transaction id of the payment
 	 */
+	@Override
+	public String getReferenceId(int notificationId) {
+		String referenceId = "";
+		try {
+			referenceId = notificationDaoInterface.getReferenceId(notificationId);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return referenceId;
+	}
+
+
 	
 	
 	

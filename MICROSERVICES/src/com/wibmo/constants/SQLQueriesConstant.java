@@ -48,7 +48,7 @@ public class SQLQueriesConstant {
 		public static final String SET_PAYMENT_STATUS="update student set isPaid = true  where studentId=?";
 		public static final String NUMBER_OF_REGISTERED_COURSES=" select studentId from registeredcourse where studentId = ? ";
 		public static final String IS_REGISTERED=" select courseId from registeredcourse where courseId=? and studentId=? ";
-		
+		public static final String GET_PAYMENT_UUID = "select referenceId from notification where notificationId=?";
 		public static final String GET_GRADES = "select grade from registeredcourse where studentId=?";
 		
 		//ProfessorDao queries

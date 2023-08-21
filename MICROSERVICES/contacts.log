@@ -3902,3 +3902,288 @@ Your account with id: testUserId has been created and pending for Approval by Ad
 15:16:16,946  INFO AdminDAOImpl,main:542 - graded
 15:16:16,946  INFO AdminDAOImpl,main:515 - course object generated
 15:16:16,946  INFO AdminDAOImpl,main:542 - graded
+15:47:59,495  INFO AdminDAOImpl,main:378 - Number of courses in the Catalog are : 10
+15:47:59,525  INFO AdminDAOImpl,main:123 - 1 course added
+15:47:59,526  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:47:59,528  INFO AdminDAOImpl,main:378 - Number of courses in the Catalog are : 11
+15:47:59,531  INFO AdminDAOImpl,main:378 - Number of courses in the Catalog are : 11
+15:47:59,535  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:47:59,536  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:47:59,538  INFO AdminDAOImpl,main:378 - Number of courses in the Catalog are : 10
+15:47:59,546  INFO AdminDAOImpl,main:249 - 1 user added.
+15:47:59,546  INFO AdminDAOImpl,main:255 - User with userId: MN added.
+15:47:59,561 ERROR AdminDAOImpl,main:314 - Column 'professorId' cannot be null
+15:47:59,569  INFO AdminDAOImpl,main:378 - Number of courses in the Catalog are : 10
+15:47:59,573  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:47:59,577  INFO AdminDAOImpl,main:344 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:47:59,578  INFO AdminDAOImpl,main:378 - Number of courses in the Catalog are : 10
+15:47:59,581  INFO AdminDAOImpl,main:463 - course object generated
+15:47:59,583  INFO AdminDAOImpl,main:490 - graded
+15:47:59,584  INFO AdminDAOImpl,main:463 - course object generated
+15:47:59,584  INFO AdminDAOImpl,main:490 - graded
+15:47:59,584  INFO AdminDAOImpl,main:463 - course object generated
+15:47:59,584  INFO AdminDAOImpl,main:490 - graded
+15:47:59,584  INFO AdminDAOImpl,main:463 - course object generated
+15:47:59,584  INFO AdminDAOImpl,main:490 - graded
+15:47:59,584  INFO AdminDAOImpl,main:463 - course object generated
+15:47:59,584  INFO AdminDAOImpl,main:490 - graded
+15:47:59,585  INFO AdminDAOImpl,main:463 - course object generated
+15:47:59,585  INFO AdminDAOImpl,main:490 - graded
+15:53:44,617  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:53:44,647  INFO AdminDAOImpl,main:123 - 1 course added
+15:53:44,647  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:53:44,649  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:53:44,652  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:53:44,655  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:53:44,655  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:53:44,656  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:53:44,669 ERROR AdminDAOImpl,main:259 - Duplicate entry 'MN' for key 'user.PRIMARY'
+15:53:44,670 ERROR AdminDAOImpl,main:313 - userId: MN is already in use.
+15:53:44,678  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:53:44,681  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:53:44,683  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:53:44,684  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:53:44,686  INFO AdminDAOImpl,main:517 - course object generated
+15:53:44,687  INFO AdminDAOImpl,main:544 - graded
+15:53:44,689  INFO AdminDAOImpl,main:517 - course object generated
+15:53:44,690  INFO AdminDAOImpl,main:544 - graded
+15:53:44,690  INFO AdminDAOImpl,main:517 - course object generated
+15:53:44,690  INFO AdminDAOImpl,main:544 - graded
+15:53:44,690  INFO AdminDAOImpl,main:517 - course object generated
+15:53:44,690  INFO AdminDAOImpl,main:544 - graded
+15:53:44,690  INFO AdminDAOImpl,main:517 - course object generated
+15:53:44,690  INFO AdminDAOImpl,main:544 - graded
+15:53:44,690  INFO AdminDAOImpl,main:517 - course object generated
+15:53:44,690  INFO AdminDAOImpl,main:544 - graded
+15:54:32,060  INFO AdminDAOImpl,main:123 - 1 course added
+15:54:32,062  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:54:32,069  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:54:32,074  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:54:32,074  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:54:32,076  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:32,087 ERROR AdminDAOImpl,main:259 - Duplicate entry 'MN' for key 'user.PRIMARY'
+15:54:32,088 ERROR AdminDAOImpl,main:313 - userId: MN is already in use.
+15:54:32,100  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:32,107  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:54:32,109  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:54:32,111  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:32,114  INFO AdminDAOImpl,main:517 - course object generated
+15:54:32,116  INFO AdminDAOImpl,main:544 - graded
+15:54:32,116  INFO AdminDAOImpl,main:517 - course object generated
+15:54:32,116  INFO AdminDAOImpl,main:544 - graded
+15:54:32,117  INFO AdminDAOImpl,main:517 - course object generated
+15:54:32,117  INFO AdminDAOImpl,main:544 - graded
+15:54:32,118  INFO AdminDAOImpl,main:517 - course object generated
+15:54:32,118  INFO AdminDAOImpl,main:544 - graded
+15:54:32,118  INFO AdminDAOImpl,main:517 - course object generated
+15:54:32,118  INFO AdminDAOImpl,main:544 - graded
+15:54:32,118  INFO AdminDAOImpl,main:517 - course object generated
+15:54:32,118  INFO AdminDAOImpl,main:544 - graded
+15:54:53,498  INFO AdminDAOImpl,main:123 - 1 course added
+15:54:53,498  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:54:53,508 ERROR AdminDAOImpl,main:133 - Duplicate entry 'RF' for key 'course.PRIMARY'
+15:54:53,508  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:54:53,508  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:54:53,508  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:54:53,508  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:53,524  INFO AdminDAOImpl,main:249 - 1 user added.
+15:54:53,524  INFO AdminDAOImpl,main:255 - User with userId: MN added.
+15:54:53,528 ERROR AdminDAOImpl,main:341 - Column 'professorId' cannot be null
+15:54:53,530 ERROR AdminDAOImpl,main:259 - Duplicate entry 'MN' for key 'user.PRIMARY'
+15:54:53,530 ERROR AdminDAOImpl,main:313 - userId: MN is already in use.
+15:54:53,540  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:53,549  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:54:53,549  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:53,556  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:54:53,558  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:54:53,558  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:53,558  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:54:53,558  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:54:53,558  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,568  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,568  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,568  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,568  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,568  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,568  INFO AdminDAOImpl,main:544 - graded
+15:54:53,572  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,572  INFO AdminDAOImpl,main:544 - graded
+15:54:53,572  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,572  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,572  INFO AdminDAOImpl,main:544 - graded
+15:54:53,572  INFO AdminDAOImpl,main:544 - graded
+15:54:53,572  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,572  INFO AdminDAOImpl,main:544 - graded
+15:54:53,572  INFO AdminDAOImpl,main:517 - course object generated
+15:54:53,572  INFO AdminDAOImpl,main:544 - graded
+15:56:17,610  INFO AdminDAOImpl,main:123 - 1 course added
+15:56:17,613  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:56:17,622  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:56:17,626  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:56:17,626  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:56:17,628  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:56:17,645 ERROR AdminDAOImpl,main:259 - Duplicate entry 'MN' for key 'user.PRIMARY'
+15:56:17,645 ERROR AdminDAOImpl,main:313 - userId: MN is already in use.
+15:56:17,657  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:56:17,664  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:56:17,666  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:56:17,667  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:56:17,671  INFO AdminDAOImpl,main:517 - course object generated
+15:56:17,673  INFO AdminDAOImpl,main:544 - graded
+15:56:17,673  INFO AdminDAOImpl,main:517 - course object generated
+15:56:17,673  INFO AdminDAOImpl,main:544 - graded
+15:56:17,674  INFO AdminDAOImpl,main:517 - course object generated
+15:56:17,675  INFO AdminDAOImpl,main:544 - graded
+15:56:17,675  INFO AdminDAOImpl,main:517 - course object generated
+15:56:17,675  INFO AdminDAOImpl,main:544 - graded
+15:56:17,675  INFO AdminDAOImpl,main:517 - course object generated
+15:56:17,675  INFO AdminDAOImpl,main:544 - graded
+15:56:17,675  INFO AdminDAOImpl,main:517 - course object generated
+15:56:17,675  INFO AdminDAOImpl,main:544 - graded
+15:56:39,080  INFO AdminDAOImpl,main:123 - 1 course added
+15:56:39,085  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:56:39,087  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:56:39,094  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:56:39,094  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:56:39,098  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:56:39,100  INFO AdminDAOImpl,main:249 - 1 user added.
+15:56:39,100  INFO AdminDAOImpl,main:255 - User with userId: MN added.
+15:56:39,100 ERROR AdminDAOImpl,main:341 - Column 'professorId' cannot be null
+15:56:39,116  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:56:39,116  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:56:39,116  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:56:39,116  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:56:39,132  INFO AdminDAOImpl,main:517 - course object generated
+15:56:39,132  INFO AdminDAOImpl,main:544 - graded
+15:56:39,132  INFO AdminDAOImpl,main:517 - course object generated
+15:56:39,132  INFO AdminDAOImpl,main:544 - graded
+15:56:39,132  INFO AdminDAOImpl,main:517 - course object generated
+15:56:39,132  INFO AdminDAOImpl,main:544 - graded
+15:56:39,132  INFO AdminDAOImpl,main:517 - course object generated
+15:56:39,132  INFO AdminDAOImpl,main:544 - graded
+15:56:39,132  INFO AdminDAOImpl,main:517 - course object generated
+15:56:39,132  INFO AdminDAOImpl,main:544 - graded
+15:56:39,132  INFO AdminDAOImpl,main:517 - course object generated
+15:56:39,132  INFO AdminDAOImpl,main:544 - graded
+15:59:31,028  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:31,065  INFO AdminDAOImpl,main:123 - 1 course added
+15:59:31,066  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:59:31,071  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:59:31,078  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:59:31,083  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:59:31,085  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:59:31,089  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:31,112 ERROR AdminDAOImpl,main:259 - Duplicate entry 'MN' for key 'user.PRIMARY'
+15:59:31,113 ERROR AdminDAOImpl,main:313 - userId: MN is already in use.
+15:59:31,128  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:31,133  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:59:31,139  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:59:31,141  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:31,146  INFO AdminDAOImpl,main:517 - course object generated
+15:59:31,147  INFO AdminDAOImpl,main:544 - graded
+15:59:31,149  INFO AdminDAOImpl,main:517 - course object generated
+15:59:31,150  INFO AdminDAOImpl,main:544 - graded
+15:59:31,150  INFO AdminDAOImpl,main:517 - course object generated
+15:59:31,151  INFO AdminDAOImpl,main:544 - graded
+15:59:31,152  INFO AdminDAOImpl,main:517 - course object generated
+15:59:31,152  INFO AdminDAOImpl,main:544 - graded
+15:59:31,152  INFO AdminDAOImpl,main:517 - course object generated
+15:59:31,152  INFO AdminDAOImpl,main:544 - graded
+15:59:31,152  INFO AdminDAOImpl,main:517 - course object generated
+15:59:31,153  INFO AdminDAOImpl,main:544 - graded
+15:59:50,634  INFO AdminDAOImpl,main:123 - 1 course added
+15:59:50,637  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+15:59:50,643  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+15:59:50,647  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+15:59:50,647  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+15:59:50,650  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:50,657  INFO AdminDAOImpl,main:249 - 1 user added.
+15:59:50,657  INFO AdminDAOImpl,main:255 - User with userId: MN added.
+15:59:50,662  INFO AdminDAOImpl,main:331 - 1 professor added.
+15:59:50,663  INFO AdminDAOImpl,main:337 - I'm here! Professor with professorId: MN added.
+15:59:50,672  INFO AdminDAOImpl,main:280 - 1users deleted.
+15:59:50,673  INFO AdminDAOImpl,main:364 - 0Professors deleted.
+15:59:50,673  INFO AdminDAOImpl,main:366 - professor not found.
+15:59:50,682  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:50,685  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+15:59:50,687  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:59:50,689  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+15:59:50,692  INFO AdminDAOImpl,main:517 - course object generated
+15:59:50,694  INFO AdminDAOImpl,main:544 - graded
+15:59:50,694  INFO AdminDAOImpl,main:517 - course object generated
+15:59:50,694  INFO AdminDAOImpl,main:544 - graded
+15:59:50,695  INFO AdminDAOImpl,main:517 - course object generated
+15:59:50,695  INFO AdminDAOImpl,main:544 - graded
+15:59:50,695  INFO AdminDAOImpl,main:517 - course object generated
+15:59:50,695  INFO AdminDAOImpl,main:544 - graded
+15:59:50,695  INFO AdminDAOImpl,main:517 - course object generated
+15:59:50,695  INFO AdminDAOImpl,main:544 - graded
+15:59:50,695  INFO AdminDAOImpl,main:517 - course object generated
+15:59:50,695  INFO AdminDAOImpl,main:544 - graded
+16:00:00,616  INFO AdminDAOImpl,main:123 - 1 course added
+16:00:00,618  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+16:00:00,627  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+16:00:00,631  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+16:00:00,631  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+16:00:00,633  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:00,641  INFO AdminDAOImpl,main:249 - 1 user added.
+16:00:00,641  INFO AdminDAOImpl,main:255 - User with userId: MN added.
+16:00:00,646  INFO AdminDAOImpl,main:331 - 1 professor added.
+16:00:00,646  INFO AdminDAOImpl,main:337 - I'm here! Professor with professorId: MN added.
+16:00:00,651  INFO AdminDAOImpl,main:280 - 1users deleted.
+16:00:00,654  INFO AdminDAOImpl,main:364 - 0Professors deleted.
+16:00:00,655  INFO AdminDAOImpl,main:366 - professor not found.
+16:00:00,664  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:00,667  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+16:00:00,668  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+16:00:00,671  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:00,675  INFO AdminDAOImpl,main:517 - course object generated
+16:00:00,676  INFO AdminDAOImpl,main:544 - graded
+16:00:00,676  INFO AdminDAOImpl,main:517 - course object generated
+16:00:00,676  INFO AdminDAOImpl,main:544 - graded
+16:00:00,676  INFO AdminDAOImpl,main:517 - course object generated
+16:00:00,676  INFO AdminDAOImpl,main:544 - graded
+16:00:00,676  INFO AdminDAOImpl,main:517 - course object generated
+16:00:00,676  INFO AdminDAOImpl,main:544 - graded
+16:00:00,678  INFO AdminDAOImpl,main:517 - course object generated
+16:00:00,678  INFO AdminDAOImpl,main:544 - graded
+16:00:00,678  INFO AdminDAOImpl,main:517 - course object generated
+16:00:00,678  INFO AdminDAOImpl,main:544 - graded
+16:00:06,017  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:06,047  INFO AdminDAOImpl,main:123 - 1 course added
+16:00:06,047  INFO AdminDAOImpl,main:129 - Course with courseId: RF is added to catalog.
+16:00:06,051  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+16:00:06,054  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+16:00:06,057  INFO AdminDAOImpl,main:86 - 1 entries deleted.
+16:00:06,058  INFO AdminDAOImpl,main:92 - Course with courseId: RF deleted.
+16:00:06,059  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:06,067  INFO AdminDAOImpl,main:249 - 1 user added.
+16:00:06,068  INFO AdminDAOImpl,main:255 - User with userId: MN added.
+16:00:06,072  INFO AdminDAOImpl,main:331 - 1 professor added.
+16:00:06,072  INFO AdminDAOImpl,main:337 - I'm here! Professor with professorId: MN added.
+16:00:06,077  INFO AdminDAOImpl,main:280 - 1users deleted.
+16:00:06,079  INFO AdminDAOImpl,main:364 - 0Professors deleted.
+16:00:06,079  INFO AdminDAOImpl,main:366 - professor not found.
+16:00:06,085  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:06,088  INFO AdminDAOImpl,main:169 - 1 students have pending-approval.
+16:00:06,090  INFO AdminDAOImpl,main:398 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+16:00:06,092  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+16:00:06,095  INFO AdminDAOImpl,main:517 - course object generated
+16:00:06,096  INFO AdminDAOImpl,main:544 - graded
+16:00:06,096  INFO AdminDAOImpl,main:517 - course object generated
+16:00:06,096  INFO AdminDAOImpl,main:544 - graded
+16:00:06,096  INFO AdminDAOImpl,main:517 - course object generated
+16:00:06,096  INFO AdminDAOImpl,main:544 - graded
+16:00:06,096  INFO AdminDAOImpl,main:517 - course object generated
+16:00:06,096  INFO AdminDAOImpl,main:544 - graded
+16:00:06,096  INFO AdminDAOImpl,main:517 - course object generated
+16:00:06,096  INFO AdminDAOImpl,main:544 - graded
+16:00:06,097  INFO AdminDAOImpl,main:517 - course object generated
+16:00:06,097  INFO AdminDAOImpl,main:544 - graded

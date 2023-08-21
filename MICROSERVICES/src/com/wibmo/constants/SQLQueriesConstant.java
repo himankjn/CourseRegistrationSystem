@@ -16,7 +16,9 @@ public class SQLQueriesConstant {
 		public static final String APPROVE_STUDENT_QUERY = "update student set isApproved = 1 where studentId = ?";
 		public static final String APPROVE_ALL_STUDENT_QUERY = "update student set isApproved = 1 where isApproved=0";
 		public static final String ADD_USER_QUERY = "insert into User(userId, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
+		public static final String DROP_USER_QUERY = "DELETE FROM User where userId=?";
 		public static final String ADD_PROFESSOR_QUERY = "insert into Professor(userId,professorId, department, designation) values (?, ?, ?, ?)";
+		public static final String DROP_PROFESSOR_QUERY = "DELETE FROM professor where userId=?";
 		public static final String ASSIGN_COURSE_QUERY = "update Course set professorId = ? where courseId = ?";
 		public static final String VIEW_COURSE_QUERY = "select courseId, courseName, professorId from Course";
 		public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address from Professor natural join User where userId = professorId";

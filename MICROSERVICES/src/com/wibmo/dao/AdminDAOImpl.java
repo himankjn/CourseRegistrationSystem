@@ -296,7 +296,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, professor.getUserId());
-			statement.setString(2, professor.getUserId());
+			statement.setString(2, professor.getProfessorId());
 			statement.setString(3, professor.getDepartment());
 			statement.setString(4, professor.getDesignation());
 			int row = statement.executeUpdate();

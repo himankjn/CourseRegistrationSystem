@@ -58,20 +58,26 @@ public class NotificationDAOImpl implements NotificationDAOInterface{
 	 * @return notification id for the record added in the database
 	 * @throws SQLException
 	 */
-	public int sendNotification(NotificationTypeConstant type, int studentId,PaymentModeConstant modeOfPayment,double amount) throws SQLException{
+	public int sendNotification(NotificationTypeConstant type, String studentId,PaymentModeConstant modeOfPayment,double amount) throws SQLException{
 		int notificationId=0;
 		Connection connection=DBUtils.getConnection();
 		try
 		{
-			//INSERT_NOTIFICATION = "insert into notification(studentId,type,referenceId) values(?,?,?);";
 			PreparedStatement ps = connection.prepareStatement(SQLQueriesConstant.INSERT_NOTIFICATION,Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, studentId);
+			ps.setString(1, studentId);
 			ps.setString(2,type.toString());
 			if(type==NotificationTypeConstant.PAYED)
 			{
 				//insert into payment, get reference id and add here
-				UUID referenceId=addPayment(studentId, modeOfPayment,amount);
-				ps.setString(3, referenceId.toString());	
+				String referenceId;
+				
+				try {
+					referenceId = addPayment(studentId, modeOfPayment,amount);
+				}catch(SQLException ex) {
+					ex.printStackTrace();
+					throw ex;
+				}
+				ps.setString(3, referenceId);	
 			}
 			else
 				ps.setString(3,"");
@@ -109,30 +115,54 @@ public class NotificationDAOImpl implements NotificationDAOInterface{
 	 * @return: reference id of the transaction
 	 * @throws SQLException
 	 */
-	public UUID addPayment(int studentId, PaymentModeConstant modeOfPayment,double amount) throws SQLException
+	public String addPayment(String studentId, PaymentModeConstant modeOfPayment,double amount) throws SQLException
 	{
-		UUID referenceId;
+		String referenceId = "";
 		Connection connection=DBUtils.getConnection();
 		try
 		{
-			referenceId=UUID.randomUUID();
+			referenceId=UUID.randomUUID().toString();
 			//INSERT_NOTIFICATION = "insert into notification(studentId,type,referenceId) values(?,?,?);";
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.INSERT_PAYMENT);
-			statement.setInt(1, studentId);
+			statement.setString(1, studentId);
 			statement.setString(2, modeOfPayment.toString());
 			statement.setString(3,referenceId.toString());
 			statement.setDouble(4, amount);
 			statement.executeUpdate();
 			//check if record is added
+			int status = statement.executeUpdate();
+			
+			if(status==0) {
+				throw new SQLException("Insert not happened into the payment table");
+			}
 		}
 		catch(SQLException ex)
 		{
 			throw ex;
 		}
 		return referenceId;
+
 	}
 
-	
 
-	
+	public String getReferenceId(int notificationId) throws SQLException {
+		String referenceId = "";
+		Connection connection=DBUtils.getConnection();
+		try
+		{
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_PAYMENT_UUID);
+			statement.setInt(1, notificationId);
+			ResultSet rs = statement.executeQuery();
+			
+			referenceId = rs.getString(1);
+			
+		}
+		catch(SQLException ex)
+		{
+			throw ex;
+		}
+		
+		return referenceId;
+	}
+
 }

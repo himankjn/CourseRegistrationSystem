@@ -158,20 +158,13 @@ private void registerCourses(String studentId)
 	
 	try {
 		registrationServiceInterface.setRegistrationStatus(studentId);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		notificationInterface.sendNotification(NotificationTypeConstant.REGISTRATION, studentId, null, 0);
+		is_registered = true;
+	} catch(SQLException e) {
+		e.printStackTrace();
+	} catch(Exception e) {
 		e.printStackTrace();
 	}
-    is_registered = true;
-    
-//    try 
-//    {
-//		registrationInterface.setRegistrationStatus(studentId);
-//	} 
-//    catch (SQLException e) 
-//    {
-//    	logger.info(e.getMessage());
-//	}
 }
 
 
@@ -417,10 +410,7 @@ private void make_payment(String studentId)
 
 		            logger.info(e.getMessage());
 				}
-			}
-			
-			
-			
+			}	
 				
 		}
 		

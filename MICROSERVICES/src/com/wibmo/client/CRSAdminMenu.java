@@ -7,6 +7,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.wibmo.bean.Course;
+import com.wibmo.bean.Grade;
+import com.wibmo.bean.GradeCard;
+import com.wibmo.bean.Professor;
+import com.wibmo.bean.RegisteredCourse;
+import com.wibmo.bean.Student;
 import org.apache.log4j.Logger;
 
 import com.wibmo.business.AdminServiceInterface;
@@ -25,12 +31,6 @@ import com.wibmo.exception.StudentNotFoundForApprovalException;
 import com.wibmo.exception.UserIdAlreadyInUseException;
 import com.wibmo.exception.UserNotFoundException;
 
-import com.wibmo.bean.Course;
-import com.wibmo.bean.Grade;
-import com.wibmo.bean.GradeCard;
-import com.wibmo.bean.Professor;
-import com.wibmo.bean.RegisteredCourse;
-import com.wibmo.bean.Student;
 
 import com.wibmo.business.AdminServiceImpl;
 
@@ -281,7 +281,7 @@ public class CRSAdminMenu {
 				adminService.approveSingleStudent(studentUserIdApproval, studentList);
 				logger.info("\nStudent Id : " +studentUserIdApproval+ " has been approved\n");
 				//send notification from system
-				notificationInterface.sendNotification(NotificationTypeConstant.REGISTRATION, studentUserIdApproval, null,0);
+				notificationInterface.sendNotification(NotificationTypeConstant.APPROVED, studentUserIdApproval, null,0);
 		
 			} catch (StudentNotFoundForApprovalException e) {
 				logger.info(e.getMessage());
@@ -292,6 +292,9 @@ public class CRSAdminMenu {
 				adminService.approveAllStudents(studentList);
 				logger.info("All students approved!");
 				//notify
+				for(Student student: studentList){
+					notificationInterface.sendNotification(NotificationTypeConstant.APPROVED, student.getUserId(), null,0);
+				}
 			}
 			catch(Exception e){
 				logger.info(e.getMessage());

@@ -194,4 +194,13 @@ public class AdminServiceImpl implements AdminServiceInterface{
 		return profIDs;
 	}
 
+	@Override
+	public void dropProfessor(String professorId) {
+		try {
+			adminDAOImpl.dropProfessor(professorId);
+		} catch (Exception e) {
+			logger.error(e.getMessage());		}
+		
+	}
+
 }

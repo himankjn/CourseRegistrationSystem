@@ -262,6 +262,33 @@ public class AdminDAOImpl implements AdminDAOInterface{
 		}
 		
 	}
+	/**
+	 * Method to remove user from db
+	 */
+	@Override
+	public void dropUser(String userId) throws Exception {
+		statement = null;
+		try {
+			System.out.println("Executing delete user:"+userId+"!!!!");
+			String sql = SQLQueriesConstant.DROP_USER_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, userId);
+			
+			int row = statement.executeUpdate();
+			
+			logger.info(row + "users deleted.");
+			if(row == 0) {
+				logger.info("user not found.");
+			}
+			
+		}catch(SQLException se) {
+			logger.error(se.getMessage());
+			
+		}
+		
+	}
+
 
 	/**
 	 * Add professor using SQL commands
@@ -296,7 +323,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			statement = connection.prepareStatement(sql);
 			
 			statement.setString(1, professor.getUserId());
-			statement.setString(2, professor.getProfessorId());
+			statement.setString(2, professor.getUserId());
 			statement.setString(3, professor.getDepartment());
 			statement.setString(4, professor.getDesignation());
 			int row = statement.executeUpdate();
@@ -318,6 +345,33 @@ public class AdminDAOImpl implements AdminDAOInterface{
 		
 	}
 	
+	/**
+	 * Method to remove professor from db
+	 */
+	@Override
+	public void dropProfessor(String professorId) throws Exception {
+		statement = null;
+		try {
+			
+			this.dropUser(professorId);
+			String sql = SQLQueriesConstant.DROP_PROFESSOR_QUERY;
+			statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, professorId);
+			
+			int row = statement.executeUpdate();
+			
+			logger.info(row + "Professors deleted.");
+			if(row == 0) {
+				logger.info("professor not found.");
+			}
+			
+		}catch(SQLException se) {
+			logger.error(se.getMessage());
+			
+		}
+		
+	}
 	/**
 	 * Assign courses to Professor using SQL commands
 	 * @param courseId

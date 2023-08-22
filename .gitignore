@@ -1,8 +1,10 @@
-/.metadata/
-/MICROSERVICES/src/config.properties
-/MICROSERVICES/.classpath
+.metadata/
+MICROSERVICES/src/config.properties
+MICROSERVICES/.classpath
 /MICROSERVICES/.project
-/MICROSERVICES/contacts.log
-/MICROSERVICES/.settings/
-/MICROSERVICES/bin/
-/MICROSERVICES/bin1/
+MICROSERVICES/contacts.log
+MICROSERVICES/.settings/
+MICROSERVICES/bin/
+MICROSERVICES/bin1/
+CRS-GROUPB-WIBMO-REST/target/
+CRS-GROUPB-WIBMO-REST/src/main/resources/application.properties

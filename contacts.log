@@ -1,0 +1,18 @@
+11:42:27,045  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:42:27========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:42:48,061  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:42:48,062  INFO CRSApplicationClient,main:74 - Email:
+11:44:08,690  INFO CRSApplicationClient,main:76 - Password:
+11:44:11,166  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student

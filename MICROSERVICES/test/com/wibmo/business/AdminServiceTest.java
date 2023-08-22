@@ -29,6 +29,7 @@ import com.wibmo.exception.CourseNotFoundException;
 public class AdminServiceTest {
 
 	private static AdminServiceInterface adminService=null;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */

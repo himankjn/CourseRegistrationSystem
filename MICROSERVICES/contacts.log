@@ -3125,3 +3125,780 @@ Enter the StudentId for report card generation :
 |         3. Update Password         |
 |         4. Exit                    |
 |====================================|
+16:16:36,058  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================18-08-2023 16:16:36========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+09:57:54,812  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 09:57:54========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+09:59:14,104  INFO CRSApplicationClient,main:42 - "\033[0;1m" + "I am bold"
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 09:59:14========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+09:59:28,097  INFO CRSApplicationClient,main:42 - [1m I am bold
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 09:59:28========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+09:59:36,699  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 09:59:36========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:00:16,027  INFO CRSApplicationClient,main:42 - [
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:00:16========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:00:25,724  INFO CRSApplicationClient,main:42 - [
+===================!WELCOME TO CRS APPLICATION!====================]
+=======================21-08-2023 10:00:25========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:00:38,540  INFO CRSApplicationClient,main:42 - [1m I am bold
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:00:38========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:00:48,031  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:00:48========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:00:56,366  INFO CRSApplicationClient,main:42 - [1m I am bold
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:00:56========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:01:06,565  INFO CRSApplicationClient,main:42 - [
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:01:06========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:01:10,762  INFO CRSApplicationClient,main:42 - [I
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:01:10========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:01:21,686  INFO CRSApplicationClient,main:42 - [1m 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================21-08-2023 10:01:21========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:01:41,207  INFO CRSApplicationClient,main:42 - [1m 
+===================!WELCOME TO CRS APPLICATION!====================
+10:01:41,216  INFO CRSApplicationClient,main:43 - 
+=======================21-08-2023 10:01:41========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:43:35,097  INFO CRSApplicationClient,main:42 - [1m 
+===================!WELCOME TO CRS APPLICATION!====================
+10:43:35,104  INFO CRSApplicationClient,main:43 - 
+=======================21-08-2023 10:43:35========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+10:43:41,380  INFO CRSApplicationClient,main:77 - 
+-----------------Login------------------
+10:43:41,381  INFO CRSApplicationClient,main:78 - Email:
+11:47:16,081  INFO AdminDAOImpl,main:377 - Number of courses in the Catalog are : 10
+11:49:00,312  INFO AdminDAOImpl,main:377 - Number of courses in the Catalog are : 10
+11:59:39,353  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:03:58,182  INFO AdminDAOImpl,main:121 - 1 course added
+12:03:58,185  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:03:58,191  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:03:58,205  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:04:17,486  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:05:13,788  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:05:30,220  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:05:49,057 ERROR AdminDAOImpl,main:131 - Duplicate entry 'RF' for key 'course.PRIMARY'
+12:05:49,068  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:07:08,197  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:07:08,199  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:07:08,205  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:07:08,208  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:07:36,802  INFO AdminDAOImpl,main:84 - 0 entries deleted.
+12:07:36,804  INFO AdminDAOImpl,main:86 - RF not in catalog!
+12:07:36,817  INFO AdminDAOImpl,main:121 - 1 course added
+12:07:36,818  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:07:36,822  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:07:36,825  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:04,159  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:04,162  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:04,169  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:04,175  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:04,175  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:04,177  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:04,179  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:10,661  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:10,663  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:10,669  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:10,676  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:10,676  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:10,678  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:10,680  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:12,344  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:12,347  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:12,353  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:12,361  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:12,361  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:12,364  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:12,366  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:13,873  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:13,875  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:13,881  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:13,886  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:13,886  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:13,888  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:13,890  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:15,229  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:15,231  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:15,238  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:15,245  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:15,245  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:15,247  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:15,248  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:17,403  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:17,405  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:17,412  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:17,417  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:17,417  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:17,419  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:17,421  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:52,497  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:08:52,499  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:08:52,505  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:08:52,512  INFO AdminDAOImpl,main:121 - 1 course added
+12:08:52,512  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:08:52,514  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:08:52,515  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:09:02,460  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:09:02,462  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:09:02,470  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:09:02,477  INFO AdminDAOImpl,main:121 - 1 course added
+12:09:02,477  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:09:02,478  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:09:02,480  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:11:20,379 ERROR AdminDAOImpl,main:131 - Duplicate entry 'RF' for key 'course.PRIMARY'
+12:11:20,397  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:12:09,419  INFO AdminDAOImpl,main:121 - 1 course added
+12:12:09,420  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:12:09,425  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:12:09,428  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:12:09,437  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:13:12,105  INFO AdminDAOImpl,main:121 - 1 course added
+12:13:12,108  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:13:12,114  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:13:12,119  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:13:12,119  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:13:12,121  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:13:12,124  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:17:53,031  INFO AdminDAOImpl,main:121 - 1 course added
+12:17:53,034  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:17:53,040  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:17:53,045  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:17:53,045  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:17:53,047  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:17:53,078  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:18:20,981  INFO AdminDAOImpl,main:121 - 1 course added
+12:18:20,983  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:18:20,989  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 11
+12:18:20,994  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:18:20,994  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:18:20,995  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:18:21,007  INFO AdminDAOImpl,main:376 - Number of courses in the Catalog are : 10
+12:28:52,831  INFO AdminDAOImpl,main:121 - 1 course added
+12:28:52,834  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:28:52,840  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 11
+12:28:52,845  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:28:52,846  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:28:52,847  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:28:52,856  INFO AdminDAOImpl,main:247 - 1 user added.
+12:28:52,856  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:28:52,861  INFO AdminDAOImpl,main:304 - 1 professor added.
+12:28:52,862  INFO AdminDAOImpl,main:310 - I'm here! Professor with professorId: MN added.
+12:28:52,889  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:29:07,627  INFO AdminDAOImpl,main:121 - 1 course added
+12:29:07,630  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:29:07,637  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 11
+12:29:07,643  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:29:07,643  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:29:07,644  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:29:07,655 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:29:07,655 ERROR AdminDAOImpl,main:286 - userId: MN is already in use.
+12:29:07,663  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:29:16,089  INFO AdminDAOImpl,main:121 - 1 course added
+12:29:16,091  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:29:16,096  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 11
+12:29:16,102  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:29:16,102  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:29:16,104  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:29:16,117 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:29:16,117 ERROR AdminDAOImpl,main:286 - userId: MN is already in use.
+12:29:16,127  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:30:46,084  INFO AdminDAOImpl,main:121 - 1 course added
+12:30:46,087  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:30:46,094  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 11
+12:30:46,097  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:30:46,097  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:30:46,099  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:30:46,110  INFO AdminDAOImpl,main:247 - 1 user added.
+12:30:46,110  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:30:46,121 ERROR AdminDAOImpl,main:314 - Duplicate entry 'MN' for key 'professor.PRIMARY'
+12:30:46,130  INFO AdminDAOImpl,main:405 - Number of courses in the Catalog are : 10
+12:36:05,984  INFO AdminDAOImpl,main:121 - 1 course added
+12:36:05,986  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:36:05,991  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+12:36:05,995  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:36:05,995  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:36:05,997  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+12:36:06,007  INFO AdminDAOImpl,main:247 - 1 user added.
+12:36:06,007  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:36:06,012  INFO AdminDAOImpl,main:330 - 1 professor added.
+12:36:06,013  INFO AdminDAOImpl,main:336 - I'm here! Professor with professorId: MN added.
+12:36:06,041  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+12:40:02,038  INFO AdminDAOImpl,main:121 - 1 course added
+12:40:02,040  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:40:02,046  INFO AdminDAOImpl,main:431 - Number of courses in the Catalog are : 11
+12:40:02,049  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:40:02,050  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:40:02,051  INFO AdminDAOImpl,main:431 - Number of courses in the Catalog are : 10
+12:40:02,059  INFO AdminDAOImpl,main:247 - 1 user added.
+12:40:02,059  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:40:02,064  INFO AdminDAOImpl,main:330 - 1 professor added.
+12:40:02,086  INFO AdminDAOImpl,main:431 - Number of courses in the Catalog are : 10
+12:40:45,067  INFO AdminDAOImpl,main:121 - 1 course added
+12:40:45,069  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:40:45,074  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 11
+12:40:45,078  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:40:45,078  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:40:45,080  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+12:40:45,104  INFO AdminDAOImpl,main:247 - 1 user added.
+12:40:45,106  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:40:45,111  INFO AdminDAOImpl,main:330 - 1 professor added.
+12:40:45,136  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+12:41:09,194  INFO AdminDAOImpl,main:121 - 1 course added
+12:41:09,196  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:41:09,201  INFO AdminDAOImpl,main:433 - Number of courses in the Catalog are : 11
+12:41:09,204  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:41:09,204  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:41:09,206  INFO AdminDAOImpl,main:433 - Number of courses in the Catalog are : 10
+12:41:09,218 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:41:09,218 ERROR AdminDAOImpl,main:312 - userId: MN is already in use.
+12:41:09,227  INFO AdminDAOImpl,main:433 - Number of courses in the Catalog are : 10
+12:41:22,559  INFO AdminDAOImpl,main:121 - 1 course added
+12:41:22,561  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:41:22,566  INFO AdminDAOImpl,main:433 - Number of courses in the Catalog are : 11
+12:41:22,570  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:41:22,571  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:41:22,572  INFO AdminDAOImpl,main:433 - Number of courses in the Catalog are : 10
+12:41:22,583  INFO AdminDAOImpl,main:247 - 1 user added.
+12:41:22,583  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:41:22,587  INFO AdminDAOImpl,main:330 - 1 professor added.
+12:41:22,606  INFO AdminDAOImpl,main:433 - Number of courses in the Catalog are : 10
+12:41:56,723 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:41:56,724 ERROR AdminDAOImpl,main:312 - userId: MN is already in use.
+12:42:04,833  INFO AdminDAOImpl,main:247 - 1 user added.
+12:42:04,836  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:42:04,844  INFO AdminDAOImpl,main:330 - 1 professor added.
+12:42:50,434 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:42:50,436 ERROR AdminDAOImpl,main:312 - userId: MN is already in use.
+12:42:56,262 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:42:56,264 ERROR AdminDAOImpl,main:312 - userId: MN is already in use.
+12:43:06,686  INFO AdminDAOImpl,main:247 - 1 user added.
+12:43:06,689  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:43:06,701  INFO AdminDAOImpl,main:330 - 1 professor added.
+12:43:59,926  INFO AdminDAOImpl,main:247 - 1 user added.
+12:43:59,928  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:43:59,934  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:43:59,947 ERROR AdminDAOImpl,main:285 - Cannot delete or update a parent row: a foreign key constraint fails (`wibmo_crs`.`professor`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`))
+12:43:59,952  INFO AdminDAOImpl,main:361 - 1Professors deleted.
+12:44:10,794  INFO AdminDAOImpl,main:121 - 1 course added
+12:44:10,796  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:44:10,801  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+12:44:10,807  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:44:10,807  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:44:10,808  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:44:10,821 ERROR AdminDAOImpl,main:257 - Duplicate entry 'MN' for key 'user.PRIMARY'
+12:44:10,822 ERROR AdminDAOImpl,main:311 - userId: MN is already in use.
+12:44:10,831  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:44:33,295  INFO AdminDAOImpl,main:247 - 1 user added.
+12:44:33,297  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:44:33,302  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:44:33,323 ERROR AdminDAOImpl,main:285 - Cannot delete or update a parent row: a foreign key constraint fails (`wibmo_crs`.`professor`, CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`))
+12:44:33,327  INFO AdminDAOImpl,main:361 - 1Professors deleted.
+12:46:40,232  INFO AdminDAOImpl,main:247 - 1 user added.
+12:46:40,235  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:46:40,239  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:46:40,253  INFO AdminDAOImpl,main:279 - 1users deleted.
+12:46:40,255  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+12:46:40,256  INFO AdminDAOImpl,main:363 - professor not found.
+12:46:45,748  INFO AdminDAOImpl,main:247 - 1 user added.
+12:46:45,751  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:46:45,758  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:46:45,767  INFO AdminDAOImpl,main:279 - 1users deleted.
+12:46:45,769  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+12:46:45,769  INFO AdminDAOImpl,main:363 - professor not found.
+12:46:47,906  INFO AdminDAOImpl,main:247 - 1 user added.
+12:46:47,908  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:46:47,913  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:46:47,923  INFO AdminDAOImpl,main:279 - 1users deleted.
+12:46:47,924  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+12:46:47,924  INFO AdminDAOImpl,main:363 - professor not found.
+12:47:05,413  INFO AdminDAOImpl,main:121 - 1 course added
+12:47:05,417  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:47:05,443  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+12:47:05,448  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:47:05,449  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:47:05,451  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:47:05,463  INFO AdminDAOImpl,main:247 - 1 user added.
+12:47:05,463  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:47:05,470  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:47:05,477  INFO AdminDAOImpl,main:279 - 1users deleted.
+12:47:05,479  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+12:47:05,479  INFO AdminDAOImpl,main:363 - professor not found.
+12:47:05,490  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:47:05,622  INFO AdminDAOImpl,main:121 - 1 course added
+12:47:05,623  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:47:05,628  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+12:47:05,632  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:47:05,632  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:47:05,633  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:47:05,639  INFO AdminDAOImpl,main:247 - 1 user added.
+12:47:05,639  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:47:05,644  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:47:05,651  INFO AdminDAOImpl,main:279 - 1users deleted.
+12:47:05,653  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+12:47:05,653  INFO AdminDAOImpl,main:363 - professor not found.
+12:47:05,658  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:54:39,383  INFO AdminDAOImpl,main:121 - 1 course added
+12:54:39,384  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+12:54:39,390  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+12:54:39,396  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+12:54:39,396  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+12:54:39,398  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:54:39,410  INFO AdminDAOImpl,main:247 - 1 user added.
+12:54:39,410  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+12:54:39,415  INFO AdminDAOImpl,main:329 - 1 professor added.
+12:54:39,421  INFO AdminDAOImpl,main:279 - 1users deleted.
+12:54:39,423  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+12:54:39,424  INFO AdminDAOImpl,main:363 - professor not found.
+12:54:39,431  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+12:54:39,437  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+12:54:39,441  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+13:05:27,914 ERROR StudentDAOImpl,main:124 - Unknown column 'userId' in 'where clause'
+13:05:27,962  INFO StudentServiceImpl,main:59 - 
+Your account has been created and pending for Approval by Admin.
+
+13:08:39,869  INFO StudentServiceImpl,main:59 - 
+Your account has been created and pending for Approval by Admin.
+
+13:17:12,246  INFO StudentServiceImpl,main:59 - 
+Your account has been created and pending for Approval by Admin.
+
+13:18:40,999  INFO StudentServiceImpl,main:59 - 
+Your account has been created and pending for Approval by Admin.
+
+13:19:50,053  INFO StudentServiceImpl,main:59 - 
+Your account has been created and pending for Approval by Admin.
+
+13:20:15,413  INFO StudentServiceImpl,main:59 - 
+Your account has been created and pending for Approval by Admin.
+
+13:21:06,219  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:22:30,423  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:22:46,487  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:23:28,100  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:24:02,825  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:26:04,577  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:26:31,022  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:28:15,325  INFO StudentServiceImpl,main:59 - 
+Your account with id: null has been created and pending for Approval by Admin.
+
+13:29:30,802  INFO StudentServiceImpl,main:59 - 
+Your account with id: testUserId has been created and pending for Approval by Admin.
+
+13:30:02,713  INFO StudentServiceImpl,main:59 - 
+Your account with id: testUserId has been created and pending for Approval by Admin.
+
+13:30:57,945  INFO StudentServiceImpl,main:59 - 
+Your account with id: testUserId has been created and pending for Approval by Admin.
+
+13:31:15,676  INFO StudentServiceImpl,main:59 - 
+Your account with id: testUserId has been created and pending for Approval by Admin.
+
+13:36:18,828  INFO StudentServiceImpl,main:59 - 
+Your account with id: testUserId has been created and pending for Approval by Admin.
+
+13:37:20,738 ERROR StudentDAOImpl,main:122 - Unknown column 'userId' in 'where clause'
+14:55:53,404  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:55:58,154  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:56:57,613  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:56:57,655  INFO AdminDAOImpl,main:121 - 1 course added
+14:56:57,655  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+14:56:57,657  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+14:56:57,660  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+14:56:57,663  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+14:56:57,663  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+14:56:57,665  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:56:57,668  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:57:28,547  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:57:28,576  INFO AdminDAOImpl,main:121 - 1 course added
+14:57:28,576  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+14:57:28,578  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+14:57:28,581  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+14:57:28,585  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+14:57:28,585  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+14:57:28,588  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+14:57:28,596  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:00:28,911  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:00:28,942  INFO AdminDAOImpl,main:121 - 1 course added
+15:00:28,942  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:00:28,944  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:00:28,948  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:00:28,950  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:00:28,950  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:00:28,952  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:00:28,961  INFO AdminDAOImpl,main:247 - 1 user added.
+15:00:28,961  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:00:28,966  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:00:28,973  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:00:28,974  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:00:28,975  INFO AdminDAOImpl,main:363 - professor not found.
+15:00:28,980  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:00:28,983  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:00:28,985  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:03:01,497  INFO AdminDAOImpl,main:121 - 1 course added
+15:03:01,499  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:03:01,506  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:03:01,510  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:03:01,511  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:03:01,513  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:03:01,520  INFO AdminDAOImpl,main:247 - 1 user added.
+15:03:01,520  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:03:01,526  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:03:01,538  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:03:01,539  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:03:01,540  INFO AdminDAOImpl,main:363 - professor not found.
+15:03:01,547  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:03:01,548  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:03:01,549  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:03:01,553  INFO AdminDAOImpl,main:515 - course object generated
+15:03:01,556  INFO AdminDAOImpl,main:542 - graded
+15:03:01,556  INFO AdminDAOImpl,main:515 - course object generated
+15:03:01,556  INFO AdminDAOImpl,main:542 - graded
+15:03:01,556  INFO AdminDAOImpl,main:515 - course object generated
+15:03:01,557  INFO AdminDAOImpl,main:542 - graded
+15:03:01,557  INFO AdminDAOImpl,main:515 - course object generated
+15:03:01,557  INFO AdminDAOImpl,main:542 - graded
+15:03:01,557  INFO AdminDAOImpl,main:515 - course object generated
+15:03:01,557  INFO AdminDAOImpl,main:542 - graded
+15:03:01,557  INFO AdminDAOImpl,main:515 - course object generated
+15:03:01,557  INFO AdminDAOImpl,main:542 - graded
+15:05:23,454  INFO AdminDAOImpl,main:121 - 1 course added
+15:05:23,456  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:05:23,465  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:05:23,470  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:05:23,471  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:05:23,472  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:05:23,481  INFO AdminDAOImpl,main:247 - 1 user added.
+15:05:23,481  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:05:23,490  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:05:23,500  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:05:23,500  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:05:23,501  INFO AdminDAOImpl,main:363 - professor not found.
+15:05:23,507  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:05:23,510  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:05:23,511  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:05:23,516  INFO AdminDAOImpl,main:515 - course object generated
+15:05:23,517  INFO AdminDAOImpl,main:542 - graded
+15:05:23,518  INFO AdminDAOImpl,main:515 - course object generated
+15:05:23,518  INFO AdminDAOImpl,main:542 - graded
+15:05:23,518  INFO AdminDAOImpl,main:515 - course object generated
+15:05:23,518  INFO AdminDAOImpl,main:542 - graded
+15:05:23,518  INFO AdminDAOImpl,main:515 - course object generated
+15:05:23,518  INFO AdminDAOImpl,main:542 - graded
+15:05:23,518  INFO AdminDAOImpl,main:515 - course object generated
+15:05:23,518  INFO AdminDAOImpl,main:542 - graded
+15:05:23,518  INFO AdminDAOImpl,main:515 - course object generated
+15:05:23,518  INFO AdminDAOImpl,main:542 - graded
+15:10:39,874  INFO AdminDAOImpl,main:121 - 1 course added
+15:10:39,876  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:10:39,883  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:10:39,887  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:10:39,888  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:10:39,889  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:10:39,897  INFO AdminDAOImpl,main:247 - 1 user added.
+15:10:39,897  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:10:39,902  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:10:39,909  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:10:39,911  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:10:39,911  INFO AdminDAOImpl,main:363 - professor not found.
+15:10:39,918  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:10:39,921  INFO AdminDAOImpl,main:167 - 1 students have pending-approval.
+15:10:39,923  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:10:39,926  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:10:39,930  INFO AdminDAOImpl,main:515 - course object generated
+15:10:39,932  INFO AdminDAOImpl,main:542 - graded
+15:10:39,932  INFO AdminDAOImpl,main:515 - course object generated
+15:10:39,932  INFO AdminDAOImpl,main:542 - graded
+15:10:39,932  INFO AdminDAOImpl,main:515 - course object generated
+15:10:39,933  INFO AdminDAOImpl,main:542 - graded
+15:10:39,933  INFO AdminDAOImpl,main:515 - course object generated
+15:10:39,933  INFO AdminDAOImpl,main:542 - graded
+15:10:39,933  INFO AdminDAOImpl,main:515 - course object generated
+15:10:39,933  INFO AdminDAOImpl,main:542 - graded
+15:10:39,933  INFO AdminDAOImpl,main:515 - course object generated
+15:10:39,934  INFO AdminDAOImpl,main:542 - graded
+15:10:52,956  INFO AdminDAOImpl,main:121 - 1 course added
+15:10:52,959  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:10:52,966  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:10:52,971  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:10:52,971  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:10:52,973  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:10:52,980  INFO AdminDAOImpl,main:247 - 1 user added.
+15:10:52,981  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:10:52,985  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:10:52,991  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:10:52,992  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:10:52,992  INFO AdminDAOImpl,main:363 - professor not found.
+15:10:52,999  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:10:53,002  INFO AdminDAOImpl,main:167 - 1 students have pending-approval.
+15:10:53,028  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:10:53,029  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:10:53,033  INFO AdminDAOImpl,main:515 - course object generated
+15:10:53,034  INFO AdminDAOImpl,main:542 - graded
+15:10:53,034  INFO AdminDAOImpl,main:515 - course object generated
+15:10:53,034  INFO AdminDAOImpl,main:542 - graded
+15:10:53,034  INFO AdminDAOImpl,main:515 - course object generated
+15:10:53,036  INFO AdminDAOImpl,main:542 - graded
+15:10:53,036  INFO AdminDAOImpl,main:515 - course object generated
+15:10:53,036  INFO AdminDAOImpl,main:542 - graded
+15:10:53,036  INFO AdminDAOImpl,main:515 - course object generated
+15:10:53,036  INFO AdminDAOImpl,main:542 - graded
+15:10:53,036  INFO AdminDAOImpl,main:515 - course object generated
+15:10:53,036  INFO AdminDAOImpl,main:542 - graded
+15:11:11,072  INFO AdminDAOImpl,main:121 - 1 course added
+15:11:11,077  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:11:11,089  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:11:11,094  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:11:11,094  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:11:11,098  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:11:11,111  INFO AdminDAOImpl,main:247 - 1 user added.
+15:11:11,112  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:11:11,120  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:11:11,131  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:11:11,133  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:11:11,134  INFO AdminDAOImpl,main:363 - professor not found.
+15:11:11,148  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:11:11,153  INFO AdminDAOImpl,main:167 - 1 students have pending-approval.
+15:11:11,156  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:11:11,158  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:11:11,167  INFO AdminDAOImpl,main:515 - course object generated
+15:11:11,169  INFO AdminDAOImpl,main:542 - graded
+15:11:11,170  INFO AdminDAOImpl,main:515 - course object generated
+15:11:11,170  INFO AdminDAOImpl,main:542 - graded
+15:11:11,170  INFO AdminDAOImpl,main:515 - course object generated
+15:11:11,170  INFO AdminDAOImpl,main:542 - graded
+15:11:11,170  INFO AdminDAOImpl,main:515 - course object generated
+15:11:11,171  INFO AdminDAOImpl,main:542 - graded
+15:11:11,171  INFO AdminDAOImpl,main:515 - course object generated
+15:11:11,171  INFO AdminDAOImpl,main:542 - graded
+15:11:11,171  INFO AdminDAOImpl,main:515 - course object generated
+15:11:11,172  INFO AdminDAOImpl,main:542 - graded
+15:13:19,560  INFO AdminDAOImpl,main:121 - 1 course added
+15:13:19,567  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:13:19,583  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:13:19,589  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:13:19,591  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:13:19,594  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:19,606  INFO AdminDAOImpl,main:247 - 1 user added.
+15:13:19,607  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:13:19,616  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:13:19,634  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:13:19,642  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:13:19,644  INFO AdminDAOImpl,main:363 - professor not found.
+15:13:19,657  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:19,664  INFO AdminDAOImpl,main:167 - 1 students have pending-approval.
+15:13:19,667  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:13:19,669  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:19,676  INFO AdminDAOImpl,main:515 - course object generated
+15:13:19,690  INFO AdminDAOImpl,main:542 - graded
+15:13:19,690  INFO AdminDAOImpl,main:515 - course object generated
+15:13:19,690  INFO AdminDAOImpl,main:542 - graded
+15:13:19,691  INFO AdminDAOImpl,main:515 - course object generated
+15:13:19,691  INFO AdminDAOImpl,main:542 - graded
+15:13:19,691  INFO AdminDAOImpl,main:515 - course object generated
+15:13:19,691  INFO AdminDAOImpl,main:542 - graded
+15:13:19,691  INFO AdminDAOImpl,main:515 - course object generated
+15:13:19,691  INFO AdminDAOImpl,main:542 - graded
+15:13:19,692  INFO AdminDAOImpl,main:515 - course object generated
+15:13:19,692  INFO AdminDAOImpl,main:542 - graded
+15:13:37,591  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:37,635  INFO AdminDAOImpl,main:121 - 1 course added
+15:13:37,636  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:13:37,639  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:13:37,641  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:13:37,646  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:13:37,646  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:13:37,648  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:37,656  INFO AdminDAOImpl,main:247 - 1 user added.
+15:13:37,657  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:13:37,661  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:13:37,666  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:13:37,667  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:13:37,668  INFO AdminDAOImpl,main:363 - professor not found.
+15:13:37,671  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:37,674  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:13:37,676  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:50,902  INFO AdminDAOImpl,main:121 - 1 course added
+15:13:50,904  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:13:50,912  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:13:50,916  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:13:50,917  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:13:50,918  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:50,926  INFO AdminDAOImpl,main:247 - 1 user added.
+15:13:50,926  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:13:50,932  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:13:50,938  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:13:50,940  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:13:50,940  INFO AdminDAOImpl,main:363 - professor not found.
+15:13:50,946  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:50,949  INFO AdminDAOImpl,main:167 - 1 students have pending-approval.
+15:13:50,951  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:13:50,952  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:13:50,957  INFO AdminDAOImpl,main:515 - course object generated
+15:13:50,958  INFO AdminDAOImpl,main:542 - graded
+15:13:50,959  INFO AdminDAOImpl,main:515 - course object generated
+15:13:50,959  INFO AdminDAOImpl,main:542 - graded
+15:13:50,959  INFO AdminDAOImpl,main:515 - course object generated
+15:13:50,959  INFO AdminDAOImpl,main:542 - graded
+15:13:50,960  INFO AdminDAOImpl,main:515 - course object generated
+15:13:50,960  INFO AdminDAOImpl,main:542 - graded
+15:13:50,960  INFO AdminDAOImpl,main:515 - course object generated
+15:13:50,960  INFO AdminDAOImpl,main:542 - graded
+15:13:50,960  INFO AdminDAOImpl,main:515 - course object generated
+15:13:50,961  INFO AdminDAOImpl,main:542 - graded
+15:16:16,869  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:16:16,898  INFO AdminDAOImpl,main:121 - 1 course added
+15:16:16,898  INFO AdminDAOImpl,main:127 - Course with courseId: RF is added to catalog.
+15:16:16,901  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:16:16,904  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 11
+15:16:16,908  INFO AdminDAOImpl,main:84 - 1 entries deleted.
+15:16:16,908  INFO AdminDAOImpl,main:90 - Course with courseId: RF deleted.
+15:16:16,910  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:16:16,917  INFO AdminDAOImpl,main:247 - 1 user added.
+15:16:16,918  INFO AdminDAOImpl,main:253 - User with userId: MN added.
+15:16:16,922  INFO AdminDAOImpl,main:329 - 1 professor added.
+15:16:16,927  INFO AdminDAOImpl,main:279 - 1users deleted.
+15:16:16,928  INFO AdminDAOImpl,main:361 - 0Professors deleted.
+15:16:16,928  INFO AdminDAOImpl,main:363 - professor not found.
+15:16:16,933  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:16:16,936  INFO AdminDAOImpl,main:167 - 1 students have pending-approval.
+15:16:16,939  INFO AdminDAOImpl,main:396 - Course with courseId: CR is assigned to professor with professorId: bob123@gmail.com.
+15:16:16,940  INFO AdminDAOImpl,main:430 - Number of courses in the Catalog are : 10
+15:16:16,944  INFO AdminDAOImpl,main:515 - course object generated
+15:16:16,945  INFO AdminDAOImpl,main:542 - graded
+15:16:16,945  INFO AdminDAOImpl,main:515 - course object generated
+15:16:16,945  INFO AdminDAOImpl,main:542 - graded
+15:16:16,945  INFO AdminDAOImpl,main:515 - course object generated
+15:16:16,945  INFO AdminDAOImpl,main:542 - graded
+15:16:16,945  INFO AdminDAOImpl,main:515 - course object generated
+15:16:16,946  INFO AdminDAOImpl,main:542 - graded
+15:16:16,946  INFO AdminDAOImpl,main:515 - course object generated
+15:16:16,946  INFO AdminDAOImpl,main:542 - graded
+15:16:16,946  INFO AdminDAOImpl,main:515 - course object generated
+15:16:16,946  INFO AdminDAOImpl,main:542 - graded

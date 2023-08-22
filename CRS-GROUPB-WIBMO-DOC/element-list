@@ -1,0 +1,8 @@
+com.wibmo.bean
+com.wibmo.business
+com.wibmo.client
+com.wibmo.constants
+com.wibmo.dao
+com.wibmo.exception
+com.wibmo.utils
+com.wibmo.validator

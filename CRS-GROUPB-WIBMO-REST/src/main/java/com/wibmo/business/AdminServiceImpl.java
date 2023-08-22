@@ -126,13 +126,11 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws StudentNotFoundException 
 	 */
 	@Override
-	public void approveSingleStudent(String studentId, List<Student> studentList) throws StudentNotFoundForApprovalException {
+	public void approveSingleStudent(String studentId) throws StudentNotFoundForApprovalException {
 		
-		
+	List<Student> studentList=viewPendingAdmissions();
 		try {
-			
 			if(AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
-				
 				throw new StudentNotFoundForApprovalException(studentId);
 			}
 			adminDAOImpl.approveSingleStudent(studentId);
@@ -172,14 +170,11 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 */
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
 	{
-		try {
 		List<Professor> professors= viewProfessors();
+		List<Course> courses= viewCourses();
 		AdminValidator.verifyValidProfessor(professorId,professors);
+		AdminValidator.verifyValidCourse(courseCode,courses);
 		adminDAOImpl.assignCourse(courseCode, professorId);
-		}
-		catch(UserNotFoundException e) {
-			logger.error(e.getMessage());
-		}
 	}
 
 	@Override
@@ -199,12 +194,14 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	}
 
 	@Override
-	public void dropProfessor(String professorId) {
-		try {
-			adminDAOImpl.dropProfessor(professorId);
-		} catch (Exception e) {
-			logger.error(e.getMessage());		}
+	public void dropProfessor(String professorId) throws ProfessorNotFoundException {
+		List<Professor> professors = viewProfessors();
+		if(!AdminValidator.isValidDropProfessor(professorId, professors)) {
+			logger.info("professor: " + professorId + " not present in db!");
+			throw new ProfessorNotFoundException(professorId);
+		}
 		
+		adminDAOImpl.dropProfessor(professorId);
 	}
 
 }

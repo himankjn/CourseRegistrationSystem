@@ -54,7 +54,7 @@ public interface AdminServiceInterface
 	 * studentlist
 	 */
 	
-	public void approveSingleStudent(String studentid, List<Student> studentlist) throws StudentNotFoundForApprovalException;
+	public void approveSingleStudent(String studentid) throws StudentNotFoundForApprovalException;
 	
 	
 	public void approveAllStudents(List<Student> studentList);
@@ -69,8 +69,9 @@ public interface AdminServiceInterface
 	/**
 	 * Method to drop professor
 	 * @param professorId
+	 * @throws ProfessorNotFoundException 
 	 */
-	public void dropProfessor(String professorId);
+	public void dropProfessor(String professorId) throws ProfessorNotFoundException;
 	
 	/**
 	 * Method to Delete Course from Course Catalog

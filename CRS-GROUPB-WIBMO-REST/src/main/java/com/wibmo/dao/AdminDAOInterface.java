@@ -75,7 +75,7 @@ public interface AdminDAOInterface {
 	 * @param professorId
 	 * @throws Exception
 	 */
-	public void dropProfessor(String professorId) throws Exception;
+	public void dropProfessor(String professorId);
 	/**
 	 * Method to Delete Course from Course Catalog
 	 * @param courseCode

@@ -60,9 +60,11 @@ public class CRSAdminMenu {
 			logger.info("|            4. Approve Students                |");
 			logger.info("|            5. View Pending Student Registration Approvals          |");
 			logger.info("|            6. Add Professor                   |");
-			logger.info("|            7. Assign Professor To Courses     |");
-			logger.info("|            8. Generate Report Card            |");
-			logger.info("|            9. Logout                          |");
+			logger.info("|            7. Drop Professor                   |");
+			logger.info("|            8. View Professors                  |");
+			logger.info("|            9. Assign Professor To Courses      |");
+			logger.info("|            10. Generate Report Card            |");
+			logger.info("|            11. Logout                          |");
 			logger.info("|==================================================");
 			
 			int choice = in.nextInt();
@@ -91,16 +93,22 @@ public class CRSAdminMenu {
 			case 6:
 				addProfessor();
 				break;
-			
+				
 			case 7:
+				dropProfessor();
+				break;
+			case 8:
+				viewProfessors();
+				break;
+			case 9:
 				assignCourseToProfessor();
 				break;
 				
-			case 8:
+			case 10:
 				generateReportCard();
 				break;
 			
-			case 9:
+			case 11:
 				CRSApplicationClient.loggedin = false;
 				return;
 
@@ -243,6 +251,35 @@ public class CRSAdminMenu {
 
 	}
 
+	
+	/**
+	 * Method to drop a professor
+	 */
+	private void dropProfessor() {
+		
+		in.nextLine();
+		logger.info("Enter Professor Id:");
+		String userId = in.nextLine();
+		try {
+			adminService.dropProfessor(userId);
+		}
+		catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * Method to view professors in institute
+	 */
+	private void viewProfessors() {
+		List<Professor> professors= adminService.viewProfessors();
+		for(Professor professor:professors) {
+			logger.info(professor.getProfessorId()+" "+professor.getName());
+		}
+	}
+	
+	
 	/**
 	 * Method to view Students who are yet to be approved
 	 * @return List of Students whose admissions are pending
@@ -300,11 +337,6 @@ public class CRSAdminMenu {
 				logger.info(e.getMessage());
 			}
 		}
-		
-		
-		
-		
-	
 		
 	}
 

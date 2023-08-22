@@ -268,7 +268,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 	 * Method to remove user from db
 	 */
 	@Override
-	public void dropUser(String userId) throws Exception {
+	public void dropUser(String userId) {
 		statement = null;
 		try {
 			System.out.println("Executing delete user:"+userId+"!!!!");
@@ -351,7 +351,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 	 * Method to remove professor from db
 	 */
 	@Override
-	public void dropProfessor(String professorId) throws Exception {
+	public void dropProfessor(String professorId)  {
 		statement = null;
 		try {
 			
@@ -391,12 +391,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 			
 			statement.setString(1,professorId);
 			statement.setString(2,courseId);
-			int row = statement.executeUpdate();
-			
-			if(row == 0) {
-				logger.info(courseId + " not found");
-				throw new CourseNotFoundException(courseId);
-			}
+			statement.executeUpdate();
 			logger.info("Course with courseId: " + courseId + " is assigned to professor with professorId: " + professorId + ".");
 		}catch(SQLException se) {
 			logger.error(se.getMessage());
@@ -462,6 +457,7 @@ public class AdminDAOImpl implements AdminDAOInterface{
 				
 				Professor professor = new Professor();
 				professor.setUserId(resultSet.getString(1));
+				professor.setProfessorId(resultSet.getString(1));
 				professor.setName(resultSet.getString(2));
 				professor.setGender(GenderConstant.stringToGender(resultSet.getString(3)));
 				professor.setDepartment(resultSet.getString(4));

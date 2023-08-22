@@ -62,6 +62,12 @@ public interface AdminServiceInterface
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
 	
 	/**
+	 * Method to drop professor
+	 * @param professorId
+	 */
+	public void dropProfessor(String professorId);
+	
+	/**
 	 * Method to Delete Course from Course Catalog
 	 * @param courseCode
 	 * @param courseList : Courses available in the catalog

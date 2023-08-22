@@ -56,11 +56,11 @@ public class ProfessorServiceImpl implements ProfessorServiceInterface {
 	 * @param coursxeId: Course id 
 	 */
 	
-	public List<EnrolledStudent> viewEnrolledStudents(String profId) {
+	public List<EnrolledStudent> viewEnrolledStudents(String courseId) {
 		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try
 		{
-			enrolledStudents=professorDAOInterface.getEnrolledStudents(profId);
+			enrolledStudents=professorDAOInterface.getEnrolledStudents(courseId);
 		}
 		catch(Exception ex)
 		{

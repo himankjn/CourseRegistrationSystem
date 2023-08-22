@@ -67,6 +67,12 @@ public interface AdminDAOInterface {
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
 	
 	/**
+	 * Method to remove professor from db
+	 * @param professorId
+	 * @throws Exception
+	 */
+	public void dropProfessor(String professorId) throws Exception;
+	/**
 	 * Method to Delete Course from Course Catalog
 	 * @param courseCode
 	 * @param courseList : Courses available in the catalog
@@ -97,4 +103,8 @@ public interface AdminDAOInterface {
 	public void addUser(User user) throws UserNotAddedException, UserIdAlreadyInUseException;
 
 	public List<String> getProfCourseRequests(String courseId);
+	/**
+	 * Method to remove user from db
+	 */
+	void dropUser(String userId) throws Exception;
 }

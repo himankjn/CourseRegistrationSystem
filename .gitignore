@@ -1,3 +1,7 @@
 /.metadata/
 config.properties
 .classpath
+/.MICROSERVICES/bin/
+/.MICROSERVICES/bin1/
+/.MICROSERVICES/src/config.properties
+/.MICROSERVICES/src/com/wibmo/utils/DBUtils.java

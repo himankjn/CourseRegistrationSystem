@@ -23,7 +23,7 @@ public class CrsGroupbWibmoRestApplication {
 
 		logger.info("Initial info logging!");
 		logger.debug("Initial Debug Message!");
-		logger.error("initial error message!");
+	
 	}
 
 }

@@ -1,0 +1,424 @@
+11:42:27,045  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:42:27========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:42:48,061  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:42:48,062  INFO CRSApplicationClient,main:74 - Email:
+11:44:08,690  INFO CRSApplicationClient,main:76 - Password:
+11:44:11,166  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:45:14,724  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:45:14========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:45:16,711  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:45:16,712  INFO CRSApplicationClient,main:74 - Email:
+11:45:21,500  INFO CRSApplicationClient,main:76 - Password:
+11:45:23,042  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:45:25,076  INFO CRSApplicationClient,main:108 - 22-08-2023 11:45:25 Login Successful
+11:45:25,092  INFO CRSProfessorMenu,main:37 - ================================
+11:45:25,092  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+11:45:25,093  INFO CRSProfessorMenu,main:39 - ================================
+11:45:25,094  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+11:45:25,094  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+11:45:25,094  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+11:45:25,095  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+11:45:25,095  INFO CRSProfessorMenu,main:44 - 5. Logout
+11:45:25,095  INFO CRSProfessorMenu,main:45 - ================================
+11:45:25,096  INFO CRSProfessorMenu,main:46 - Choose From Menu: 
+11:45:29,855  INFO CRSProfessorMenu,main:85 - |                 COURSE Id       |                    COURSE NAME       |
+11:45:29,856  INFO CRSProfessorMenu,main:87 - |                        CR       |                   Cryptography       |
+11:45:29,857  INFO CRSProfessorMenu,main:87 - |                      CS10       |                     Algorithms       |
+11:45:29,858  INFO CRSProfessorMenu,main:87 - |                        JV       |                           Java       |
+11:45:29,858  INFO CRSProfessorMenu,main:87 - |                        PY       |                         Python       |
+11:45:29,859  INFO CRSProfessorMenu,main:87 - |                       SPE       |           Software Production Engineering       |
+11:45:29,860  INFO CRSProfessorMenu,main:67 - Enter the courseID you want to request:
+11:45:33,548  INFO CRSProfessorMenu,main:96 - Request sent to admin for approval!
+11:45:33,551  INFO CRSProfessorMenu,main:37 - ================================
+11:45:33,552  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+11:45:33,553  INFO CRSProfessorMenu,main:39 - ================================
+11:45:33,553  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+11:45:33,553  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+11:45:33,554  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+11:45:33,554  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+11:45:33,555  INFO CRSProfessorMenu,main:44 - 5. Logout
+11:45:33,555  INFO CRSProfessorMenu,main:45 - ================================
+11:45:33,556  INFO CRSProfessorMenu,main:46 - Choose From Menu: 
+11:45:39,720  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:45:39========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:45:41,451  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:45:41,452  INFO CRSApplicationClient,main:74 - Email:
+11:45:45,519  INFO CRSApplicationClient,main:76 - Password:
+11:45:56,675  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:45:58,944  INFO CRSApplicationClient,main:103 - 22-08-2023 11:45:58 Login Successful
+11:45:59,023  INFO CRSAdminMenu,main:56 - |====================Admin Menu===================
+11:45:59,023  INFO CRSAdminMenu,main:57 - |            1. View course in catalog          |
+11:45:59,024  INFO CRSAdminMenu,main:58 - |            2. Add Course to catalog           |
+11:45:59,025  INFO CRSAdminMenu,main:59 - |            3. Delete Course from catalog      |
+11:45:59,025  INFO CRSAdminMenu,main:60 - |            4. Approve Students                |
+11:45:59,027  INFO CRSAdminMenu,main:61 - |            5. View Pending Student Registration Approvals          |
+11:45:59,028  INFO CRSAdminMenu,main:62 - |            6. Add Professor                   |
+11:45:59,029  INFO CRSAdminMenu,main:63 - |            7. Assign Professor To Courses     |
+11:45:59,029  INFO CRSAdminMenu,main:64 - |            8. Generate Report Card            |
+11:45:59,029  INFO CRSAdminMenu,main:65 - |            9. Logout                          |
+11:45:59,030  INFO CRSAdminMenu,main:66 - |==================================================
+11:46:02,746  INFO CRSAdminMenu,main:158 - *************************** Professor *************************** 
+11:46:02,748  INFO CRSAdminMenu,main:159 -          ProfessorId |                 Name |          Designation 
+11:46:02,749  INFO CRSAdminMenu,main:161 -     bob123@gmail.com |                  bob |           Asst. Prof 
+11:46:02,751  INFO CRSAdminMenu,main:161 -  george123@gmail.com |               george |            professor 
+11:46:02,753  INFO CRSAdminMenu,main:161 -                   RC |    R. Chandrashekhar |                 Dean 
+11:46:02,754  INFO CRSAdminMenu,main:165 - 
+
+
+11:46:02,773  INFO AdminDAOImpl,main:432 - Number of courses in the Catalog are : 10
+11:46:02,773  INFO CRSAdminMenu,main:167 - **************** Course ****************
+11:46:02,775  INFO CRSAdminMenu,main:168 -             CourseId |           CourseName |          ProfessorId
+11:46:02,776  INFO CRSAdminMenu,main:170 -                  CPP |           CPlusCplus |     bob123@gmail.com
+11:46:02,777  INFO CRSAdminMenu,main:170 -                   CR |         Cryptography |         NOT_ASSIGNED
+11:46:02,779  INFO CRSAdminMenu,main:170 -                 CS10 |           Algorithms |         NOT_ASSIGNED
+11:46:02,781  INFO CRSAdminMenu,main:170 -                DL101 | Deep Learning Basics |     bob123@gmail.com
+11:46:02,782  INFO CRSAdminMenu,main:170 -                   JV |                 Java |         NOT_ASSIGNED
+11:46:02,782  INFO CRSAdminMenu,main:170 -                ML101 | Machine Learning Basics |     bob123@gmail.com
+11:46:02,783  INFO CRSAdminMenu,main:170 -                   NW |           Networking |     bob123@gmail.com
+11:46:02,784  INFO CRSAdminMenu,main:170 -                   PY |               Python |         NOT_ASSIGNED
+11:46:02,785  INFO CRSAdminMenu,main:170 -                 SA01 | Software Architecture |                   RC
+11:46:02,786  INFO CRSAdminMenu,main:170 -                  SPE | Software Production Engineering |         NOT_ASSIGNED
+11:46:02,787  INFO CRSAdminMenu,main:173 - Enter Course Code:
+11:47:00,528  INFO CRSAdminMenu,main:379 - Professors who have requested JV are: 
+11:47:00,529  INFO CRSAdminMenu,main:178 - 
+Enter Professor's User Id:
+11:47:08,449  INFO AdminDAOImpl,main:398 - Course with courseId: JV is assigned to professor with professorId: bob123@gmail.com.
+11:47:08,451  INFO CRSAdminMenu,main:56 - |====================Admin Menu===================
+11:47:08,452  INFO CRSAdminMenu,main:57 - |            1. View course in catalog          |
+11:47:08,452  INFO CRSAdminMenu,main:58 - |            2. Add Course to catalog           |
+11:47:08,453  INFO CRSAdminMenu,main:59 - |            3. Delete Course from catalog      |
+11:47:08,454  INFO CRSAdminMenu,main:60 - |            4. Approve Students                |
+11:47:08,454  INFO CRSAdminMenu,main:61 - |            5. View Pending Student Registration Approvals          |
+11:47:08,455  INFO CRSAdminMenu,main:62 - |            6. Add Professor                   |
+11:47:08,455  INFO CRSAdminMenu,main:63 - |            7. Assign Professor To Courses     |
+11:47:08,459  INFO CRSAdminMenu,main:64 - |            8. Generate Report Card            |
+11:47:08,461  INFO CRSAdminMenu,main:65 - |            9. Logout                          |
+11:47:08,461  INFO CRSAdminMenu,main:66 - |==================================================
+11:47:19,725  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:47:19========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:47:21,216  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:47:21,217  INFO CRSApplicationClient,main:74 - Email:
+11:47:40,024  INFO CRSApplicationClient,main:76 - Password:
+11:47:41,484  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:47:42,546  INFO CRSApplicationClient,main:108 - 22-08-2023 11:47:42 Login Successful
+11:47:42,548  INFO CRSProfessorMenu,main:37 - ================================
+11:47:42,548  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+11:47:42,549  INFO CRSProfessorMenu,main:39 - ================================
+11:47:42,550  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+11:47:42,552  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+11:47:42,553  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+11:47:42,554  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+11:47:42,555  INFO CRSProfessorMenu,main:44 - 5. Logout
+11:47:42,555  INFO CRSProfessorMenu,main:45 - ================================
+11:47:42,556  INFO CRSProfessorMenu,main:46 - Choose From Menu: 
+11:47:46,014  INFO CRSProfessorMenu,main:52 - PROF ID: bob123@gmail.com
+11:47:46,021  INFO CRSProfessorMenu,main:125 - |                 COURSE ID       |                    COURSE NAME       |
+11:47:46,022  INFO CRSProfessorMenu,main:127 - |                       CPP       |                     CPlusCplus       |
+11:47:46,023  INFO CRSProfessorMenu,main:127 - |                     DL101       |           Deep Learning Basics       |
+11:47:46,024  INFO CRSProfessorMenu,main:127 - |                        JV       |                           Java       |
+11:47:46,024  INFO CRSProfessorMenu,main:127 - |                     ML101       |           Machine Learning Basics       |
+11:47:46,025  INFO CRSProfessorMenu,main:127 - |                        NW       |                     Networking       |
+11:47:46,026  INFO CRSProfessorMenu,main:37 - ================================
+11:47:46,027  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+11:47:46,028  INFO CRSProfessorMenu,main:39 - ================================
+11:47:46,028  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+11:47:46,029  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+11:47:46,029  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+11:47:46,030  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+11:47:46,031  INFO CRSProfessorMenu,main:44 - 5. Logout
+11:47:46,032  INFO CRSProfessorMenu,main:45 - ================================
+11:47:46,033  INFO CRSProfessorMenu,main:46 - Choose From Menu: 
+11:47:52,669  INFO CRSProfessorMenu,main:138 - ==============Add Grade==============
+11:47:52,673  INFO CRSProfessorMenu,main:125 - |                 COURSE ID       |                    COURSE NAME       |
+11:47:52,674  INFO CRSProfessorMenu,main:127 - |                       CPP       |                     CPlusCplus       |
+11:47:52,676  INFO CRSProfessorMenu,main:127 - |                     DL101       |           Deep Learning Basics       |
+11:47:52,677  INFO CRSProfessorMenu,main:127 - |                        JV       |                           Java       |
+11:47:52,678  INFO CRSProfessorMenu,main:127 - |                     ML101       |           Machine Learning Basics       |
+11:47:52,679  INFO CRSProfessorMenu,main:127 - |                        NW       |                     Networking       |
+11:47:56,951  INFO CRSProfessorMenu,main:112 -            COURSE ID          COURSE NAME              Student
+11:47:56,952  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus   parth123@gmail.com
+11:47:56,952  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus   abhay123@gmail.com
+11:47:56,954  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus             shan@123
+11:47:56,955  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus             sree@123
+11:47:56,955  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus              chandra
+11:47:56,956  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus              Ram@Jai
+11:48:07,464  INFO CRSProfessorMenu,main:145 - Enter grade: 
+11:48:15,010  INFO CRSProfessorMenu,main:148 - grade added successfully for Ram@Jai
+11:48:15,011  INFO CRSProfessorMenu,main:37 - ================================
+11:48:15,012  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+11:48:15,012  INFO CRSProfessorMenu,main:39 - ================================
+11:48:15,013  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+11:48:15,013  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+11:48:15,014  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+11:48:15,014  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+11:48:15,015  INFO CRSProfessorMenu,main:44 - 5. Logout
+11:48:15,016  INFO CRSProfessorMenu,main:45 - ================================
+11:48:15,017  INFO CRSProfessorMenu,main:46 - Choose From Menu: 
+11:48:36,155  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:48:36========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:48:39,411  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:48:39,412  INFO CRSApplicationClient,main:74 - Email:
+11:48:41,976  INFO CRSApplicationClient,main:76 - Password:
+11:48:49,776  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:48:51,514  INFO CRSApplicationClient,main:118 - 22-08-2023 11:48:51 Login Successful
+11:48:51,527  INFO CRSStudentMenu,main:50 - ===========Student Menu===========
+11:48:51,529  INFO CRSStudentMenu,main:51 - ==================================
+11:48:51,529  INFO CRSStudentMenu,main:52 - 1. Course Registration
+11:48:51,530  INFO CRSStudentMenu,main:53 - 2. Add Course
+11:48:51,531  INFO CRSStudentMenu,main:54 - 3. Drop Course
+11:48:51,531  INFO CRSStudentMenu,main:55 - 4. View Available Courses
+11:48:51,532  INFO CRSStudentMenu,main:56 - 5. View Registered Courses
+11:48:51,533  INFO CRSStudentMenu,main:57 - 6. View grade card
+11:48:51,533  INFO CRSStudentMenu,main:58 - 7. Make Payment
+11:48:51,534  INFO CRSStudentMenu,main:59 - 8. Logout
+11:48:51,535  INFO CRSStudentMenu,main:60 - ==================================
+11:48:54,981  INFO CRSStudentMenu,main:345 - Report card not yet generated
+11:48:54,982  INFO CRSStudentMenu,main:50 - ===========Student Menu===========
+11:48:54,982  INFO CRSStudentMenu,main:51 - ==================================
+11:48:54,983  INFO CRSStudentMenu,main:52 - 1. Course Registration
+11:48:54,983  INFO CRSStudentMenu,main:53 - 2. Add Course
+11:48:54,984  INFO CRSStudentMenu,main:54 - 3. Drop Course
+11:48:54,984  INFO CRSStudentMenu,main:55 - 4. View Available Courses
+11:48:54,985  INFO CRSStudentMenu,main:56 - 5. View Registered Courses
+11:48:54,986  INFO CRSStudentMenu,main:57 - 6. View grade card
+11:48:54,987  INFO CRSStudentMenu,main:58 - 7. Make Payment
+11:48:54,987  INFO CRSStudentMenu,main:59 - 8. Logout
+11:48:54,988  INFO CRSStudentMenu,main:60 - ==================================
+11:49:00,153  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:49:00========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:49:02,509  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:49:02,509  INFO CRSApplicationClient,main:74 - Email:
+11:49:06,513  INFO CRSApplicationClient,main:76 - Password:
+11:49:08,120  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:49:09,217  INFO CRSApplicationClient,main:103 - 22-08-2023 11:49:09 Login Successful
+11:49:09,218  INFO CRSAdminMenu,main:56 - |====================Admin Menu===================
+11:49:09,219  INFO CRSAdminMenu,main:57 - |            1. View course in catalog          |
+11:49:09,220  INFO CRSAdminMenu,main:58 - |            2. Add Course to catalog           |
+11:49:09,221  INFO CRSAdminMenu,main:59 - |            3. Delete Course from catalog      |
+11:49:09,222  INFO CRSAdminMenu,main:60 - |            4. Approve Students                |
+11:49:09,223  INFO CRSAdminMenu,main:61 - |            5. View Pending Student Registration Approvals          |
+11:49:09,223  INFO CRSAdminMenu,main:62 - |            6. Add Professor                   |
+11:49:09,224  INFO CRSAdminMenu,main:63 - |            7. Assign Professor To Courses     |
+11:49:09,225  INFO CRSAdminMenu,main:64 - |            8. Generate Report Card            |
+11:49:09,225  INFO CRSAdminMenu,main:65 - |            9. Logout                          |
+11:49:09,226  INFO CRSAdminMenu,main:66 - |==================================================
+11:49:12,718  INFO CRSAdminMenu,main:121 - 
+Enter the StudentId for report card generation : 
+11:49:18,535  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:18,540  INFO RegistrationDAOImpl,main:351 - graded
+11:49:18,541  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:18,542  INFO RegistrationDAOImpl,main:351 - graded
+11:49:18,542  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:18,543  INFO RegistrationDAOImpl,main:351 - graded
+11:49:18,544  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:18,544  INFO RegistrationDAOImpl,main:351 - graded
+11:49:18,545  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:18,546  INFO RegistrationDAOImpl,main:351 - graded
+11:49:18,546  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:18,547  INFO RegistrationDAOImpl,main:351 - graded
+11:49:18,551  INFO CRSAdminMenu,main:132 - COURSE CODE          COURSE NAME          GRADE               
+11:49:18,553  INFO CRSAdminMenu,main:142 - CPP                  CPlusCplus           A                   
+11:49:18,554  INFO CRSAdminMenu,main:142 - CR                   Cryptography         NOT_GRADED          
+11:49:18,555  INFO CRSAdminMenu,main:142 - JV                   Java                 NOT_GRADED          
+11:49:18,555  INFO CRSAdminMenu,main:142 - NW                   Networking           NOT_GRADED          
+11:49:18,556  INFO CRSAdminMenu,main:142 - PY                   Python               NOT_GRADED          
+11:49:18,557  INFO CRSAdminMenu,main:142 - CS10                 Algorithms           NOT_GRADED          
+11:49:18,557  INFO CRSAdminMenu,main:56 - |====================Admin Menu===================
+11:49:18,558  INFO CRSAdminMenu,main:57 - |            1. View course in catalog          |
+11:49:18,558  INFO CRSAdminMenu,main:58 - |            2. Add Course to catalog           |
+11:49:18,558  INFO CRSAdminMenu,main:59 - |            3. Delete Course from catalog      |
+11:49:18,558  INFO CRSAdminMenu,main:60 - |            4. Approve Students                |
+11:49:18,559  INFO CRSAdminMenu,main:61 - |            5. View Pending Student Registration Approvals          |
+11:49:18,559  INFO CRSAdminMenu,main:62 - |            6. Add Professor                   |
+11:49:18,560  INFO CRSAdminMenu,main:63 - |            7. Assign Professor To Courses     |
+11:49:18,562  INFO CRSAdminMenu,main:64 - |            8. Generate Report Card            |
+11:49:18,563  INFO CRSAdminMenu,main:65 - |            9. Logout                          |
+11:49:18,564  INFO CRSAdminMenu,main:66 - |==================================================
+11:49:29,200  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 11:49:29========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+11:49:31,228  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+11:49:31,228  INFO CRSApplicationClient,main:74 - Email:
+11:49:35,030  INFO CRSApplicationClient,main:76 - Password:
+11:49:36,992  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+11:49:39,279  INFO CRSApplicationClient,main:118 - 22-08-2023 11:49:39 Login Successful
+11:49:39,283  INFO CRSStudentMenu,main:50 - ===========Student Menu===========
+11:49:39,283  INFO CRSStudentMenu,main:51 - ==================================
+11:49:39,286  INFO CRSStudentMenu,main:52 - 1. Course Registration
+11:49:39,287  INFO CRSStudentMenu,main:53 - 2. Add Course
+11:49:39,288  INFO CRSStudentMenu,main:54 - 3. Drop Course
+11:49:39,288  INFO CRSStudentMenu,main:55 - 4. View Available Courses
+11:49:39,289  INFO CRSStudentMenu,main:56 - 5. View Registered Courses
+11:49:39,290  INFO CRSStudentMenu,main:57 - 6. View grade card
+11:49:39,290  INFO CRSStudentMenu,main:58 - 7. Make Payment
+11:49:39,291  INFO CRSStudentMenu,main:59 - 8. Logout
+11:49:39,292  INFO CRSStudentMenu,main:60 - ==================================
+11:49:42,291  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:42,292  INFO RegistrationDAOImpl,main:351 - graded
+11:49:42,316  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:42,317  INFO RegistrationDAOImpl,main:351 - graded
+11:49:42,318  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:42,318  INFO RegistrationDAOImpl,main:351 - graded
+11:49:42,319  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:42,319  INFO RegistrationDAOImpl,main:351 - graded
+11:49:42,320  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:42,321  INFO RegistrationDAOImpl,main:351 - graded
+11:49:42,321  INFO RegistrationDAOImpl,main:313 - course object generated
+11:49:42,322  INFO RegistrationDAOImpl,main:351 - graded
+11:49:42,324  INFO CRSStudentMenu,main:329 - COURSE CODE          COURSE NAME          GRADE               
+11:49:42,325  INFO CRSStudentMenu,main:339 - CPP                  CPlusCplus           A                   
+11:49:42,326  INFO CRSStudentMenu,main:339 - CR                   Cryptography         NOT_GRADED          
+11:49:42,327  INFO CRSStudentMenu,main:339 - JV                   Java                 NOT_GRADED          
+11:49:42,331  INFO CRSStudentMenu,main:339 - NW                   Networking           NOT_GRADED          
+11:49:42,334  INFO CRSStudentMenu,main:339 - PY                   Python               NOT_GRADED          
+11:49:42,336  INFO CRSStudentMenu,main:339 - CS10                 Algorithms           NOT_GRADED          
+11:49:42,338  INFO CRSStudentMenu,main:342 - CGPA:1.6666666666666667
+11:49:42,340  INFO CRSStudentMenu,main:50 - ===========Student Menu===========
+11:49:42,340  INFO CRSStudentMenu,main:51 - ==================================
+11:49:42,341  INFO CRSStudentMenu,main:52 - 1. Course Registration
+11:49:42,341  INFO CRSStudentMenu,main:53 - 2. Add Course
+11:49:42,342  INFO CRSStudentMenu,main:54 - 3. Drop Course
+11:49:42,343  INFO CRSStudentMenu,main:55 - 4. View Available Courses
+11:49:42,343  INFO CRSStudentMenu,main:56 - 5. View Registered Courses
+11:49:42,344  INFO CRSStudentMenu,main:57 - 6. View grade card
+11:49:42,344  INFO CRSStudentMenu,main:58 - 7. Make Payment
+11:49:42,345  INFO CRSStudentMenu,main:59 - 8. Logout
+11:49:42,345  INFO CRSStudentMenu,main:60 - ==================================
+12:44:55,171  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================22-08-2023 12:44:55========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
+12:44:56,565  INFO CRSApplicationClient,main:73 - 
+-----------------Login------------------
+12:44:56,565  INFO CRSApplicationClient,main:74 - Email:
+12:45:01,207  INFO CRSApplicationClient,main:76 - Password:
+12:45:02,818  INFO CRSApplicationClient,main:78 - Role:
+1.Admin 
+2.Professor 
+3.Student
+12:45:03,724  INFO CRSApplicationClient,main:108 - 22-08-2023 12:45:03 Login Successful
+12:45:03,725  INFO CRSProfessorMenu,main:37 - ================================
+12:45:03,725  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+12:45:03,726  INFO CRSProfessorMenu,main:39 - ================================
+12:45:03,726  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+12:45:03,726  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+12:45:03,727  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+12:45:03,727  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+12:45:03,727  INFO CRSProfessorMenu,main:44 - 5. Logout
+12:45:03,727  INFO CRSProfessorMenu,main:45 - ================================
+12:45:03,728  INFO CRSProfessorMenu,main:46 - Choose From Menu: 
+12:45:06,079  INFO CRSProfessorMenu,main:138 - ==============Add Grade==============
+12:45:06,082  INFO CRSProfessorMenu,main:125 - |                 COURSE ID       |                    COURSE NAME       |
+12:45:06,082  INFO CRSProfessorMenu,main:127 - |                       CPP       |                     CPlusCplus       |
+12:45:06,083  INFO CRSProfessorMenu,main:127 - |                     DL101       |           Deep Learning Basics       |
+12:45:06,083  INFO CRSProfessorMenu,main:127 - |                        JV       |                           Java       |
+12:45:06,083  INFO CRSProfessorMenu,main:127 - |                     ML101       |           Machine Learning Basics       |
+12:45:06,084  INFO CRSProfessorMenu,main:127 - |                        NW       |                     Networking       |
+12:45:10,148  INFO CRSProfessorMenu,main:112 -            COURSE ID          COURSE NAME              Student
+12:45:10,148  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus   parth123@gmail.com
+12:45:10,149  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus   abhay123@gmail.com
+12:45:10,149  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus             shan@123
+12:45:10,149  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus             sree@123
+12:45:10,150  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus              chandra
+12:45:10,150  INFO CRSProfessorMenu,main:114 -                  CPP           CPlusCplus              Ram@Jai
+12:45:19,278  INFO CRSProfessorMenu,main:145 - Enter grade: 
+12:45:22,003  INFO CRSProfessorMenu,main:148 - grade added successfully for chandra
+12:45:22,004  INFO CRSProfessorMenu,main:37 - ================================
+12:45:22,004  INFO CRSProfessorMenu,main:38 - ========Professor Menu========
+12:45:22,005  INFO CRSProfessorMenu,main:39 - ================================
+12:45:22,005  INFO CRSProfessorMenu,main:40 - 1. View Assigned Courses
+12:45:22,005  INFO CRSProfessorMenu,main:41 - 2. View Enrolled Students
+12:45:22,006  INFO CRSProfessorMenu,main:42 - 3. Add Grades
+12:45:22,006  INFO CRSProfessorMenu,main:43 - 4. Request for course assignmnet
+12:45:22,007  INFO CRSProfessorMenu,main:44 - 5. Logout
+12:45:22,007  INFO CRSProfessorMenu,main:45 - ================================
+12:45:22,007  INFO CRSProfessorMenu,main:46 - Choose From Menu: 

@@ -1,12 +1,14 @@
 package com.wibmo.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class GradeCard 
+public class GradeCard implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String studentId;
 	double cgpa;
 	List<RegisteredCourse> reg_list ;

@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.utils.DBUtils;
@@ -19,34 +20,10 @@ import com.wibmo.bean.EnrolledStudent;
 /**
  * @author bhuvan
  */
+
+@Repository
 public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	private static final Logger logger = LogManager.getLogger(ProfessorDAOImpl.class);
-	private static volatile ProfessorDAOImpl instance=null;
-	
-	/**
-	 * Default Constructor
-	 */
-	private ProfessorDAOImpl()
-	{
-		
-	}
-	
-	/**
-	 * Method to make ProfessorDaoOperation Singleton
-	 * @return
-	 */
-	public static ProfessorDAOImpl getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(ProfessorDAOImpl.class){
-				instance=new ProfessorDAOImpl();
-			}
-		}
-		return instance;
-	}
-	
 	
 	/**
 	 * Method to get Courses by Professor Id using SQL Commands

@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.springframework.stereotype.Repository;
 
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.exception.StudentNotRegisteredException;
@@ -26,33 +26,11 @@ import com.wibmo.bean.Student;
  * Class to implement Student Dao Operations
  *
  */
+
+@Repository
 public class StudentDAOImpl implements StudentDAOInterface {
 	private static final Logger logger = LogManager.getLogger(StudentDAOImpl.class);
-	private static volatile StudentDAOImpl instance=null;
-	/**
-	 * Default Constructor
-	 */
-	private StudentDAOImpl()
-	{
-		
-	}
 	
-	/**
-	 * Method to make StudentDaoOperation Singleton
-	 * @return
-	 */
-	public static StudentDAOImpl getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(StudentDAOImpl.class){
-				instance=new StudentDAOImpl();
-			}
-		}
-		return instance;
-	}
-
 	/**
 	 * Method to add student to database
 	 * @param student: student object containing all the fields

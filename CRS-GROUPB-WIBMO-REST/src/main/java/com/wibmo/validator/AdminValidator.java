@@ -5,6 +5,7 @@ package com.wibmo.validator;
 
 import java.util.List;
 
+import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.UserNotFoundException;
 
 import com.wibmo.bean.*;
@@ -69,4 +70,29 @@ public class AdminValidator {
 		}
 		throw new UserNotFoundException(professorId);
 	}
+	
+	public static void verifyValidCourse(String courseId,List<Course> courses) throws CourseNotFoundException {
+		for(Course course:courses) {
+			if(course.getCourseId().equals(courseId)) {
+				return;
+			}
+		}
+		throw new CourseNotFoundException(courseId);
+	}
+	
+	/**
+	 * Method to validate if professor is present in institute before dropping
+	 * @param professorId
+	 * @param professorList
+	 * @return if dropCourse is already present in catalog
+	 */
+	public static boolean isValidDropProfessor(String professorId, List<Professor> professorList) {
+		for(Professor professor: professorList) {
+			if(professorId.equalsIgnoreCase(professor.getProfessorId())) {
+				return true; 
+			}
+		}
+		return false;
+	}
+	
 }

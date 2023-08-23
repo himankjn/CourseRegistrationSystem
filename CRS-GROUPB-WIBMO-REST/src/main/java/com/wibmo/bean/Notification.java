@@ -1,9 +1,12 @@
 package com.wibmo.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
-public class Notification {
+public class Notification implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int notifId;
 	private String userId;
 	private String message;

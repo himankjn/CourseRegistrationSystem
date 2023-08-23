@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.PaymentModeConstant;
@@ -29,26 +30,9 @@ import com.wibmo.bean.Notification;
 @Service
 public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	private static final Logger logger = LogManager.getLogger(RegistrationServiceImpl.class);
-	private static volatile RegistrationServiceImpl instance = null;
-
-	private RegistrationServiceImpl() {
-	}
-
-	/**
-	 * Method to make Registration Operation Singleton
-	 * 
-	 * @return
-	 */
-	public static RegistrationServiceImpl getInstance() {
-		if (instance == null) {
-			synchronized (RegistrationServiceImpl.class) {
-				instance = new RegistrationServiceImpl();
-			}
-		}
-		return instance;
-	}
-
-	RegistrationDAOInterface registrationDAOInterface = RegistrationDAOImpl.getInstance();
+	
+	@Autowired
+	RegistrationDAOInterface registrationDAOInterface;
 
 	/**
 	 * Method to add Course selected by student 

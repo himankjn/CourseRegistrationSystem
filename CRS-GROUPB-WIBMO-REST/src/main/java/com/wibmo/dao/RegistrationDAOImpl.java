@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.springframework.stereotype.Repository;
 
 import com.wibmo.constants.GradeConstant;
 import com.wibmo.constants.SQLQueriesConstant;
@@ -29,31 +29,12 @@ import com.wibmo.bean.RegisteredCourse;
  * This class communicates with the database.
  *
  */
+
+@Repository
 public class RegistrationDAOImpl implements RegistrationDAOInterface{
 	private static final Logger logger = LogManager.getLogger(RegistrationDAOImpl.class);
-	private static volatile RegistrationDAOImpl instance=null;
 	private PreparedStatement stmt = null;
 	
-	/**
-	 * Default Constructor
-	 */
-	private RegistrationDAOImpl() {}
-	
-	/**
-	 * Method to make RegistrationDaoOperation Singleton
-	 * @return
-	 */
-	public static RegistrationDAOImpl getInstance()
-	{
-		if(instance==null)
-		{
-			synchronized(RegistrationDAOImpl.class){
-				instance=new RegistrationDAOImpl();
-			}
-		}
-		return instance;
-	}
-
 
 	@Override
 	public boolean addCourse(String courseId, String studentId) throws SQLException{

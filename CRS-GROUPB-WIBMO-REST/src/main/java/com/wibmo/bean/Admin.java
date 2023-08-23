@@ -1,12 +1,15 @@
 package com.wibmo.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
 import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
 
-@Component
-public class Admin extends User{
+public class Admin extends User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String adminID;
 	
 	public Admin() {

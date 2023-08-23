@@ -3,7 +3,6 @@ package com.wibmo.controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.ws.rs.core.MediaType;
 
@@ -25,14 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wibmo.bean.Course;
 import com.wibmo.bean.GradeCard;
 import com.wibmo.bean.Professor;
-import com.wibmo.bean.RegisteredCourse;
 import com.wibmo.bean.Student;
 import com.wibmo.business.AdminServiceInterface;
 import com.wibmo.business.NotificationServiceInterface;
 import com.wibmo.business.RegistrationServiceInterface;
-import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.NotificationTypeConstant;
-import com.wibmo.constants.RoleConstant;
 import com.wibmo.exception.CourseExistsAlreadyException;
 import com.wibmo.exception.CourseNotDeletedException;
 import com.wibmo.exception.CourseNotFoundException;
@@ -77,6 +73,7 @@ public class AdminController {
 	    "seats": 10
 	 }
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping(consumes=MediaType.APPLICATION_JSON ,value= "/addCourse")
 	public ResponseEntity addCourseToCatalog(@RequestBody Course course) {
 		try {
@@ -88,8 +85,9 @@ public class AdminController {
 	}
 	
 	
-	//localhost:8080/removeCourseFromCatalog/SB
+	//localhost:8080/removeCourse/SB
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@DeleteMapping(value="/removeCourse/{id}")
 	public ResponseEntity removeCourse(@PathVariable("id") String courseId) {
 		try {
@@ -104,6 +102,7 @@ public class AdminController {
 	}	
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping(value="/approveStudent/{id}")
 	public ResponseEntity approveSingleStudent(@PathVariable("id") String studentId) {
 		try {
@@ -119,6 +118,7 @@ public class AdminController {
 		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping(value="/approveStudent")
 	public ResponseEntity approveAllStudents() {
 		List<Student> studentList= adminService.viewPendingAdmissions();
@@ -136,6 +136,7 @@ public class AdminController {
 	
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@GetMapping(value="/pendingAdmissions")
 	public ResponseEntity viewPendingAdmissions() {
 		List<Student> pendingStudentsList= adminService.viewPendingAdmissions();
@@ -146,6 +147,7 @@ public class AdminController {
 			return new ResponseEntity(pendingStudentsList,HttpStatus.OK);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@GetMapping(value="/instructors")
 	public ResponseEntity viewProfessors() {
 		List<Professor>professors=adminService.viewProfessors();
@@ -165,6 +167,7 @@ public class AdminController {
         "designation": "Asst. Prof"
     	}
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping(value="/addProfessor")
 	public ResponseEntity addProfessor(@RequestBody Professor professor) {
 		try {
@@ -176,6 +179,7 @@ public class AdminController {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@DeleteMapping(value="/dropProfessor/{id}")
 	public ResponseEntity dropProfessor(@PathVariable("id") String professorId) {
 		try {
@@ -187,6 +191,7 @@ public class AdminController {
 		}
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping(value="assignCourse/{cId}/{pId}")
 	public ResponseEntity assignCourseToProfessor(@PathVariable("cId")String courseId, @PathVariable("pId")String professorId) {
 		try {
@@ -200,6 +205,7 @@ public class AdminController {
 		}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(value="/generateReportCard/{id}")
 	public ResponseEntity generateReportCard(@PathVariable("id")String studentId) 
 	{

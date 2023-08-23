@@ -4,7 +4,8 @@
 package com.wibmo.bean;
 
 
-import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 
 /*
  * @author bhuvan
@@ -13,10 +14,12 @@ import org.springframework.stereotype.Component;
 
 import com.wibmo.constants.GradeConstant;
 
-
-@Component
-public class RegisteredCourse 
+public class RegisteredCourse implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Course course;
 	String studentId;
 	GradeConstant grade;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.dao.ProfessorDAOImpl;
@@ -24,25 +25,9 @@ import com.wibmo.bean.EnrolledStudent;
 @Service
 public class ProfessorServiceImpl implements ProfessorServiceInterface {
 	private static final Logger logger = LogManager.getLogger(ProfessorServiceImpl.class);
-	private static ProfessorServiceImpl instance=null;
-	ProfessorDAOInterface professorDAOInterface=ProfessorDAOImpl.getInstance();
-	private ProfessorServiceImpl()
-	{
-
-	}
-
-	public static ProfessorServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
-			synchronized(ProfessorServiceImpl.class){
-				instance=new ProfessorServiceImpl();
-			}
-		}
-		return instance;
-	}
 	
-	
+	@Autowired
+	private ProfessorDAOInterface professorDAOInterface;
 	/**
 	 * Method to submit student grade for a course;
 	 * @param studentId

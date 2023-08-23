@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
 
 import com.wibmo.constants.NotificationTypeConstant;
 import com.wibmo.constants.PaymentModeConstant;
@@ -20,35 +21,10 @@ import com.wibmo.utils.DBUtils;
  * @author himank
  *
  */
+
+@Repository
 public class NotificationDAOImpl implements NotificationDAOInterface{
 
-	
-	private static volatile NotificationDAOImpl instance=null;
-
-	/**
-	 * Default Constructor
-	 */
-	private NotificationDAOImpl()
-	{
-
-	}
-	
-	/**
-	 * Method to make NotificationDaoOperation Singleton
-	 * @return
-	 */
-	public static NotificationDAOImpl getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(NotificationDAOImpl.class){
-				instance=new NotificationDAOImpl();
-			}
-		}
-		return instance;
-	}
-	
 	/**
 	 * Send Notification using SQL commands
 	 * @param type: type of the notification to be sent

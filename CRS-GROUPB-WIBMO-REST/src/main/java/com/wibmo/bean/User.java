@@ -1,9 +1,15 @@
 package com.wibmo.bean;
 
+import java.io.Serializable;
+
 import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
 
-public abstract class User {
+public abstract class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String userId;
 	private String password;
 	private GenderConstant gender;

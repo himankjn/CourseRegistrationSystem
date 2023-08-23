@@ -5,6 +5,7 @@ package com.wibmo.business;
 
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.NotificationTypeConstant;
@@ -19,26 +20,10 @@ import com.wibmo.dao.NotificationDAOImpl;
 
 @Service
 public class NotificationServiceImpl implements NotificationServiceInterface{
-	
-	private static volatile NotificationServiceImpl instance=null;
-	NotificationDAOInterface notificationDaoInterface=NotificationDAOImpl.getInstance();
-	private NotificationServiceImpl() {}
-	
-	/**
-	 * Method to make NotificationDaoOperation Singleton
-	 * @return
-	 */
-	public static NotificationServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(NotificationServiceImpl.class){
-				instance=new NotificationServiceImpl();
-			}
-		}
-		return instance;
-	}
+
+	@Autowired
+	private NotificationDAOInterface notificationDaoInterface;
+
 	
 	/**
 	 * Method to send notification

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.springframework.stereotype.Repository;
 
 import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.exception.UserNotFoundException;
@@ -17,36 +17,11 @@ import com.wibmo.utils.DBUtils;
  * 
  * @author bhuvan
  */
+
+@Repository
 public class UserDAOImpl implements UserDAOInterface{
 	//logger injection
 	private static final Logger logger = LogManager.getLogger(UserDAOImpl.class);
-
-	
-	private static volatile UserDAOImpl instance=null;
-	
-	/**
-	 * Default Constructor
-	 */
-	private UserDAOImpl()
-	{
-		
-	}
-	
-	/**
-	 * Method to make UserDaoOperation Singleton
-	 * @return
-	 */
-	public static UserDAOImpl getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(UserDAOImpl.class){
-				instance=new UserDAOImpl();
-			}
-		}
-		return instance;
-	}
 
 	/**
 	 * Method to update password of user in DataBase

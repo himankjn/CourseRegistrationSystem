@@ -70,16 +70,7 @@ public class UserServiceImpl implements UserServiceInterface {
 	}
 
 	@Override
-	public void verifyUserRole(String userId, int roleNum) throws RoleMismatchException {
-		String role="";
-		switch(roleNum) {
-			case 1: role="ADMIN";
-			break;
-			case 2: role="PROFESSOR";
-			break;
-			case 3: role="STUDENT";
-			break;
-		}
+	public void verifyUserRole(String userId, String role) throws RoleMismatchException {
 		String actualRole=getRole(userId);
 		if(!actualRole.equals(role))
 			throw new RoleMismatchException(userId,role);

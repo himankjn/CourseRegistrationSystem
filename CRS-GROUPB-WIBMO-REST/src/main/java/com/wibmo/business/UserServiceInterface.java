@@ -39,6 +39,6 @@ public interface UserServiceInterface {
 	 */
 	boolean updatePassword(String userID, String newPassword);
 	
-	void verifyUserRole(String userId, int role) throws RoleMismatchException;
+	void verifyUserRole(String userId, String role) throws RoleMismatchException;
 	
 }

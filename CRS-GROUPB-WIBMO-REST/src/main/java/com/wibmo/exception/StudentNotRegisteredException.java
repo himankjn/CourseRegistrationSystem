@@ -6,20 +6,21 @@ package com.wibmo.exception;
  *
  */
 public class StudentNotRegisteredException extends Exception{
-	 private String studentName;
+	 private String message;
 	 
-	 public StudentNotRegisteredException(String studentName)
+	 public StudentNotRegisteredException(String message)
 	 {
-		 this.studentName=studentName;
+		 this.message=message;
 	 }
 	 
 	 /**
 	  * getter function for studentName
 	  * @return
 	  */
-	 public String getStudentName()
+	 public String getMessage()
 	 {
-		 return studentName;
+		 return message;
 	 }
+	 
 	 
 }

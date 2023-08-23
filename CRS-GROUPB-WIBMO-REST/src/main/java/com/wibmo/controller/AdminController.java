@@ -38,6 +38,7 @@ import com.wibmo.exception.UserNotFoundException;
  */
 @RestController
 @RequestMapping(value="/admin")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class AdminController {
 	
 	@Autowired
@@ -75,7 +76,6 @@ public class AdminController {
 	 * @param course
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(consumes=MediaType.APPLICATION_JSON ,value= "/addCourse",method= RequestMethod.GET)
 	public ResponseEntity addCourseToCatalog(@RequestBody Course course) {
 		try {
@@ -94,7 +94,6 @@ public class AdminController {
 	 * @param courseId
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="/removeCourse/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity removeCourse(@PathVariable("id") String courseId) {
 		try {
@@ -113,7 +112,6 @@ public class AdminController {
 	 * @param studentId
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/approveStudent/{id}",method=RequestMethod.PUT)
 	public ResponseEntity approveSingleStudent(@PathVariable("id") String studentId) {
 		try {
@@ -133,7 +131,6 @@ public class AdminController {
 	 * approves all pending students admission
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/approveStudent",method=RequestMethod.PUT)
 	public ResponseEntity approveAllStudents() {
 		List<Student> studentList= adminService.viewPendingAdmissions();
@@ -170,7 +167,6 @@ public class AdminController {
 	 * proves list of all professors in institute
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/instructors",method=RequestMethod.GET)
 	public ResponseEntity viewProfessors() {
 		List<Professor>professors=adminService.viewProfessors();
@@ -196,7 +192,6 @@ public class AdminController {
 	 * @param professor
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/addProfessor",method=RequestMethod.POST)
 	public ResponseEntity addProfessor(@RequestBody Professor professor) {
 		try {
@@ -231,7 +226,7 @@ public class AdminController {
 	 * @param professorId
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
 	@RequestMapping(value="assignCourse/{cId}/{pId}",method=RequestMethod.PUT)
 	public ResponseEntity assignCourseToProfessor(@PathVariable("cId")String courseId, @PathVariable("pId")String professorId) {
 		try {
@@ -250,7 +245,7 @@ public class AdminController {
 	 * @param studentId
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
 	@RequestMapping(value="/generateReportCard/{id}",method=RequestMethod.GET)
 	public ResponseEntity generateReportCard(@PathVariable("id")String studentId) 
 	{
@@ -264,6 +259,11 @@ public class AdminController {
 		}
 	}
 
+	@RequestMapping(value="courseRequests/{cId}",method=RequestMethod.GET)
+	public ResponseEntity viewCourseRequests(@PathVariable("cId") String courseId){
+		List<String> professorIds= adminService.viewProfCourseRequests(courseId);
+		return new ResponseEntity(professorIds,HttpStatus.OK);
+	}
 
 	
 	

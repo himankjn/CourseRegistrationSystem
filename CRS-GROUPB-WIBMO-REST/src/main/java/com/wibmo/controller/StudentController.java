@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 @RestController
-public class RegistrationController {
+@RequestMapping("/student")
+public class StudentController {
     private static final Logger logger= LogManager.getLogger(AdminController.class);
 	
 	
@@ -38,7 +40,7 @@ public class RegistrationController {
      * @param courseId
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST,value = "/addCourse/{studentId}/{courseId}")
+	@RequestMapping(method = RequestMethod.POST,value = "/addCourse/{studentId}/{courseId}")
 	public ResponseEntity addCourseToStudent(@PathVariable("studentId") String studentId,@PathVariable("courseId") String courseId) {
         logger.info("Adding and trying to register a course for a student");
         try{
@@ -95,7 +97,8 @@ public class RegistrationController {
      * @param studentId
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET,value = "/registration/{studentId}")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(method = RequestMethod.GET,value = "/registration/{studentId}")
     public ResponseEntity GetRegistrationStatusOfStudent(@PathVariable("studentId") String studentId) {
     	logger.info("Fetching the Registration Status of student: "+studentId);
     	try {
@@ -143,7 +146,7 @@ public class RegistrationController {
      * @param studentId
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/RegisteredCourses/{studentId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/registeredCourses/{studentId}")
 	public ResponseEntity viewRegisteredCourses(@PathVariable("studentId") String studentId) {
 		logger.info("Retrieving Registered courses for student: "+studentId);
         try{
@@ -160,7 +163,7 @@ public class RegistrationController {
      * @param studentId
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET,value = "/AvailableCourses/{studentId}")
+    @RequestMapping(method = RequestMethod.GET,value = "/availableCourses/{studentId}")
 	public ResponseEntity viewAvailableCourses(@PathVariable("studentId") String studentId) {
 		logger.info("Retrieving Available courses that student: "+studentId+" can add");
         try{
@@ -177,7 +180,7 @@ public class RegistrationController {
      * @param studentId
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET,value = "/GradeCard/{studentId}")
+    @RequestMapping(method = RequestMethod.GET,value = "/gradeCard/{studentId}")
 	public ResponseEntity viewGradeCard(@PathVariable("studentId") String studentId) {
 		logger.info("Displaying the Grade Card of student: "+studentId);
         try{

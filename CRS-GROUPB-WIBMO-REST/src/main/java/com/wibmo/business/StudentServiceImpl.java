@@ -2,6 +2,7 @@ package com.wibmo.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.GenderConstant;
@@ -22,27 +23,10 @@ import com.wibmo.bean.Student;
 @Service
 public class StudentServiceImpl implements StudentServiceInterface {
 	private static final Logger logger = LogManager.getLogger(StudentServiceImpl.class);
-	private static volatile StudentServiceImpl instance=null;
 	
-	StudentDAOInterface studentDaoInterface=StudentDAOImpl.getInstance();
+	@Autowired
+	StudentDAOInterface studentDaoInterface;
 
-	private StudentServiceImpl()
-	{
-		
-	}
-	
-	public static StudentServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(StudentServiceImpl.class){
-				instance=new StudentServiceImpl();
-			}
-		}
-		return instance;
-	}
-	
 	/**
 	 * Method to register a student, although student can't login until it's approved by admin
 	 * @param name

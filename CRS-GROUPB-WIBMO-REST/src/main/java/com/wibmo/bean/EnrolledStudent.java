@@ -3,15 +3,18 @@
  */
 package com.wibmo.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
 /**
  * @author shanmukh
  *
  */
 
-@Component
-public class EnrolledStudent {
+public class EnrolledStudent implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String courseCode;
 	String courseName;
 	String studentId;

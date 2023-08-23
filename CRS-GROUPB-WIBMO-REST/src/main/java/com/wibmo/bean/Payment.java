@@ -1,9 +1,12 @@
 package com.wibmo.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
-public class Payment {
+public class Payment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String studentId;
 	private String invoiceId;
 	private double amount;

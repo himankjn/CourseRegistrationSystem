@@ -6,7 +6,6 @@ package com.wibmo.business;
 import com.wibmo.exception.*;
 import com.wibmo.validator.AdminValidator;
 
-import lombok.extern.slf4j.Slf4j;
 
 import com.wibmo.bean.*;
 
@@ -14,6 +13,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.dao.AdminDAOInterface;
@@ -26,29 +26,9 @@ import com.wibmo.dao.AdminDAOImpl;
 @Service
 public class AdminServiceImpl implements AdminServiceInterface{
 	private static final Logger logger = LogManager.getLogger(AdminServiceImpl.class);
-	private static volatile AdminServiceImpl instance = null;
 	
-	private AdminServiceImpl()
-	{
-		
-	}
-	
-	/**
-	 * Method to make AdminImpl Singleton
-	 */
-	
-	public static AdminServiceImpl getInstance()
-	{
-		if(instance == null)
-		{
-			synchronized(AdminServiceImpl.class){
-				instance = new AdminServiceImpl();
-			}
-		}
-		return instance;
-	}
-	
-	AdminDAOInterface adminDAOImpl =AdminDAOImpl.getInstance();
+	@Autowired
+	private AdminDAOInterface adminDAOImpl;
 	
 	
 	public List<Course> viewCourses()

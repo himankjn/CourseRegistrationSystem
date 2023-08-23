@@ -1,12 +1,15 @@
 package com.wibmo.bean;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
 import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
 
-@Component
-public class Student extends User{
+public class Student extends User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String department;
 	private String studentId;
 	private int gradYear;

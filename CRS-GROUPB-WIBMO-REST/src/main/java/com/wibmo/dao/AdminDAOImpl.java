@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,33 +40,11 @@ import com.wibmo.bean.User;
  *
  */
 
-
+@Repository
 public class AdminDAOImpl implements AdminDAOInterface{
 	private static final Logger logger = LogManager.getLogger(AdminDAOImpl.class);
-	private static volatile AdminDAOImpl instance = null;
 	private PreparedStatement statement = null;
-	
-	/**
-	 * Default Constructor
-	 */
-	private AdminDAOImpl(){}
-	
-	/**
-	 * Method to make AdminDaoOperation Singleton
-	 * @return
-	 */
-	public static AdminDAOImpl getInstance()
-	{
-		if(instance == null)
-		{
-			synchronized(AdminDAOImpl.class){
-				instance = new AdminDAOImpl();
-			}
-		}
-		return instance;
-	}
-	
-	Connection connection = DBUtils.getConnection();
+	private Connection connection = DBUtils.getConnection();
 	
 	/**
 	 * Remove Course using SQL commands

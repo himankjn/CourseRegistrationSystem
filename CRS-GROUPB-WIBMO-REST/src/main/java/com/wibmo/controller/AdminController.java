@@ -259,6 +259,11 @@ public class AdminController {
 		}
 	}
 
+	/**
+	 * view course requests of professors for particular courseId
+	 * @param courseId
+	 * @return ResponseEntity
+	 */
 	@RequestMapping(value="courseRequests/{cId}",method=RequestMethod.GET)
 	public ResponseEntity viewCourseRequests(@PathVariable("cId") String courseId){
 		List<String> professorIds= adminService.viewProfCourseRequests(courseId);

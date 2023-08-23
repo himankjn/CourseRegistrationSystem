@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@SuppressWarnings({ "rawtypes", "unchecked" })
 @RequestMapping(value = "/professor")
 public class ProfessorController {
 	private static final Logger logger= LogManager.getLogger(ProfessorController.class);
@@ -34,21 +35,37 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorServiceInterface professorService ;
 
+	/**
+	 * Get assigned courses for a professor
+	 * @param profID
+	 * @return
+	 */
 	@RequestMapping(produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET, value = "/getCourses/{id}")
-	public List<Course> getProfessorCourses(@PathVariable("id") String profID ) {
+	public ResponseEntity getProfessorCourses(@PathVariable("id") String profID ) {
 		logger.info("PROF ID: "+profID);
 		List<Course> courseList = professorService.viewAssignedCourses(profID);
-		return courseList;
+		return new ResponseEntity(courseList,HttpStatus.OK);
 	}
 	
+	/**
+	 * Get enrolled students for a course
+	 * @param courseID
+	 * @return
+	 */
 	@RequestMapping(produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET, value = "/getEnrolledStudents/{id}")
-	public List<EnrolledStudent> getEnrolledStudents(@PathVariable("id") String courseID) {
+	public ResponseEntity getEnrolledStudents(@PathVariable("id") String courseID) {
 		List<EnrolledStudent> enrolledStudents = new ArrayList<EnrolledStudent>();
 		enrolledStudents = professorService.viewEnrolledStudents(courseID);
-		return enrolledStudents;	
+		return new ResponseEntity(enrolledStudents,HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Submit grade for a student for a course
+	 * @param studentId
+	 * @param courseId
+	 * @param grade
+	 * @return
+	 */
 	@RequestMapping(produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT, value = "/addGrade/{sId}/{cId}/{grade}")
 	public ResponseEntity addGradeOfStudent(@PathVariable("sId") String studentId,@PathVariable("cId") String courseId,@PathVariable("grade") String grade) {
 		try {
@@ -59,17 +76,19 @@ public class ProfessorController {
 		}	
 	}
 				
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * Provides list of all professor requests for a course
+	 * @param profID
+	 * @param courseId
+	 * @return
+	 */
 	@RequestMapping(produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT, value = "/requestCourse/{pId}/{cId}")
 	public ResponseEntity requestCourseAssignment(@PathVariable("pId") String profID,@PathVariable("cId") String courseId) {
 		try {
-			List<Course> unassignedCourses= professorService.getUnassignedCourses();
-			logger.info("Enter the courseID you want to request:");
 			professorService.requestCourseAssignment(profID, courseId);
 			return new ResponseEntity(courseId, HttpStatus.OK);
-
-	} catch (Exception e) {
+		}
+	 catch (Exception e) {
 		return new ResponseEntity("Request unsuccessful! Something went wrong. Please contact admin.", HttpStatus.NOT_ACCEPTABLE);
 	}
 	}

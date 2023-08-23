@@ -5,6 +5,8 @@ package com.wibmo.dao;
 
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import com.wibmo.constants.NotificationTypeConstant;
 import com.wibmo.constants.PaymentModeConstant;
 
@@ -12,6 +14,7 @@ import com.wibmo.constants.PaymentModeConstant;
  * @author Shanmukh
  *
  */
+@Repository
 public interface NotificationDAOInterface {
 
 

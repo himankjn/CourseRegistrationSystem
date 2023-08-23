@@ -1,9 +1,8 @@
-/**
- * 
- */
 package com.wibmo.dao;
 
 import com.wibmo.exception.StudentNotRegisteredException;
+
+import org.springframework.stereotype.Repository;
 
 import com.wibmo.bean.Student;
 
@@ -11,6 +10,8 @@ import com.wibmo.bean.Student;
  * @author Shanmukh
  *
  */
+
+@Repository
 public interface StudentDAOInterface {
 	
 	

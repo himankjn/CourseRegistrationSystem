@@ -11,11 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,11 +33,12 @@ import com.wibmo.exception.StudentNotFoundForApprovalException;
 import com.wibmo.exception.UserIdAlreadyInUseException;
 import com.wibmo.exception.UserNotFoundException;
 
+/*
+ * Rest Controller to handle admin operations
+ */
 @RestController
 @RequestMapping(value="/admin")
 public class AdminController {
-	private static final Logger logger= LogManager.getLogger(AdminController.class);
-	
 	
 	@Autowired
 	private AdminServiceInterface adminService;
@@ -52,14 +49,13 @@ public class AdminController {
 	@Autowired
 	private RegistrationServiceInterface registrationService;
 
-	@RequestMapping(produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET, value = "/hello-world")
-	public String helloWorld() {	
-		return "Hello World";
-	}
+	/**
+	 * Provides list of courses in catalog
+	 * @return ResponseEntity
+	 */
 	
-	@GetMapping("/viewCourseCatalog")
+	@RequestMapping(value="/viewCourseCatalog",method = RequestMethod.GET)
 	public List<Course> viewCoursesInCatalog() {
-		logger.info("Retrieving courses from catalog.");
 		List<Course> courseList = adminService.viewCourses();
 		return courseList;
 	}
@@ -73,8 +69,14 @@ public class AdminController {
 	    "seats": 10
 	 }
 	 */
+	
+	/**
+	 * Adds new course to catalog
+	 * @param course
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PostMapping(consumes=MediaType.APPLICATION_JSON ,value= "/addCourse")
+	@RequestMapping(consumes=MediaType.APPLICATION_JSON ,value= "/addCourse",method= RequestMethod.GET)
 	public ResponseEntity addCourseToCatalog(@RequestBody Course course) {
 		try {
 			adminService.addCourse(course);
@@ -87,8 +89,13 @@ public class AdminController {
 	
 	//localhost:8080/removeCourse/SB
 	
+	/**
+	 * Remove a course from catalog
+	 * @param courseId
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@DeleteMapping(value="/removeCourse/{id}")
+	@RequestMapping(value="/removeCourse/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity removeCourse(@PathVariable("id") String courseId) {
 		try {
 			adminService.removeCourse(courseId);
@@ -101,9 +108,13 @@ public class AdminController {
 		}
 	}	
 	
-	
+	/**
+	 * approves student based on given id
+	 * @param studentId
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PutMapping(value="/approveStudent/{id}")
+	@RequestMapping(value="/approveStudent/{id}",method=RequestMethod.PUT)
 	public ResponseEntity approveSingleStudent(@PathVariable("id") String studentId) {
 		try {
 				adminService.approveSingleStudent(studentId);
@@ -118,8 +129,12 @@ public class AdminController {
 		
 	}
 	
+	/**
+	 * approves all pending students admission
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PutMapping(value="/approveStudent")
+	@RequestMapping(value="/approveStudent",method=RequestMethod.PUT)
 	public ResponseEntity approveAllStudents() {
 		List<Student> studentList= adminService.viewPendingAdmissions();
 		try {
@@ -136,8 +151,12 @@ public class AdminController {
 	
 	}
 	
+	/**
+	 * Proves list of all unapproved students
+	 * @return ReponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@GetMapping(value="/pendingAdmissions")
+	@RequestMapping(value="/pendingAdmissions",method=RequestMethod.GET)
 	public ResponseEntity viewPendingAdmissions() {
 		List<Student> pendingStudentsList= adminService.viewPendingAdmissions();
 		if(pendingStudentsList.size() == 0) {
@@ -147,8 +166,12 @@ public class AdminController {
 			return new ResponseEntity(pendingStudentsList,HttpStatus.OK);
 	}
 	
+	/**
+	 * proves list of all professors in institute
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@GetMapping(value="/instructors")
+	@RequestMapping(value="/instructors",method=RequestMethod.GET)
 	public ResponseEntity viewProfessors() {
 		List<Professor>professors=adminService.viewProfessors();
 		return new ResponseEntity(professors,HttpStatus.OK);
@@ -167,8 +190,14 @@ public class AdminController {
         "designation": "Asst. Prof"
     	}
 	 */
+	
+	/**
+	 * Adds new professor to db
+	 * @param professor
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PostMapping(value="/addProfessor")
+	@RequestMapping(value="/addProfessor",method=RequestMethod.POST)
 	public ResponseEntity addProfessor(@RequestBody Professor professor) {
 		try {
 			adminService.addProfessor(professor);
@@ -179,8 +208,13 @@ public class AdminController {
 
 	}
 
+	/**
+	 * Drops a professor from db based on professorId
+	 * @param professorId
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@DeleteMapping(value="/dropProfessor/{id}")
+	@RequestMapping(value="/dropProfessor/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity dropProfessor(@PathVariable("id") String professorId) {
 		try {
 			adminService.dropProfessor(professorId);
@@ -191,8 +225,14 @@ public class AdminController {
 		}
 	}
 	
+	/**
+	 * Assign a course to a particular professor
+	 * @param courseId
+	 * @param professorId
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PutMapping(value="assignCourse/{cId}/{pId}")
+	@RequestMapping(value="assignCourse/{cId}/{pId}",method=RequestMethod.PUT)
 	public ResponseEntity assignCourseToProfessor(@PathVariable("cId")String courseId, @PathVariable("pId")String professorId) {
 		try {
 			adminService.assignCourse(courseId, professorId);
@@ -205,8 +245,13 @@ public class AdminController {
 		}
 	}
 	
+	/**
+	 * Generates report card for a student based on id
+	 * @param studentId
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@GetMapping(value="/generateReportCard/{id}")
+	@RequestMapping(value="/generateReportCard/{id}",method=RequestMethod.GET)
 	public ResponseEntity generateReportCard(@PathVariable("id")String studentId) 
 	{
 		GradeCard grade_card=null;

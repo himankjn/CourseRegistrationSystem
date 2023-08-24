@@ -42,7 +42,7 @@ import com.wibmo.exception.UserNotFoundException;
 public class AdminController {
 	
 	@Autowired
-	private AdminServiceInterface adminService;
+	private AdminServiceInterface adminService;	
 	
 	@Autowired
 	private NotificationServiceInterface notificationService;
@@ -152,7 +152,7 @@ public class AdminController {
 	 * Proves list of all unapproved students
 	 * @return ReponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
 	@RequestMapping(value="/pendingAdmissions",method=RequestMethod.GET)
 	public ResponseEntity viewPendingAdmissions() {
 		List<Student> pendingStudentsList= adminService.viewPendingAdmissions();
@@ -208,7 +208,6 @@ public class AdminController {
 	 * @param professorId
 	 * @return ResponseEntity
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="/dropProfessor/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity dropProfessor(@PathVariable("id") String professorId) {
 		try {

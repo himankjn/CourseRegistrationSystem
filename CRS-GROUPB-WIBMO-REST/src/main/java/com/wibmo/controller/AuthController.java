@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wibmo.bean.Student;
 import com.wibmo.business.StudentServiceInterface;
 import com.wibmo.business.UserServiceInterface;
-import com.wibmo.exception.PasswordMismatchException;
 import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.StudentNotRegisteredException;
 import com.wibmo.exception.UserNotFoundException;
-import com.wibmo.validator.StudentValidator;
 
 /*
  * Rest Controller to handle admin operations
@@ -54,10 +52,10 @@ public class AuthController {
 	@RequestMapping(value="/register",method = RequestMethod.POST)
 	public ResponseEntity registerStudent(@RequestBody Student student) {
 		try {
-			String newStudentId = studentService.register(student.getName(), student.getUserId(), 
+			studentService.register(student.getName(), student.getUserId(), 
 					student.getPassword(), student.getGender(), student.getGradYear(),
 					student.getDepartment(), student.getAddress());
-			return new ResponseEntity("Student registered with id: "+newStudentId,HttpStatus.OK);
+			return new ResponseEntity("Student registered with id: "+student.getStudentId(),HttpStatus.OK);
 		}
 		catch(StudentNotRegisteredException ex)
 		{
@@ -84,10 +82,17 @@ public class AuthController {
 		{
 			try {
 				userService.verifyUserRole(userId,roleInp);
+				if(roleInp.equals("STUDENT")) {
+					boolean isApproved=studentService.isApproved(userId);
+					if(!isApproved) {
+						return new ResponseEntity("You have not been approved by Admin yet!",HttpStatus.INTERNAL_SERVER_ERROR);
+						
+					}
+				}
 				return new ResponseEntity("Logged in as "+roleInp,HttpStatus.OK);
 				}
 			catch(RoleMismatchException e) {
-				return new ResponseEntity("RoleMimatch",HttpStatus.NOT_ACCEPTABLE);
+				return new ResponseEntity("RoleMismatch",HttpStatus.NOT_ACCEPTABLE);
 			}
 			
 		}

@@ -406,6 +406,10 @@ public class CRSAdminMenu {
 		return courseList;
 	}
 	
+	/**
+	 * Method to view course requests for a course
+	 * @param courseId
+	 */
 	void viewCourseRequests(String courseId){
 		List<String> professorIds= adminService.viewProfCourseRequests(courseId);
 		logger.info("Professors who have requested "+courseId+" are: ");

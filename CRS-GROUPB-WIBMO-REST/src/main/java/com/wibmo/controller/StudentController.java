@@ -1,10 +1,9 @@
 package com.wibmo.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
-import javax.ws.rs.core.MediaType;
 
 import com.wibmo.bean.Course;
 import com.wibmo.bean.GradeCard;
@@ -20,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +34,66 @@ public class StudentController {
 	@Autowired
 	private RegistrationServiceInterface registrationService;
 
+	/**
+	 * Method for course regisration of student for the semester
+	 * @param studentId
+	 * @param courseList
+	 * @return ResponseEntity
+	 */
+	@RequestMapping(value="/courseRegistration/{sId}",method=RequestMethod.POST)
+	private ResponseEntity registerCourses(@PathVariable("sId") String studentId, @RequestBody List<Course> courseList)
+	{
+		List<Course> registeredCourses=new ArrayList<Course>();
+		boolean is_registered;
+		try {
+			is_registered = registrationService.getRegistrationStatus(studentId);
+		} catch (SQLException e) {
+			return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		if(is_registered)
+		{
+			return new ResponseEntity("Already registered!",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		int reg_count=0;
+		for(Course course: courseList)
+		{
+			if(reg_count==4)break;
+			String courseCode= course.getCourseId();
+			try {
+				if(registrationService.addCourse(courseCode,studentId))
+				{
+					logger.info("Course " + courseCode + " registered sucessfully.");
+					registeredCourses.add(course);
+					reg_count++;
+				}
+				else
+				{
+					logger.info(" You have already registered for Course : " + courseCode);
+				}
+			} catch (CourseNotFoundException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			} catch (CourseLimitExceededException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			} catch (SeatNotAvailableException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			} catch (SQLException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		logger.info("Registration Successful");
+		
+		try {
+			registrationService.setRegistrationStatus(studentId);
+			return new ResponseEntity(registeredCourses,HttpStatus.OK);
+			//notificationService.sendNotification(NotificationTypeConstant.REGISTRATION, studentId, null, 0);
+		}catch(Exception e) {
+			return new ResponseEntity("Unsuccessful Registration!",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
     /**
      * Adds the course to the student for Registration
      * @param studentId
@@ -97,7 +157,6 @@ public class StudentController {
      * @param studentId
      * @return
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(method = RequestMethod.GET,value = "/registration/{studentId}")
     public ResponseEntity GetRegistrationStatusOfStudent(@PathVariable("studentId") String studentId) {
     	logger.info("Fetching the Registration Status of student: "+studentId);

@@ -24,7 +24,6 @@ import com.wibmo.entity.Student;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
-import com.wibmo.repository.AdminDAOInterface;
 import com.wibmo.repository.CourseRepository;
 import com.wibmo.repository.ProfessorCourseRequestRepository;
 import com.wibmo.repository.ProfessorRepository;
@@ -47,9 +46,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	
 	@Autowired
 	RegistrationDAOInterface registrationDAOInterface;
-
-	@Autowired
-	private AdminDAOInterface adminDAOImpl;
 	
 	@Autowired
 	private CourseRepository courseRepository;
@@ -102,7 +98,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		
 		  
 
-
 		RegisteredCourse registerCourse = new RegisteredCourse();
 		registerCourse.setCourseId(courseCode);
 		registerCourse.setstudentId(studentId);
@@ -130,10 +125,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	        {
 	        	throw new CourseNotFoundException(courseCode);
 	        }
-		  RegisteredCourse unregisterCourse = new RegisteredCourse();
-		  unregisterCourse.setCourseId(courseCode);
-		  unregisterCourse.setstudentId(studentId);
-		  unregisterCourse.setGrade(GradeConstant.A);
 		  
 		  RegisteredCourseId primaryKey = new RegisteredCourseId();
 		  primaryKey.setCourseId(courseCode);

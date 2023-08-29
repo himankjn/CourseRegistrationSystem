@@ -47,6 +47,17 @@ public class ProfessorController {
 	}
 	
 	/**
+	 * Method to get list of all course that can be requested and are unassigned
+	 * @param profId: professor id
+	 */
+	
+	@RequestMapping(produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET, value = "/getUnassignedCourses")
+	public ResponseEntity getUnassignedCourses( ) {
+		List<Course> courseList = professorService.getUnassignedCourses();
+		return new ResponseEntity(courseList,HttpStatus.OK);
+	}
+	
+	/**
 	 * Get enrolled students for a course
 	 * @param courseID
 	 * @return

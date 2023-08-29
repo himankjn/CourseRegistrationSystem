@@ -28,4 +28,5 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	
 	@Query("SELECT CASE WHEN c.seats > 0 THEN true ELSE false END FROM Course c WHERE c.courseId = :courseId")
     boolean existsSeatsByCourseId(@Param("courseId") String courseId);
+	Iterable<Course> findByInstructorId(String profId);
 }

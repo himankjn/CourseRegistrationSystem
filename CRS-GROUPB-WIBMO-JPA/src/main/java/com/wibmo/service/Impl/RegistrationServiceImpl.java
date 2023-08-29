@@ -1,10 +1,9 @@
-package com.wibmo.service;
+package com.wibmo.service.Impl;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,26 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.GradeConstant;
-import com.wibmo.constants.PaymentModeConstant;
-import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.entity.Course;
-import com.wibmo.entity.Grade;
 import com.wibmo.entity.GradeCard;
-import com.wibmo.entity.Notification;
 import com.wibmo.entity.RegisteredCourse;
 import com.wibmo.entity.RegisteredCourseId;
 import com.wibmo.entity.Student;
+import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
 import com.wibmo.repository.CourseRepository;
-import com.wibmo.repository.ProfessorCourseRequestRepository;
-import com.wibmo.repository.ProfessorRepository;
 import com.wibmo.repository.RegisteredCourseRepository;
-import com.wibmo.repository.RegistrationDAOImpl;
-import com.wibmo.repository.RegistrationDAOInterface;
 import com.wibmo.repository.StudentRepository;
-import com.wibmo.utils.DBUtils;
+import com.wibmo.service.RegistrationServiceInterface;
 import com.wibmo.validator.StudentValidator;
 
 /**
@@ -45,19 +37,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	private static final Logger logger = LogManager.getLogger(RegistrationServiceImpl.class);
 	
 	@Autowired
-	RegistrationDAOInterface registrationDAOInterface;
-	
-	@Autowired
 	private CourseRepository courseRepository;
-	
-	@Autowired
-	private ProfessorRepository professorRepository;
 	
 	@Autowired
 	private RegisteredCourseRepository registeredCourseRepository;
 	
-	@Autowired
-	private ProfessorCourseRequestRepository professorCourseRequestRepository;
 	
 	@Autowired
 	private StudentRepository studentRepository;
@@ -71,39 +55,39 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SeatNotAvailableException 
 	 * @throws CourseLimitExceedException 
 	 * @throws SQLException 
+	 * @throws CourseAlreadyRegisteredException 
 	 */
 	@Override
 	
-	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException 
+	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException 
 	{
        
 		
 		List<Course> availableCourseList=viewCourses(studentId);
 		if (registeredCourseRepository.numberOfRegisteredCourses(studentId) >= 6)
 		{	
-			logger.info("You have already registered for 6 courses");
+			throw new CourseLimitExceededException(6);
 		}
 		else if (registeredCourseRepository.existsByCourseIdAndStudentId(courseCode, studentId)) 
 		{
-			return false;
-		} 
-		else if (!courseRepository.existsSeatsByCourseId(courseCode)) 
-		{
-			throw new SeatNotAvailableException(courseCode);
+			throw new CourseAlreadyRegisteredException(courseCode);
 		} 
 		else if(!StudentValidator.isValidCourseCode(courseCode, availableCourseList))
 		{
 			throw new CourseNotFoundException(courseCode);
 		}
+		else if (!courseRepository.existsSeatsByCourseId(courseCode)) 
+		{
+			throw new SeatNotAvailableException(courseCode);
+		} 
 		
 		  
 
-		RegisteredCourse registerCourse = new RegisteredCourse();
-		registerCourse.setCourseId(courseCode);
-		registerCourse.setstudentId(studentId);
-		registerCourse.setGrade(GradeConstant.NOT_GRADED);
+		RegisteredCourse registeredCourse = new RegisteredCourse();
+		registeredCourse.setRegisteredCourseId(new RegisteredCourseId(courseCode,studentId));
+		registeredCourse.setGrade(GradeConstant.NOT_GRADED);
 		
-		registeredCourseRepository.save(registerCourse);
+		registeredCourseRepository.save(registeredCourse);
 		courseRepository.decrementSeats(courseCode);
 		
 		return true;
@@ -131,7 +115,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		  primaryKey.setStudentId(studentId);
 		  registeredCourseRepository.deleteById(primaryKey);
 		  courseRepository.incrementSeats(courseCode);
-		  
 		  return true;
 	}
 
@@ -144,8 +127,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	
 	public double calculateFee(String studentId) throws SQLException {
-		return registrationDAOInterface.calculateFee(studentId);
-		//Course Fee is not added
+		return courseRepository.calculateFee(studentId);
 	}
 
 
@@ -158,64 +140,49 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	
 	public GradeCard viewGradeCard(String studentId) throws SQLException {
-		return registrationDAOInterface.viewGradeCard(studentId);
-//		List<RegisteredCourse> CoursesOfStudent = new ArrayList<RegisteredCourse>();
-//		double cgpa=0;
-//		try {
-//				registeredCourseRepository.findByStudentId(studentId).forEach(course -> CoursesOfStudent.add(course));
-//				
-//				
-//				CoursesOfStudent.forEach(registeredCourse -> {
-//					
-//					String gradeCon= registeredCourse.getGrade();
-//					switch(gradeCon) {
-//				    	case "A":
-//				    	cgpa+= GradeConstant.A.hasValue();
-//				    	break;
-//				    	case "A-":
-//				    	cgpa+= GradeConstant.A_MINUS.hasValue();
-//				    	break;
-//				    	case "B":
-//				    	cgpa+= GradeConstant.B.hasValue();
-//				    	break;
-//				    	case "B-":
-//				    	cgpa+= GradeConstant.B_MINUS.hasValue();
-//				    	break;
-//				    	case "C":
-//				    	cgpa+= GradeConstant.C.hasValue();
-//				    	break;
-//				    	case "C-":
-//				    	cgpa+= GradeConstant.C_MINUS.hasValue();
-//				    	break;
-//				    	case "D":
-//				    	cgpa+= GradeConstant.D.hasValue();
-//				    	break;
-//				    	case "E":
-//				    	cgpa+= GradeConstant.E.hasValue();
-//				    	break;
-//				    	case "F":
-//				    	cgpa+= GradeConstant.F.hasValue();
-//				    	break;
-//				    	default:
-//				    	cgpa+= GradeConstant.NOT_GRADED.hasValue();
-//				    	
-//					};
-//					
-//					logger.info("graded");
-//					
-//				});
-//					
-//				}catch(SQLException se) {
-//					
-//					logger.error(se.getMessage());
-//					
-//				}
-//		
-//		GradeCard gradeCard= new GradeCard();
-//		gradeCard.setReg_list(CoursesOfStudent);
-//		gradeCard.setStudentId(studentId);
-//		gradeCard.setCgpa(cgpa/(double)CoursesOfStudent.size());
-//		return gradeCard;
+		List<RegisteredCourse> coursesOfStudent = new ArrayList<RegisteredCourse>();
+		double cgpa=0;
+		registeredCourseRepository.findByRegisteredCourseIdStudentId(studentId).forEach(course -> coursesOfStudent.add(course));
+		for(RegisteredCourse registeredCourse: coursesOfStudent) {
+			String gradeCon= registeredCourse.getGrade().name();
+			switch(gradeCon) {
+		    	case "A":
+		    	cgpa+= GradeConstant.A.hasValue();
+		    	break;
+		    	case "A-":
+		    	cgpa+= GradeConstant.A_MINUS.hasValue();
+		    	break;
+		    	case "B":
+		    	cgpa+= GradeConstant.B.hasValue();
+		    	break;
+		    	case "B-":
+		    	cgpa+= GradeConstant.B_MINUS.hasValue();
+		    	break;
+		    	case "C":
+		    	cgpa+= GradeConstant.C.hasValue();
+		    	break;
+		    	case "C-":
+		    	cgpa+= GradeConstant.C_MINUS.hasValue();
+		    	break;
+		    	case "D":
+		    	cgpa+= GradeConstant.D.hasValue();
+		    	break;
+		    	case "E":
+		    	cgpa+= GradeConstant.E.hasValue();
+		    	break;
+		    	case "F":
+		    	cgpa+= GradeConstant.F.hasValue();
+		    	break;
+		    	default:
+		    	cgpa+= GradeConstant.NOT_GRADED.hasValue();
+		    	
+			};
+		}		
+		GradeCard gradeCard= new GradeCard();
+		gradeCard.setReg_list(coursesOfStudent);
+		gradeCard.setStudentId(studentId);
+		gradeCard.setCgpa(cgpa/(double)coursesOfStudent.size());
+		return gradeCard;
 	}
 
 	/**
@@ -302,8 +269,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 
 	@Override
 	public void setPaymentStatus(String studentId) throws SQLException{
-		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		Optional<Student> st = studentRepository.findById(studentId);
+		if(st.isEmpty())throw new SQLException("Student Id not found!");
 		st.get().setPaid(true);
+		studentRepository.save(st.get());
+		
 	}
 
 }

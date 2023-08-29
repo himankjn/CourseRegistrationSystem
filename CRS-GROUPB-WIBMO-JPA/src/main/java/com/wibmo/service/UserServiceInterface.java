@@ -22,8 +22,9 @@ public interface UserServiceInterface {
 	/**
 	 * Method to get role of a specific User
 	 * @param userId
+	 * @throws UserNotFoundException 
 	 */
-	String getRole(String userId);
+	String getRole(String userId) throws UserNotFoundException;
 
 	/**
 	 * Method to verify User credentials
@@ -36,9 +37,10 @@ public interface UserServiceInterface {
 	 * Method to update password of a user
 	 * @param userID
 	 * @param newPassword
+	 * @throws UserNotFoundException 
 	 */
-	boolean updatePassword(String userID, String newPassword);
+	boolean updatePassword(String userID, String newPassword) throws UserNotFoundException;
 	
-	void verifyUserRole(String userId, String role) throws RoleMismatchException;
+	void verifyUserRole(String userId, String role) throws RoleMismatchException, UserNotFoundException;
 	
 }

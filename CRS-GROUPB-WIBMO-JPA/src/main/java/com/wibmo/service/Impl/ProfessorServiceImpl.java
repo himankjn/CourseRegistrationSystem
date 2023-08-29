@@ -1,4 +1,4 @@
-package com.wibmo.service;
+package com.wibmo.service.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,8 @@ import com.wibmo.exception.CourseAlreadyAssignedException;
 import com.wibmo.exception.InvalidCourseAssignmentRequestException;
 import com.wibmo.repository.CourseRepository;
 import com.wibmo.repository.ProfessorCourseRequestRepository;
-import com.wibmo.repository.ProfessorDAOImpl;
-import com.wibmo.repository.ProfessorDAOInterface;
 import com.wibmo.repository.RegisteredCourseRepository;
+import com.wibmo.service.ProfessorServiceInterface;
 import com.wibmo.validator.ProfessorValidator;
 
 

@@ -12,35 +12,43 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import com.wibmo.constants.GradeConstant;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.experimental.Delegate;
 
 @Entity
 @Table(name="registeredcourse")
-@Getter
-@Setter
 public class RegisteredCourse implements Serializable
 {
-	/**
-	 * 
-	 */
-
 	private static final long serialVersionUID = 1L;
+	
 	@EmbeddedId
+	@Delegate
 	private RegisteredCourseId registeredCourseId;
+	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name="grade")
-	GradeConstant grade;
+	private GradeConstant grade;
 	
-	
+	public RegisteredCourseId getRegisteredCourseId() {
+		return registeredCourseId;
+	}
+
+	public void setRegisteredCourseId(RegisteredCourseId registeredCourseId) {
+		this.registeredCourseId = registeredCourseId;
+	}
+
+	public GradeConstant getGrade() {
+		return grade;
+	}
+
+	public void setGrade(GradeConstant grade) {
+		this.grade = grade;
+	}
+
 	
 
 }

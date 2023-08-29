@@ -13,7 +13,19 @@ import com.wibmo.entity.Course;
 public interface CourseRepository extends CrudRepository<Course,String>{
 	@Modifying
 	@Transactional
-	@Query("update Course set instructorId = instructorId where courseId = courseId")
+	@Query("update Course set instructorId = :instructorId where courseId = :courseId")
 	void assignCourse(@Param(value="courseId") String courseId, @Param(value="instructorId") String instructorId);
+
+	@Modifying
+	@Transactional
+	@Query("update Course set seats = seats-1 where courseId = :courseId")
+	void decrementSeats(@Param(value="courseId") String courseId);
 	
+	@Modifying
+	@Transactional
+	@Query("update Course set seats = seats+1 where courseId = :courseId")
+	void incrementSeats(@Param(value="courseId") String courseId);
+	
+	@Query("SELECT CASE WHEN c.seats > 0 THEN true ELSE false END FROM Course c WHERE c.courseId = :courseId")
+    boolean existsSeatsByCourseId(@Param("courseId") String courseId);
 }

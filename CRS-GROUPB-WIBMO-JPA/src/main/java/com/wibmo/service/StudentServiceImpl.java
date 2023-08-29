@@ -9,8 +9,15 @@ import com.wibmo.constants.GenderConstant;
 import com.wibmo.constants.RoleConstant;
 import com.wibmo.entity.Student;
 import com.wibmo.exception.StudentNotRegisteredException;
+import com.wibmo.repository.CourseRepository;
+import com.wibmo.repository.ProfessorCourseRequestRepository;
+import com.wibmo.repository.ProfessorRepository;
+import com.wibmo.repository.RegisteredCourseRepository;
 import com.wibmo.repository.StudentDAOImpl;
 import com.wibmo.repository.StudentDAOInterface;
+import com.wibmo.repository.StudentRepository;
+
+import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
 
 /**
  * 
@@ -25,6 +32,21 @@ public class StudentServiceImpl implements StudentServiceInterface {
 	
 	@Autowired
 	StudentDAOInterface studentDaoInterface;
+
+	@Autowired
+	private CourseRepository courseRepository;
+	
+	@Autowired
+	private ProfessorRepository professorRepository;
+	
+	@Autowired
+	private RegisteredCourseRepository registeredCourseRepository;
+	
+	@Autowired
+	private ProfessorCourseRequestRepository professorCourseRequestRepository;
+	
+	@Autowired
+	StudentRepository studentRepository;
 
 	/**
 	 * Method to register a student, although student can't login until it's approved by admin
@@ -52,7 +74,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
 		newStudent.setAddress(address);
 		newStudent.setApproved(false);
 		newStudent.setRole(RoleConstant.STUDENT);
-		studentId=studentDaoInterface.addStudent(newStudent);
+		studentId = studentRepository.save(newStudent).getStudentId();
 		logger.info("\nYour account has been created and pending for Approval by Admin.\n");
 		return studentId;
 	}
@@ -64,8 +86,8 @@ public class StudentServiceImpl implements StudentServiceInterface {
      */
     @Override
     public String getStudentId(String userId) {
-        
-        return studentDaoInterface.getStudentId(userId);
+
+		return studentRepository.findStudentByUserId(userId).getStudentId();
     }
 
 
@@ -78,7 +100,8 @@ public class StudentServiceImpl implements StudentServiceInterface {
      */
 	@Override
 	public boolean isApproved(String studentId) {
-		return studentDaoInterface.isApproved(studentId);
+		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		return st.get().isApproved();
 	}
 
 

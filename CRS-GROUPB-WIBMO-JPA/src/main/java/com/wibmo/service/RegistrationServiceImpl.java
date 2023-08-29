@@ -1,6 +1,9 @@
 package com.wibmo.service;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,16 +11,28 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wibmo.constants.GradeConstant;
 import com.wibmo.constants.PaymentModeConstant;
+import com.wibmo.constants.SQLQueriesConstant;
 import com.wibmo.entity.Course;
 import com.wibmo.entity.Grade;
 import com.wibmo.entity.GradeCard;
 import com.wibmo.entity.Notification;
+import com.wibmo.entity.RegisteredCourse;
+import com.wibmo.entity.RegisteredCourseId;
+import com.wibmo.entity.Student;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
+import com.wibmo.repository.AdminDAOInterface;
+import com.wibmo.repository.CourseRepository;
+import com.wibmo.repository.ProfessorCourseRequestRepository;
+import com.wibmo.repository.ProfessorRepository;
+import com.wibmo.repository.RegisteredCourseRepository;
 import com.wibmo.repository.RegistrationDAOImpl;
 import com.wibmo.repository.RegistrationDAOInterface;
+import com.wibmo.repository.StudentRepository;
+import com.wibmo.utils.DBUtils;
 import com.wibmo.validator.StudentValidator;
 
 /**
@@ -33,6 +48,23 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Autowired
 	RegistrationDAOInterface registrationDAOInterface;
 
+	@Autowired
+	private AdminDAOInterface adminDAOImpl;
+	
+	@Autowired
+	private CourseRepository courseRepository;
+	
+	@Autowired
+	private ProfessorRepository professorRepository;
+	
+	@Autowired
+	private RegisteredCourseRepository registeredCourseRepository;
+	
+	@Autowired
+	private ProfessorCourseRequestRepository professorCourseRequestRepository;
+	
+	@Autowired
+	private StudentRepository studentRepository;
 	/**
 	 * Method to add Course selected by student 
 	 * @param courseCode
@@ -51,15 +83,15 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
        
 		
 		List<Course> availableCourseList=viewCourses(studentId);
-		if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 6)
+		if (registeredCourseRepository.numberOfRegisteredCourses(studentId) >= 6)
 		{	
 			logger.info("You have already registered for 6 courses");
 		}
-		else if (registrationDAOInterface.isRegistered(courseCode, studentId)) 
+		else if (registeredCourseRepository.existsByCourseIdAndStudentId(courseCode, studentId)) 
 		{
 			return false;
 		} 
-		else if (!registrationDAOInterface.seatAvailable(courseCode)) 
+		else if (!courseRepository.existsSeatsByCourseId(courseCode)) 
 		{
 			throw new SeatNotAvailableException(courseCode);
 		} 
@@ -70,8 +102,16 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		
 		  
 
-		return registrationDAOInterface.addCourse(courseCode, studentId);
 
+		RegisteredCourse registerCourse = new RegisteredCourse();
+		registerCourse.setCourseId(courseCode);
+		registerCourse.setstudentId(studentId);
+		registerCourse.setGrade(GradeConstant.NOT_GRADED);
+		
+		registeredCourseRepository.save(registerCourse);
+		courseRepository.decrementSeats(courseCode);
+		
+		return true;
 	}
 
 	/**
@@ -90,9 +130,18 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	        {
 	        	throw new CourseNotFoundException(courseCode);
 	        }
-		
-		return registrationDAOInterface.dropCourse(courseCode, studentId);
-
+		  RegisteredCourse unregisterCourse = new RegisteredCourse();
+		  unregisterCourse.setCourseId(courseCode);
+		  unregisterCourse.setstudentId(studentId);
+		  unregisterCourse.setGrade(GradeConstant.A);
+		  
+		  RegisteredCourseId primaryKey = new RegisteredCourseId();
+		  primaryKey.setCourseId(courseCode);
+		  primaryKey.setStudentId(studentId);
+		  registeredCourseRepository.deleteById(primaryKey);
+		  courseRepository.incrementSeats(courseCode);
+		  
+		  return true;
 	}
 
 	/** Method for Fee Calculation for selected courses
@@ -105,6 +154,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	
 	public double calculateFee(String studentId) throws SQLException {
 		return registrationDAOInterface.calculateFee(studentId);
+		//Course Fee is not added
 	}
 
 
@@ -118,6 +168,63 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	
 	public GradeCard viewGradeCard(String studentId) throws SQLException {
 		return registrationDAOInterface.viewGradeCard(studentId);
+//		List<RegisteredCourse> CoursesOfStudent = new ArrayList<RegisteredCourse>();
+//		double cgpa=0;
+//		try {
+//				registeredCourseRepository.findByStudentId(studentId).forEach(course -> CoursesOfStudent.add(course));
+//				
+//				
+//				CoursesOfStudent.forEach(registeredCourse -> {
+//					
+//					String gradeCon= registeredCourse.getGrade();
+//					switch(gradeCon) {
+//				    	case "A":
+//				    	cgpa+= GradeConstant.A.hasValue();
+//				    	break;
+//				    	case "A-":
+//				    	cgpa+= GradeConstant.A_MINUS.hasValue();
+//				    	break;
+//				    	case "B":
+//				    	cgpa+= GradeConstant.B.hasValue();
+//				    	break;
+//				    	case "B-":
+//				    	cgpa+= GradeConstant.B_MINUS.hasValue();
+//				    	break;
+//				    	case "C":
+//				    	cgpa+= GradeConstant.C.hasValue();
+//				    	break;
+//				    	case "C-":
+//				    	cgpa+= GradeConstant.C_MINUS.hasValue();
+//				    	break;
+//				    	case "D":
+//				    	cgpa+= GradeConstant.D.hasValue();
+//				    	break;
+//				    	case "E":
+//				    	cgpa+= GradeConstant.E.hasValue();
+//				    	break;
+//				    	case "F":
+//				    	cgpa+= GradeConstant.F.hasValue();
+//				    	break;
+//				    	default:
+//				    	cgpa+= GradeConstant.NOT_GRADED.hasValue();
+//				    	
+//					};
+//					
+//					logger.info("graded");
+//					
+//				});
+//					
+//				}catch(SQLException se) {
+//					
+//					logger.error(se.getMessage());
+//					
+//				}
+//		
+//		GradeCard gradeCard= new GradeCard();
+//		gradeCard.setReg_list(CoursesOfStudent);
+//		gradeCard.setStudentId(studentId);
+//		gradeCard.setCgpa(cgpa/(double)CoursesOfStudent.size());
+//		return gradeCard;
 	}
 
 	/**
@@ -129,7 +236,17 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	
 	public List<Course> viewCourses(String studentId) throws SQLException {
-		return registrationDAOInterface.viewCourses(studentId);
+		List<Course> AvailableCourses = new ArrayList<Course>();
+		registeredCourseRepository.availableCoursesByStudentId(studentId).forEach(course -> {
+			Course c = new Course();
+			c.setCourseId(course[0].toString());
+			c.setSeats((Integer)course[1]);
+			c.setCourseName(course[2].toString());
+			c.setInstructorId(course[3].toString());
+			
+			AvailableCourses.add(c);
+		});
+		return AvailableCourses;
 	}
 
 	/**
@@ -141,7 +258,17 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
-		return registrationDAOInterface.viewRegisteredCourses(studentId);
+		List<Course> RegisteredCourses = new ArrayList<Course>();
+		registeredCourseRepository.enrolledCoursesByStudentId(studentId).forEach(course -> {
+			Course c = new Course();
+			c.setCourseId(course[0].toString());
+			c.setSeats((Integer)course[1]);
+			c.setCourseName(course[2].toString());
+			c.setInstructorId(course[3].toString());
+			
+			RegisteredCourses.add(c);
+		});
+		return RegisteredCourses;
 	}
     
 	/**
@@ -153,7 +280,8 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 
 	public boolean getRegistrationStatus(String studentId) throws SQLException {
-		return registrationDAOInterface.getRegistrationStatus(studentId);
+		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		return st.get().isRegistered();
 	}
 	
 	/**
@@ -164,27 +292,27 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	
 	public void setRegistrationStatus(String studentId) throws SQLException {
-		registrationDAOInterface.setRegistrationStatus(studentId);
-
+		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		st.get().setRegistered(true);
 	}
 
 	@Override
 	public boolean isReportGenerated(String studentId) throws SQLException {
-		
-		return registrationDAOInterface.isReportGenerated(studentId);
+		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		return st.get().isReportGenerated();
 	}
 
 	@Override
 	public boolean getPaymentStatus(String studentId) throws SQLException 
 	{
-		return registrationDAOInterface.getPaymentStatus(studentId);
-		
+		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		return st.get().isPaid();
 	}
 
 	@Override
 	public void setPaymentStatus(String studentId) throws SQLException{
-		registrationDAOInterface.setPaymentStatus(studentId);
-		
+		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		st.get().setPaid(true);
 	}
 
 }

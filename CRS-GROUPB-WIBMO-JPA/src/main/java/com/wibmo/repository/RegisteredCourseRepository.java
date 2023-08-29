@@ -29,7 +29,7 @@ public interface RegisteredCourseRepository extends CrudRepository<RegisteredCou
 	@Query("SELECT CASE WHEN COUNT(rc) > 0 THEN true ELSE false END FROM RegisteredCourse rc WHERE rc.registeredCourseId.courseId = :courseId AND rc.registeredCourseId.studentId = :studentId")
     boolean existsByCourseIdAndStudentId(@Param("courseId") String courseId, @Param("studentId") String studentId);
 	
-	@Query(value = "SELECT c.courseId,c.seats,c.courseName,c.professorId FROM Course c INNER JOIN RegisteredCourse rc ON c.courseId = rc.courseId WHERE rc.studentId = :studentId", nativeQuery = true)
+	@Query(value = "SELECT c.courseId,c.seats,c.courseName,c.professorId,c.courseFee FROM Course c INNER JOIN RegisteredCourse rc ON c.courseId = rc.courseId WHERE rc.studentId = :studentId", nativeQuery = true)
 	List<Object[]> enrolledCoursesByStudentId(@Param("studentId") String studentId);
 
 	@Query(value = "select * from Course where courseId not in  (select courseId  from registeredcourse where studentId = ?) and seats > 0", nativeQuery = true)

@@ -4,13 +4,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wibmo.constants.NotificationTypeConstant;
+import com.wibmo.constants.PaymentModeConstant;
 import com.wibmo.entity.Course;
 import com.wibmo.entity.GradeCard;
+import com.wibmo.entity.Payment;
 import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
+import com.wibmo.service.NotificationServiceInterface;
 import com.wibmo.service.RegistrationServiceInterface;
+
+import net.minidev.json.JSONObject;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +45,9 @@ public class StudentController {
 	
 	@Autowired
 	private RegistrationServiceInterface registrationService;
+	
+	@Autowired
+	private NotificationServiceInterface notificationService;
 
 	/**
 	 * Method for course regisration of student for the semester
@@ -271,6 +286,32 @@ public class StudentController {
 		
 	}
 
+    @RequestMapping(consumes=MediaType.APPLICATION_JSON ,method = RequestMethod.GET,value = "/payFee/{studentId}")
+	public ResponseEntity payTheFee(@RequestBody String jsonBody,@PathVariable("studentId") String studentId) throws JsonMappingException, JsonProcessingException {
+    	ObjectMapper objectMapper = new ObjectMapper();
+    	JsonNode jsonNode = objectMapper.readTree(jsonBody);
+		logger.info("Fee is about to be paid by the  student: "+studentId);
+        try{
+        	double feeToBePaid = registrationService.calculateFee(studentId);
+        	String modeOfPayment = jsonNode.get("paymentMode").asText();
+        	PaymentModeConstant paymentMode;
+        	switch(modeOfPayment) {
+        		case "NET_BANKING": paymentMode = PaymentModeConstant.NET_BANKING;
+        		break;
+        		case "DEBIT_CARD": paymentMode = PaymentModeConstant.DEBIT_CARD;
+        		break;
+        		case "CREDIT_CARD": paymentMode = PaymentModeConstant.CREDIT_CARD;
+        		break;
+        		default: paymentMode = PaymentModeConstant.DEBIT_CARD;
+        	}
+        	notificationService.sendNotification(NotificationTypeConstant.PAYED,studentId, paymentMode, feeToBePaid);
+        	registrationService.setPaymentStatus(studentId);
+            return new ResponseEntity("Feet Has been successfully paid by student: "+studentId+" through "+modeOfPayment,HttpStatus.OK);
+        } catch(SQLException e){
+            return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }		
+		
+	}
     /**
      * Shows if Report Card of a student has been generated already
      * @param studentId

@@ -5,7 +5,6 @@ package com.wibmo.service;
 
 import com.wibmo.entity.*;
 import com.wibmo.exception.*;
-import com.wibmo.repository.AdminDAOInterface;
 import com.wibmo.repository.CourseRepository;
 import com.wibmo.repository.ProfessorCourseRequestRepository;
 import com.wibmo.repository.ProfessorRepository;
@@ -28,9 +27,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceImpl implements AdminServiceInterface{
 	private static final Logger logger = LogManager.getLogger(AdminServiceImpl.class);
-	
-	@Autowired
-	private AdminDAOInterface adminDAOImpl;
+
 	
 	@Autowired
 	private CourseRepository courseRepository;
@@ -201,7 +198,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	public List<RegisteredCourse> generateGradeCard(String studentId)
 	{
 		List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();  
-		registeredCourseRepository.findByStudentId(studentId).forEach(registeredcourse -> registeredCourses.add(registeredcourse)); 
+		registeredCourseRepository.findByRegisteredCourseIdStudentId(studentId).forEach(registeredcourse -> registeredCourses.add(registeredcourse)); 
 		this.setGeneratedReportCardTrue(studentId);
 		return registeredCourses;
 		

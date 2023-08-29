@@ -2,7 +2,14 @@ package com.wibmo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class RegisteredCourseId implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String courseId;
 	private String studentId;
 	

@@ -201,7 +201,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 			c.setSeats((Integer)course[1]);
 			c.setCourseName(course[2].toString());
 			c.setInstructorId(course[3].toString());
-			
+			c.setCourseFee((double)course[4]);
 			AvailableCourses.add(c);
 		});
 		return AvailableCourses;
@@ -223,7 +223,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 			c.setSeats((Integer)course[1]);
 			c.setCourseName(course[2].toString());
 			c.setInstructorId(course[3].toString());
-			
+			c.setCourseFee((Double)course[4]);
 			RegisteredCourses.add(c);
 		});
 		return RegisteredCourses;

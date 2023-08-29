@@ -9,7 +9,7 @@ package com.wibmo.constants;
 public enum GenderConstant {
 	MALE(0),FEMALE(1),OTHER(2);
 	
-	private final int gender;
+	private int gender;
 	
 	/**
 	 * Parameterized Constructor

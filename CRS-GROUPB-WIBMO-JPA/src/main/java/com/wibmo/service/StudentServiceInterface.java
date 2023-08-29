@@ -6,6 +6,7 @@ package com.wibmo.service;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.GenderConstant;
+import com.wibmo.entity.Student;
 import com.wibmo.exception.StudentNotRegisteredException;
 
 /**
@@ -29,7 +30,7 @@ public interface StudentServiceInterface {
 	 * @return
 	 * @throws StudentNotRegisteredException 
 	 */
-	public String register(String name,String userID,String password,GenderConstant gender,int sem,String branch,String address) throws StudentNotRegisteredException;
+	public String register(Student student) throws StudentNotRegisteredException;
 	
 	/**
 	 * Method to get Student ID from User ID

@@ -27,7 +27,15 @@ public class Course implements Serializable {
 	@Column(name="seats")
 	private int seats = 10;
 	
+	@Column(name="courseFee")
+	private double courseFee;
 
+	public double getCourseFee() {
+		return courseFee;
+	}
+	public void setCourseFee(double courseFee) {
+		this.courseFee = courseFee;
+	}
 	public String getCourseId() {
 		return courseId;
 	}

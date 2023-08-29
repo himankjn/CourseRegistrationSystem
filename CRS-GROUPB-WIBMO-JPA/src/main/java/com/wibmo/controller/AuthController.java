@@ -50,9 +50,7 @@ public class AuthController {
 	@RequestMapping(value="/register",method = RequestMethod.POST)
 	public ResponseEntity registerStudent(@RequestBody Student student) {
 		try {
-			studentService.register(student.getName(), student.getUserId(), 
-					student.getPassword(), student.getGender(), student.getGradYear(),
-					student.getDepartment(), student.getAddress());
+			studentService.register(student);
 			return new ResponseEntity("Student registered with id: "+student.getUserId(),HttpStatus.OK);
 		}
 		catch(StudentNotRegisteredException ex)
@@ -89,6 +87,9 @@ public class AuthController {
 				}
 				return new ResponseEntity("Logged in as "+roleInp,HttpStatus.OK);
 				}
+			catch (UserNotFoundException e) {
+					return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+				}
 			catch(RoleMismatchException e) {
 				return new ResponseEntity("RoleMismatch",HttpStatus.NOT_ACCEPTABLE);
 			}
@@ -108,7 +109,12 @@ public class AuthController {
 	@RequestMapping(value="updatePassword/{id}/{pass}",method=RequestMethod.PUT)
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ResponseEntity updatePassword(@PathVariable("id") String userId,@PathVariable("pass") String password) {
-			boolean isUpdated=userService.updatePassword(userId, password);
+			boolean isUpdated;
+			try {
+				isUpdated = userService.updatePassword(userId, password);
+			} catch (UserNotFoundException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 			if(isUpdated) {
 				return new ResponseEntity("Password Updated!",HttpStatus.OK);
 			}

@@ -1,10 +1,12 @@
-package com.wibmo.service;
+package com.wibmo.service.Impl;
 
+import com.wibmo.entity.User;
 import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.UserNotFoundException;
-import com.wibmo.repository.UserDAOImpl;
-import com.wibmo.repository.UserDAOInterface;
+import com.wibmo.repository.UserRepository;
 import com.wibmo.service.UserServiceInterface;
+
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,24 +22,29 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserServiceInterface {
-	private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
-	
+
 	@Autowired
-	UserDAOInterface userDaoInterface;
-	
+	UserRepository userRepository;
 	/**
 	 * Method to update password of a user
 	 * @param userID
 	 * @param newPassword
 	 * @return boolean indicating if the password is updated successfully
+	 * @throws UserNotFoundException 
 	 */
-	
 	@Override
-	public boolean updatePassword(String userID,String newPassword) {
-		return userDaoInterface.updatePassword(userID, newPassword);
+	public boolean updatePassword(String userID,String newPassword) throws UserNotFoundException {
+		Optional<User> user=userRepository.findByUserId(userID);
+		if(user.isEmpty()) {
+			throw new UserNotFoundException(userID);
+		}
+		else {
+			userRepository.updatePassword(userID, newPassword);
+			return true;
+		}
 	}
 
-	
+//	
 	/**
 	 * Method to verify User credentials
 	 * @param userID
@@ -47,15 +54,13 @@ public class UserServiceImpl implements UserServiceInterface {
 
 	@Override
 	public boolean verifyCredentials(String userID, String password) throws UserNotFoundException {
-		try {
-			return userDaoInterface.verifyCredentials(userID, password);
+		Optional<User> user=userRepository.findByUserId(userID);
+		if(user.isEmpty()) {
+			throw new UserNotFoundException(userID);
 		}
-		catch(UserNotFoundException e){
-			logger.error("User with given user id: "+ userID+" not found!");
-			return false;
+		else {
+			return password.equals(user.get().getPassword());
 		}
-		
-		
 	}
 	
 	/**
@@ -63,16 +68,23 @@ public class UserServiceImpl implements UserServiceInterface {
 	 * @param userId
 	 * @return RoleConstant of the User
 	 */
-	@Override
-	public String getRole(String userId) {
-		return userDaoInterface.getRole(userId);
-	}
 
 	@Override
-	public void verifyUserRole(String userId, String role) throws RoleMismatchException {
-		String actualRole=getRole(userId);
+	public void verifyUserRole(String userId, String role) throws RoleMismatchException, UserNotFoundException {
+		String actualRole = getRole(userId);
 		if(!actualRole.equals(role))
 			throw new RoleMismatchException(userId,role);
+	}
+	
+	@Override
+	public String getRole(String userId) throws UserNotFoundException {
+		Optional<User> user=userRepository.findByUserId(userId);
+		if(user.isEmpty()) {
+			throw new UserNotFoundException(userId);
+		}
+		else {
+			return user.get().getRole().toString();
+		}
 	}
 
 	

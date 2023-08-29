@@ -1,4 +1,4 @@
-package com.wibmo.service;
+package com.wibmo.service.Impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,11 +13,10 @@ import com.wibmo.repository.CourseRepository;
 import com.wibmo.repository.ProfessorCourseRequestRepository;
 import com.wibmo.repository.ProfessorRepository;
 import com.wibmo.repository.RegisteredCourseRepository;
-import com.wibmo.repository.StudentDAOImpl;
-import com.wibmo.repository.StudentDAOInterface;
 import com.wibmo.repository.StudentRepository;
+import com.wibmo.service.StudentServiceInterface;
 
-import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
+import java.util.Optional;
 
 /**
  * 
@@ -31,22 +30,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
 	private static final Logger logger = LogManager.getLogger(StudentServiceImpl.class);
 	
 	@Autowired
-	StudentDAOInterface studentDaoInterface;
-
-	@Autowired
-	private CourseRepository courseRepository;
-	
-	@Autowired
-	private ProfessorRepository professorRepository;
-	
-	@Autowired
-	private RegisteredCourseRepository registeredCourseRepository;
-	
-	@Autowired
-	private ProfessorCourseRequestRepository professorCourseRequestRepository;
-	
-	@Autowired
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 
 	/**
 	 * Method to register a student, although student can't login until it's approved by admin
@@ -61,20 +45,10 @@ public class StudentServiceImpl implements StudentServiceInterface {
 	 * @return Student ID
 	 * @throws StudentNotRegisteredException
 	 */
-	public String register(String name,String userId,String password,GenderConstant gender,int batch,String branch,String address) throws StudentNotRegisteredException{
-		String studentId;
-		Student newStudent=new Student();
-		newStudent.setName(name);
-		newStudent.setUserId(userId);
-		newStudent.setStudentId(userId);
-		newStudent.setPassword(password);
-		newStudent.setGender(gender);
-		newStudent.setGradYear(batch);
-		newStudent.setDepartment(branch);
-		newStudent.setAddress(address);
+	public String register(Student newStudent) throws StudentNotRegisteredException{
 		newStudent.setApproved(false);
 		newStudent.setRole(RoleConstant.STUDENT);
-		studentId = studentRepository.save(newStudent).getStudentId();
+		String studentId = studentRepository.save(newStudent).getStudentId();
 		logger.info("\nYour account has been created and pending for Approval by Admin.\n");
 		return studentId;
 	}
@@ -100,7 +74,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
      */
 	@Override
 	public boolean isApproved(String studentId) {
-		java.util.Optional<Student> st = studentRepository.findById(studentId);
+		Optional<Student> st = studentRepository.findById(studentId);
 		return st.get().isApproved();
 	}
 

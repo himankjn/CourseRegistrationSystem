@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.wibmo.entity.Course;
 import com.wibmo.entity.Grade;
 import com.wibmo.entity.GradeCard;
+import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
@@ -23,7 +24,7 @@ import com.wibmo.exception.SeatNotAvailableException;
 public interface RegistrationServiceInterface {
 	
 		public boolean addCourse(String courseCode, String studentId)
-			throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException;
+			throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException;
 
 	/**
 	 * Method to set student registration status

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wibmo.service;
+package com.wibmo.service.Impl;
 
 import com.wibmo.entity.*;
 import com.wibmo.exception.*;
@@ -10,6 +10,7 @@ import com.wibmo.repository.ProfessorCourseRequestRepository;
 import com.wibmo.repository.ProfessorRepository;
 import com.wibmo.repository.RegisteredCourseRepository;
 import com.wibmo.repository.StudentRepository;
+import com.wibmo.service.AdminServiceInterface;
 import com.wibmo.validator.AdminValidator;
 
 import java.util.ArrayList;

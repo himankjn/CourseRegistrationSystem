@@ -16,7 +16,7 @@ public class RegisteredCourseId implements Serializable{
 	public RegisteredCourseId(){
 		
 	}
-	private RegisteredCourseId(String courseId, String studentId){
+	public RegisteredCourseId(String courseId, String studentId){
 		this.setCourseId(courseId);
 		this.setStudentId(studentId);
 	}

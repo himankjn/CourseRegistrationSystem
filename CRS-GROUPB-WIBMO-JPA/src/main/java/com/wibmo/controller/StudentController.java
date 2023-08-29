@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.wibmo.entity.Course;
 import com.wibmo.entity.GradeCard;
+import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
@@ -38,9 +39,10 @@ public class StudentController {
 	 * @param studentId
 	 * @param courseList
 	 * @return ResponseEntity
+	 * @throws CourseAlreadyRegisteredException 
 	 */
 	@RequestMapping(value="/courseRegistration/{sId}",method=RequestMethod.POST)
-	private ResponseEntity registerCourses(@PathVariable("sId") String studentId, @RequestBody List<Course> courseList)
+	private ResponseEntity registerCourses(@PathVariable("sId") String studentId, @RequestBody List<Course> courseList) throws CourseAlreadyRegisteredException
 	{
 		List<Course> registeredCourses=new ArrayList<Course>();
 		boolean is_registered;
@@ -104,10 +106,12 @@ public class StudentController {
         logger.info("Adding and trying to register a course for a student");
         try{
             registrationService.addCourse(courseId,studentId);
-            return new ResponseEntity("Course: "+courseId+" got added to student: "+studentId,HttpStatus.OK);
+            return new ResponseEntity("Course: "+courseId+" added for student: "+studentId,HttpStatus.OK);
         } catch(CourseNotFoundException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch(CourseLimitExceededException e){
+        } catch(CourseAlreadyRegisteredException e) {
+        	return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch(CourseLimitExceededException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         } catch(SeatNotAvailableException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -127,7 +131,7 @@ public class StudentController {
 		logger.info("Dropping and trying to de-register a course for a student");
 		try{
             registrationService.dropCourse(courseId,studentId,registrationService.viewRegisteredCourses(studentId));
-            return new ResponseEntity("Course: "+courseId+" got dropped to student: "+studentId,HttpStatus.OK);
+            return new ResponseEntity("Course: "+courseId+" dropped by student: "+studentId,HttpStatus.OK);
         } catch(CourseNotFoundException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         } catch(SQLException e) {

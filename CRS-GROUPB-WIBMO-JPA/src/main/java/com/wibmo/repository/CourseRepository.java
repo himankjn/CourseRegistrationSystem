@@ -16,4 +16,5 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	@Query("update Course set instructorId = instructorId where courseId = courseId")
 	void assignCourse(@Param(value="courseId") String courseId, @Param(value="instructorId") String instructorId);
 	
+	Iterable<Course> findByInstructorId(String profId);
 }

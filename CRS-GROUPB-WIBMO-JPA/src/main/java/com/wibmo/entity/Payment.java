@@ -2,15 +2,50 @@ package com.wibmo.entity;
 
 import java.io.Serializable;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+
+@Entity
+@Table(name = "payment")
 public class Payment implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	@Column(name = "studentId")
 	private String studentId;
+	@Id
+	@Column(name = "referenceId")
 	private String invoiceId;
+	@Column(name = "amount")
 	private double amount;
+	@Column(name = "modeOfPayment")
+	private String paymentMode;
+	@Transient
 	private boolean status;
+
+	/**
+	 * @return the payment mode of transaction
+	 */
+	public String getPaymentMode(){
+		return paymentMode;
+	}
+
+	/**
+	 * sets the payment mode of a transaction
+	 * @param paymentMode
+	 */
+	public void setPaymentMode(String paymentMode){
+		this.paymentMode = paymentMode;
+	}
+
+
 	/**
 	 * @return the studentId
 	 */

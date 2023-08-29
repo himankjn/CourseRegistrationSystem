@@ -11,7 +11,8 @@ import com.wibmo.entity.Student;
 
 public interface StudentRepository extends CrudRepository<Student,String>{
 	Iterable<Student> findAllByIsApproved(boolean isApproved);
-
+	Student findStudentByUserId(String userId);
+	
 	@Modifying
 	@Transactional
 	@Query("update Student s set s.isApproved = :approved where s.studentId = :studentId")

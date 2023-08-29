@@ -29,6 +29,7 @@ import com.wibmo.utils.DBUtils;
 @Repository
 public class StudentDAOImpl implements StudentDAOInterface {
 	private static final Logger logger = LogManager.getLogger(StudentDAOImpl.class);
+
 	
 	/**
 	 * Method to add student to database

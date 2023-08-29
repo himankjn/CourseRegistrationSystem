@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-    private static final Logger logger= LogManager.getLogger(AdminController.class);
+    private static final Logger logger= LogManager.getLogger(StudentController.class);
 	
 	
 	@Autowired

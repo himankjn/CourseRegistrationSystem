@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.wibmo.constants.GenderConstant;
@@ -21,6 +23,9 @@ public class Student extends User implements Serializable{
 	private String department;
 	@Column(name="studentId")
 	private String studentId;
+//	@OneToOne
+//	@JoinColumn(name="userId")
+//	private User user;
 	@Column(name="gradYear")
 	private int gradYear;
 	@Column(name="isApproved")

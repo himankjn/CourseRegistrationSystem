@@ -33,6 +33,17 @@ public class RegisteredCourse implements Serializable
 	@Column(name="grade")
 	private GradeConstant grade;
 	
+	@Column(name="sem")
+	private int sem;
+	
+	public int getSem() {
+		return sem;
+	}
+
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
+
 	public RegisteredCourseId getRegisteredCourseId() {
 		return registeredCourseId;
 	}

@@ -29,7 +29,16 @@ public class Course implements Serializable {
 	
 	@Column(name="courseFee")
 	private double courseFee;
+	
+	@Column(name="sem")
+	private int sem;
 
+	public int getSem() {
+		return sem;
+	}
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
 	public double getCourseFee() {
 		return courseFee;
 	}

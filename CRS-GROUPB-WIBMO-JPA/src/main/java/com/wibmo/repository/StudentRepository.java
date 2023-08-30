@@ -1,5 +1,7 @@
 package com.wibmo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,7 +13,9 @@ import com.wibmo.entity.Student;
 
 public interface StudentRepository extends CrudRepository<Student,String>{
 	Iterable<Student> findAllByIsApproved(boolean isApproved);
-	Student findStudentByUserId(String userId);
+	
+	Optional<Student> findByUserId(String userId);
+	Optional<Student>findByStudentId(String studentId);
 	
 	@Modifying
 	@Transactional
@@ -27,5 +31,11 @@ public interface StudentRepository extends CrudRepository<Student,String>{
 	@Transactional
 	@Query("update Student s set s.isReportGenerated = 1 where s.studentId = :studentId")
 	void setGeneratedReportCardTrue(@Param(value="studentId")String studentId);
+
+	@Modifying
+	@Transactional
+	@Query("update Student s set s.sem = :sem where s.studentId = :studentId")
+	void setSem(@Param(value="studentId")String studentId,@Param(value="sem") int sem);
+
 	
 }

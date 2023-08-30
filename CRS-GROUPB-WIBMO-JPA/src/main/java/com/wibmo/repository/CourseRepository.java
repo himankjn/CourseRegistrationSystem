@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import com.wibmo.constants.SQLQueriesConstant;
 
 import com.wibmo.entity.Course;
 
@@ -20,7 +21,7 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	 */
 	@Modifying
 	@Transactional
-	@Query("update Course set instructorId = :instructorId where courseId = :courseId")
+	@Query(SQLQueriesConstant.ASSIGN_COURSE_QUERY)
 	void assignCourse(@Param(value="courseId") String courseId, @Param(value="instructorId") String instructorId);
 
 	/**
@@ -29,7 +30,7 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	 */
 	@Modifying
 	@Transactional
-	@Query("update Course set seats = seats-1 where courseId = :courseId")
+	@Query(SQLQueriesConstant.DECREMENT_COURSE_SEATS)
 	void decrementSeats(@Param(value="courseId") String courseId);
 	
 	/**
@@ -38,7 +39,7 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	 */
 	@Modifying
 	@Transactional
-	@Query("update Course set seats = seats+1 where courseId = :courseId")
+	@Query(SQLQueriesConstant.INCREMENT_SEAT_QUERY)
 	void incrementSeats(@Param(value="courseId") String courseId);
 	
 	/**
@@ -46,8 +47,8 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	 * @param courseId
 	 * @return
 	 */
-	@Query("SELECT CASE WHEN c.seats > 0 THEN true ELSE false END FROM Course c WHERE c.courseId = :courseId")
-    boolean existsSeatsByCourseId(@Param("courseId") String courseId);
+	@Query(SQLQueriesConstant.SEAT_AVAILABLE)
+	boolean existsSeatsByCourseId(@Param("courseId") String courseId);
 	
 	/**
 	 * finds professor
@@ -56,7 +57,7 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	 */
 	Iterable<Course> findByInstructorId(String profId);
 	
-	@Query("select sum(c.courseFee) from Course c inner join RegisteredCourse r on c.courseId=r.registeredCourseId.courseId where r.registeredCourseId.studentId=:studentId and r.sem=:sem")
+	@Query(SQLQueriesConstant.TOTAL_FEES)
 	double calculateFeeForStudentWithSem(String studentId,int sem);
 
 	Optional<Course> findByCourseId(String courseCode);

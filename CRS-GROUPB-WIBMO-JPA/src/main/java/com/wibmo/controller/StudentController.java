@@ -60,28 +60,28 @@ public class StudentController {
 	private ResponseEntity registerCourses(@PathVariable("sId") String studentId, @RequestBody List<Course> courseList) throws CourseAlreadyRegisteredException
 	{
 		List<Course> registeredCourses=new ArrayList<Course>();
-		boolean is_registered;
+		boolean isRegistered;
 		try {
-			is_registered = registrationService.getRegistrationStatus(studentId);
+			isRegistered = registrationService.getRegistrationStatus(studentId);
 		} catch (SQLException e) {
 			return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		if(is_registered)
+		if(isRegistered)
 		{
 			return new ResponseEntity("Already registered!",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		int reg_count=0;
+		int regCount=0;
 		for(Course course: courseList)
 		{
-			if(reg_count==4)break;
+			if(regCount==4)break;
 			String courseCode= course.getCourseId();
 			try {
 				if(registrationService.addCourse(courseCode,studentId))
 				{
 					logger.info("Course " + courseCode + " registered sucessfully.");
 					registeredCourses.add(course);
-					reg_count++;
+					regCount++;
 				}
 				else
 				{
@@ -286,7 +286,7 @@ public class StudentController {
 		
 	}
 
-    @RequestMapping(consumes=MediaType.APPLICATION_JSON ,method = RequestMethod.GET,value = "/payFee/{studentId}")
+    @RequestMapping(consumes=MediaType.APPLICATION_JSON ,method = RequestMethod.PUT,value = "/payFee/{studentId}")
 	public ResponseEntity payTheFee(@RequestBody String jsonBody,@PathVariable("studentId") String studentId) throws JsonMappingException, JsonProcessingException {
     	ObjectMapper objectMapper = new ObjectMapper();
     	JsonNode jsonNode = objectMapper.readTree(jsonBody);

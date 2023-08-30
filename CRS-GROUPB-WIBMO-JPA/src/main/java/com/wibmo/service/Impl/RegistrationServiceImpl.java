@@ -179,7 +179,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 			};
 		}		
 		GradeCard gradeCard= new GradeCard();
-		gradeCard.setReg_list(coursesOfStudent);
+		gradeCard.setRegList(coursesOfStudent);
 		gradeCard.setStudentId(studentId);
 		gradeCard.setCgpa(cgpa/(double)coursesOfStudent.size());
 		return gradeCard;

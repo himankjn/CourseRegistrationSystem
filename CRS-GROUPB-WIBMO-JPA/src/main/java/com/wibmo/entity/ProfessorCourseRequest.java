@@ -9,7 +9,7 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="prof_course_request")
+@Table(name="profCourseRequest")
 @IdClass(ProfessorCourseRequestId.class)
 public class ProfessorCourseRequest implements Serializable{
 

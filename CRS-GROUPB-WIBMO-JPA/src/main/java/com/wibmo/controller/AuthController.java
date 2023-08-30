@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wibmo.constants.NotificationTypeConstant;
 import com.wibmo.entity.Student;
 import com.wibmo.exception.RoleMismatchException;
 import com.wibmo.exception.StudentNotRegisteredException;
 import com.wibmo.exception.UserNotFoundException;
+import com.wibmo.service.NotificationServiceInterface;
 import com.wibmo.service.StudentServiceInterface;
 import com.wibmo.service.UserServiceInterface;
 
@@ -28,6 +30,8 @@ public class AuthController {
 	private StudentServiceInterface studentService;
 	@Autowired
 	private UserServiceInterface userService;
+	@Autowired
+	private NotificationServiceInterface notificationService;
 	
 //	{
 //        "userId": "parth123@gmail.com",
@@ -51,6 +55,7 @@ public class AuthController {
 	public ResponseEntity registerStudent(@RequestBody Student student) {
 		try {
 			studentService.register(student);
+			notificationService.sendNotification(NotificationTypeConstant.REGISTRATION, student.getStudentId(), null, 0);
 			return new ResponseEntity("Student registered with id: "+student.getUserId(),HttpStatus.OK);
 		}
 		catch(StudentNotRegisteredException ex)

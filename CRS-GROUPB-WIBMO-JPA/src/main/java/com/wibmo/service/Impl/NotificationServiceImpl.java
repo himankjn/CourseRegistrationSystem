@@ -68,6 +68,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 		}
 		else {
 			Notification newNotification = new Notification();
+			newNotification.setReferenceId("-");
 			newNotification.setType(type.toString());
 			newNotification.setUserId(studentId);
 			notificationId = notificationRepository.save(newNotification).getNotifId();

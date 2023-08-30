@@ -11,7 +11,7 @@ public class GradeCard implements Serializable
 	private static final long serialVersionUID = 1L;
 	String studentId;
 	double cgpa;
-	List<RegisteredCourse> reg_list ;
+	List<RegisteredCourse> regList ;
 	
 	/*public float calCGPA()
 	{
@@ -49,17 +49,17 @@ public class GradeCard implements Serializable
 	}
 
 	/**
-	 * @return the reg_list
+	 * @return the regList
 	 */
-	public List<RegisteredCourse> getReg_list() {
-		return reg_list;
+	public List<RegisteredCourse> getRegList() {
+		return regList;
 	}
 
 	/**
-	 * @param reg_list the reg_list to set
+	 * @param regList the regList to set
 	 */
-	public void setReg_list(List<RegisteredCourse> reg_list) {
-		this.reg_list = reg_list;
+	public void setRegList(List<RegisteredCourse> regList) {
+		this.regList = regList;
 	}
 	
 	

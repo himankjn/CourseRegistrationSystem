@@ -2,24 +2,29 @@ package com.wibmo.entity;
 
 import java.io.Serializable;
 
-import com.wibmo.constants.GenderConstant;
-import com.wibmo.constants.RoleConstant;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="admin")
 public class Admin extends User implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String adminID;
+	
+	@Column(name="adminId")
+	private String adminId;
 	
 
 
-	public String getAdminID() {
-		return adminID;
+	public String getAdminId() {
+		return adminId;
 	}
 
-	public void setAdminID(String adminID) {
-		this.adminID = adminID;
+	public void setAdminID(String adminId) {
+		this.adminId = adminId;
 	}	
 
 }

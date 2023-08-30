@@ -18,6 +18,7 @@ import com.wibmo.entity.RegisteredCourseId;
 import com.wibmo.entity.Student;
 import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
+import com.wibmo.exception.CourseNotApplicableForSemesterException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
 import com.wibmo.repository.CourseRepository;
@@ -42,7 +43,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Autowired
 	private RegisteredCourseRepository registeredCourseRepository;
 	
-	
 	@Autowired
 	private StudentRepository studentRepository;
 	/**
@@ -56,14 +56,16 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws CourseLimitExceedException 
 	 * @throws SQLException 
 	 * @throws CourseAlreadyRegisteredException 
+	 * @throws CourseNotApplicableForSemesterException 
 	 */
 	@Override
 	
-	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException 
+	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException, CourseNotApplicableForSemesterException 
 	{
-       
-		
-		List<Course> availableCourseList=viewCourses(studentId);
+		List<Course> availableCourseList=viewAvailableCourses(studentId);
+		Optional<Student> student= studentRepository.findByStudentId(studentId);
+		Optional<Course> course= courseRepository.findByCourseId(courseCode);
+		StudentValidator.verifySemesterMatch(courseCode,student.get().getSem(),course.get().getSem());
 		if (registeredCourseRepository.numberOfRegisteredCourses(studentId) >= 6)
 		{	
 			throw new CourseLimitExceededException(6);
@@ -81,12 +83,10 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 			throw new SeatNotAvailableException(courseCode);
 		} 
 		
-		  
-
 		RegisteredCourse registeredCourse = new RegisteredCourse();
 		registeredCourse.setRegisteredCourseId(new RegisteredCourseId(courseCode,studentId));
 		registeredCourse.setGrade(GradeConstant.NOT_GRADED);
-		
+		registeredCourse.setSem(course.get().getSem());
 		registeredCourseRepository.save(registeredCourse);
 		courseRepository.decrementSeats(courseCode);
 		
@@ -124,10 +124,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @return Fee Student has to pay
 	 * @throws SQLException 
 	 */
-	@Override
 	
+	@Override
 	public double calculateFee(String studentId) throws SQLException {
-		return courseRepository.calculateFee(studentId);
+		int sem=getStudentSem(studentId);
+		return courseRepository.calculateFeeForStudentWithSem(studentId,sem);
 	}
 
 
@@ -141,8 +142,10 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	
 	public GradeCard viewGradeCard(String studentId) throws SQLException {
 		List<RegisteredCourse> coursesOfStudent = new ArrayList<RegisteredCourse>();
+		int sem=getStudentSem(studentId);
 		double cgpa=0;
-		registeredCourseRepository.findByRegisteredCourseIdStudentId(studentId).forEach(course -> coursesOfStudent.add(course));
+		registeredCourseRepository.findByRegisteredCourseIdStudentIdAndSem(studentId,sem).forEach(course -> coursesOfStudent.add(course));
+		Optional<Student> student=studentRepository.findById(studentId);
 		for(RegisteredCourse registeredCourse: coursesOfStudent) {
 			String gradeCon= registeredCourse.getGrade().name();
 			switch(gradeCon) {
@@ -181,6 +184,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		GradeCard gradeCard= new GradeCard();
 		gradeCard.setReg_list(coursesOfStudent);
 		gradeCard.setStudentId(studentId);
+		gradeCard.setSem(student.get().getSem());
 		gradeCard.setCgpa(cgpa/(double)coursesOfStudent.size());
 		return gradeCard;
 	}
@@ -193,37 +197,45 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 */
 	@Override
 	
-	public List<Course> viewCourses(String studentId) throws SQLException {
+	public List<Course> viewAvailableCourses(String studentId) throws SQLException {
 		List<Course> AvailableCourses = new ArrayList<Course>();
-		registeredCourseRepository.availableCoursesByStudentId(studentId).forEach(course -> {
+		int sem= getStudentSem(studentId);
+		registeredCourseRepository.availableCoursesByStudentIdAndSem(studentId,sem).forEach(course -> {
 			Course c = new Course();
 			c.setCourseId(course[0].toString());
 			c.setSeats((Integer)course[1]);
 			c.setCourseName(course[2].toString());
 			c.setInstructorId(course[3].toString());
 			c.setCourseFee((double)course[4]);
+			c.setSem((Integer)course[5]);
 			AvailableCourses.add(c);
 		});
 		return AvailableCourses;
 	}
 
+	@Override
+	public int getStudentSem(String studentId) {
+		return studentRepository.findById(studentId).get().getSem();
+	}
 	/**
 	 * Method to view the list of courses registered by the student
 	 * @param studentId
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
-	@Override
+	
 	
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		List<Course> RegisteredCourses = new ArrayList<Course>();
-		registeredCourseRepository.enrolledCoursesByStudentId(studentId).forEach(course -> {
+		int sem= getStudentSem(studentId);
+		registeredCourseRepository.enrolledCoursesByStudentIdAndSem(studentId,sem).forEach(course -> {
 			Course c = new Course();
 			c.setCourseId(course[0].toString());
 			c.setSeats((Integer)course[1]);
 			c.setCourseName(course[2].toString());
 			c.setInstructorId(course[3].toString());
 			c.setCourseFee((Double)course[4]);
+			c.setSem((Integer)course[5]);
 			RegisteredCourses.add(c);
 		});
 		return RegisteredCourses;
@@ -274,6 +286,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		st.get().setPaid(true);
 		studentRepository.save(st.get());
 		
+	}
+
+	@Override
+	public void setSemForStudent(String studentId, int sem) {
+		studentRepository.setSem(studentId,sem);
 	}
 
 }

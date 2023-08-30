@@ -18,7 +18,7 @@ import com.wibmo.entity.RegisteredCourseId;
 
 public interface RegisteredCourseRepository extends CrudRepository<RegisteredCourse,RegisteredCourseId>{
 
-	Iterable<RegisteredCourse> findByRegisteredCourseIdStudentId(String studentId);
+	Iterable<RegisteredCourse> findByRegisteredCourseIdStudentIdAndSem(String studentId,int sem);
 
 	Iterable<RegisteredCourse> findByGrade(String grade);
 	
@@ -29,11 +29,11 @@ public interface RegisteredCourseRepository extends CrudRepository<RegisteredCou
 	@Query("SELECT CASE WHEN COUNT(rc) > 0 THEN true ELSE false END FROM RegisteredCourse rc WHERE rc.registeredCourseId.courseId = :courseId AND rc.registeredCourseId.studentId = :studentId")
     boolean existsByCourseIdAndStudentId(@Param("courseId") String courseId, @Param("studentId") String studentId);
 	
-	@Query(value = "SELECT c.courseId,c.seats,c.courseName,c.professorId,c.courseFee FROM Course c INNER JOIN RegisteredCourse rc ON c.courseId = rc.courseId WHERE rc.studentId = :studentId", nativeQuery = true)
-	List<Object[]> enrolledCoursesByStudentId(@Param("studentId") String studentId);
+	@Query(value = "SELECT c.courseId,c.seats,c.courseName,c.professorId,c.courseFee,c.sem FROM Course c INNER JOIN RegisteredCourse rc ON c.courseId = rc.courseId WHERE rc.studentId = :studentId And c.sem =:sem", nativeQuery = true)
+	List<Object[]> enrolledCoursesByStudentIdAndSem(@Param("studentId") String studentId, @Param("sem") int sem);
 
-	@Query(value = "select * from Course where courseId not in  (select courseId  from registeredcourse where studentId = ?) and seats > 0", nativeQuery = true)
-	List<Object[]> availableCoursesByStudentId(@Param("studentId") String studentId);
+	@Query(value = "select * from Course where courseId not in  (select courseId  from registeredcourse where studentId = :studentId) and seats > 0 and sem =:sem", nativeQuery = true)
+	List<Object[]> availableCoursesByStudentIdAndSem(@Param("studentId") String studentId, @Param("sem")int sem);
 	
 	@Modifying
 	@Transactional

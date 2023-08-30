@@ -306,7 +306,7 @@ public class StudentController {
         	}
         	notificationService.sendNotification(NotificationTypeConstant.PAYED,studentId, paymentMode, feeToBePaid);
         	registrationService.setPaymentStatus(studentId);
-            return new ResponseEntity("Feet Has been successfully paid by student: "+studentId+" through "+modeOfPayment,HttpStatus.OK);
+            return new ResponseEntity("Fee Has been successfully paid by student: "+studentId+" through "+modeOfPayment,HttpStatus.OK);
         } catch(SQLException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }		

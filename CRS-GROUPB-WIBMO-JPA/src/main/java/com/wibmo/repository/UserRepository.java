@@ -7,12 +7,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wibmo.entity.User;
+import com.wibmo.constants.SQLQueriesConstant;
 
 public interface UserRepository extends CrudRepository<User,String>{
 	Optional<User> findByUserId(String userId);
 
 	@Modifying
 	@Transactional
-	@Query(value="update user set password=?2 where userId = ?1",nativeQuery = true)
+	@Query(value=SQLQueriesConstant.UPDATE_PASSWORD,nativeQuery = true)
 	void updatePassword(String userId, String newPassword);
 }

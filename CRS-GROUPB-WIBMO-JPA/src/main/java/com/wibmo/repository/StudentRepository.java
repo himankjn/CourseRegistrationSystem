@@ -28,4 +28,5 @@ public interface StudentRepository extends CrudRepository<Student,String>{
 	@Query("update Student s set s.isReportGenerated = 1 where s.studentId = :studentId")
 	void setGeneratedReportCardTrue(@Param(value="studentId")String studentId);
 	
+	
 }

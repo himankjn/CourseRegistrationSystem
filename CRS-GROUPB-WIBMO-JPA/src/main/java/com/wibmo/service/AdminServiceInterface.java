@@ -56,7 +56,7 @@ public interface AdminServiceInterface
 	public void approveSingleStudent(String studentid) throws StudentNotFoundForApprovalException;
 	
 	
-	public void approveAllStudents(List<Student> studentList);
+	public void approveAllStudents();
 	
 	/**
 	 * Method to add Professor to DB

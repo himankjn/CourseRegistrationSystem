@@ -158,7 +158,7 @@ public class AdminController {
 	public ResponseEntity approveAllStudents() {
 		List<Student> studentList= adminService.viewPendingAdmissions();
 		try {
-			adminService.approveAllStudents(studentList);
+			adminService.approveAllStudents();
 			//notify
 			for(Student student: studentList){
 				notificationService.sendNotification(NotificationTypeConstant.APPROVED, student.getUserId(), null,0);

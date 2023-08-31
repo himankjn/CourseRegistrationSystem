@@ -17,6 +17,7 @@ import com.wibmo.entity.GradeCard;
 import com.wibmo.entity.Payment;
 import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
+import com.wibmo.exception.CourseNotApplicableForSemesterException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
 import com.wibmo.service.NotificationServiceInterface;
@@ -48,6 +49,7 @@ public class StudentController {
 	
 	@Autowired
 	private NotificationServiceInterface notificationService;
+	
 
 	/**
 	 * Method for course regisration of student for the semester
@@ -56,8 +58,8 @@ public class StudentController {
 	 * @return ResponseEntity
 	 * @throws CourseAlreadyRegisteredException 
 	 */
-	@RequestMapping(value="/courseRegistration/{sId}",method=RequestMethod.POST)
-	private ResponseEntity registerCourses(@PathVariable("sId") String studentId, @RequestBody List<Course> courseList) throws CourseAlreadyRegisteredException
+	@RequestMapping(value="/semRegistration/{sId}/{sem}",method=RequestMethod.POST)
+	private ResponseEntity registerCourses(@PathVariable("sId") String studentId,@PathVariable("sem")int sem, @RequestBody List<Course> courseList) throws CourseAlreadyRegisteredException
 	{
 		List<Course> registeredCourses=new ArrayList<Course>();
 		boolean isRegistered;
@@ -71,6 +73,7 @@ public class StudentController {
 			return new ResponseEntity("Already registered!",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
+		registrationService.setSemForStudent(studentId,sem);
 		int regCount=0;
 		for(Course course: courseList)
 		{
@@ -89,11 +92,15 @@ public class StudentController {
 				}
 			} catch (CourseNotFoundException e) {
 				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-			} catch (CourseLimitExceededException e) {
+			} catch (CourseNotApplicableForSemesterException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			}catch (CourseLimitExceededException e) {
 				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 			} catch (SeatNotAvailableException e) {
 				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-			} catch (SQLException e) {
+			} catch (CourseAlreadyRegisteredException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			}catch (SQLException e) {
 				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
@@ -115,9 +122,10 @@ public class StudentController {
      * @param studentId
      * @param courseId
      * @return
+     * @throws CourseNotApplicableForSemesterException 
      */
 	@RequestMapping(method = RequestMethod.POST,value = "/addCourse/{studentId}/{courseId}")
-	public ResponseEntity addCourseToStudent(@PathVariable("studentId") String studentId,@PathVariable("courseId") String courseId) {
+	public ResponseEntity addCourseToStudent(@PathVariable("studentId") String studentId,@PathVariable("courseId") String courseId) throws CourseNotApplicableForSemesterException {
         logger.info("Adding and trying to register a course for a student");
         try{
             registrationService.addCourse(courseId,studentId);
@@ -129,6 +137,8 @@ public class StudentController {
         }catch(CourseLimitExceededException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         } catch(SeatNotAvailableException e){
+            return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch(CourseNotApplicableForSemesterException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         } catch(SQLException e) {
         	return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
@@ -244,7 +254,7 @@ public class StudentController {
 	public ResponseEntity viewAvailableCourses(@PathVariable("studentId") String studentId) {
 		logger.info("Retrieving Available courses that student: "+studentId+" can add");
         try{
-            List<Course> courseList = registrationService.viewCourses(studentId);
+            List<Course> courseList = registrationService.viewAvailableCourses(studentId);
             return new ResponseEntity(courseList,HttpStatus.OK);
         } catch(SQLException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);

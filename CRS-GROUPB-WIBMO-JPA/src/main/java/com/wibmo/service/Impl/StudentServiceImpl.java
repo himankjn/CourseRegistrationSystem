@@ -60,8 +60,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
      */
     @Override
     public String getStudentId(String userId) {
-
-		return studentRepository.findStudentByUserId(userId).getStudentId();
+		return studentRepository.findByUserId(userId).get().getStudentId();
     }
 
 

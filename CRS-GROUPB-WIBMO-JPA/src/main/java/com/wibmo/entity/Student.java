@@ -23,9 +23,8 @@ public class Student extends User implements Serializable{
 	private String department;
 	@Column(name="studentId")
 	private String studentId;
-//	@OneToOne
-//	@JoinColumn(name="userId")
-//	private User user;
+	@Column(name="sem")
+	private int sem;
 	@Column(name="gradYear")
 	private int gradYear;
 	@Column(name="isApproved")
@@ -36,6 +35,7 @@ public class Student extends User implements Serializable{
 	boolean isPaid;
 	@Column(name="isReportGenerated")
 	boolean isReportGenerated;
+	
 	
 	
 	
@@ -54,6 +54,14 @@ public class Student extends User implements Serializable{
 	public void setPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
+	public int getSem() {
+		return sem;
+	}
+
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
+
 
 	public boolean isReportGenerated() {
 		return isReportGenerated;

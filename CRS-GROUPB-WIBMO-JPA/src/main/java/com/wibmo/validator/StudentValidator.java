@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wibmo.entity.Course;
 import com.wibmo.exception.CourseLimitExceededException;
+import com.wibmo.exception.CourseNotApplicableForSemesterException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.PasswordMismatchException;
 import com.wibmo.exception.SeatNotAvailableException;
@@ -63,6 +64,12 @@ public class StudentValidator {
 		if(!password.equals(confirmPassword)) {
 			throw new PasswordMismatchException(password,confirmPassword);
 		}
+	}
+
+
+	public static void verifySemesterMatch(String course,int sem1,int sem2) throws CourseNotApplicableForSemesterException {
+		if(sem1!=sem2)
+			throw new CourseNotApplicableForSemesterException(course,sem1);
 	}
 	
 

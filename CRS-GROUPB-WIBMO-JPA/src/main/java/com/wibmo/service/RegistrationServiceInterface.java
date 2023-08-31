@@ -10,6 +10,7 @@ import com.wibmo.entity.Grade;
 import com.wibmo.entity.GradeCard;
 import com.wibmo.exception.CourseAlreadyRegisteredException;
 import com.wibmo.exception.CourseLimitExceededException;
+import com.wibmo.exception.CourseNotApplicableForSemesterException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
 
@@ -24,7 +25,7 @@ import com.wibmo.exception.SeatNotAvailableException;
 public interface RegistrationServiceInterface {
 	
 		public boolean addCourse(String courseCode, String studentId)
-			throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException;
+			throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException, CourseNotApplicableForSemesterException;
 
 	/**
 	 * Method to set student registration status
@@ -57,7 +58,7 @@ public interface RegistrationServiceInterface {
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
-	List<Course> viewCourses(String studentId) throws SQLException;
+	List<Course> viewAvailableCourses(String studentId) throws SQLException;
 
 	/**
 	 * Method to view grade card for students
@@ -90,5 +91,15 @@ public interface RegistrationServiceInterface {
 	public boolean isReportGenerated(String studentId) throws SQLException;
 
 	public void setPaymentStatus(String studentId) throws SQLException;
+
+	public void setSemForStudent(String studentId, int sem);
+
+	/**
+	 * Method to view the list of courses registered by the student
+	 * @param studentId
+	 * @return List of courses
+	 * @throws SQLException 
+	 */
+	int getStudentSem(String studentId);
 	
 }

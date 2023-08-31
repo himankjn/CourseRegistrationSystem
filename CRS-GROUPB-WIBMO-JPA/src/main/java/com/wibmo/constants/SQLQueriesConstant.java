@@ -19,10 +19,10 @@ public class SQLQueriesConstant {
 		public static final String DROP_USER_QUERY = "DELETE FROM User where userId=?";
 		public static final String ADD_PROFESSOR_QUERY = "insert into Professor(userId,professorId, department, designation) values (?, ?, ?, ?)";
 		public static final String DROP_PROFESSOR_QUERY = "DELETE FROM professor where userId=?";
-		public static final String ASSIGN_COURSE_QUERY = "update Course set professorId = ? where courseId = ?";
+		public static final String ASSIGN_COURSE_QUERY = "update Course set instructorId = :instructorId where courseId = :courseId";
 		public static final String VIEW_COURSE_QUERY = "select courseId, courseName, professorId from Course";
 		public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address from Professor natural join User where userId = professorId";
-		public static final String SET_GENERATED_REPORT_CARD_TRUE = "update student set isReportGenerated = 1 where studentId = ?";
+		public static final String SET_GENERATED_REPORT_CARD_TRUE = "update Student s set s.isReportGenerated = 1 where s.studentId = :studentId";
 		public static final String GET_GENERATED_REPORT_CARD_TRUE = "select isReportGenerated from student where studentId = ?";
 		public static final String ADD_STUDENT="insert into student (studentId,department,gradYear,isApproved,isRegistered,isReportGenerated,isPaid) values (?,?,?,0,0,0,0)";
 		public static final String IS_APPROVED="select isApproved from student where studentId = ? ";
@@ -34,10 +34,10 @@ public class SQLQueriesConstant {
 		public static final String VIEW_REGISTERED_COURSES=" select * from course inner join registeredcourse on course.courseId = registeredcourse.courseId where registeredcourse.studentId = ?";
 		public static final String VIEW_AVAILABLE_COURSES="select * from course where courseId not in  (select courseId  from registeredcourse where studentId = ?) and seats > 0";
 		public static final String CHECK_COURSE_AVAILABILITY=" select courseId from registeredcourse where studentId = ? ";
-		public static final String DECREMENT_COURSE_SEATS="update course set seats = seats-1 where courseId = ? ";
+		public static final String DECREMENT_COURSE_SEATS="update Course set seats = seats-1 where courseId = :courseId";
 		public static final String ADD_COURSE="insert into registeredcourse (studentId,courseId,grade) values ( ? , ?, ?)";
 		public static final String DROP_COURSE_QUERY = "delete from registeredcourse where courseId = ? AND studentId = ?;";
-		public static final String INCREMENT_SEAT_QUERY  = "update course set seats = seats + 1 where  courseId = ?;";
+		public static final String INCREMENT_SEAT_QUERY  = "update Course set seats = seats+1 where courseId = :courseId";
 		public static final String CALCULATE_FEES  = "select sum(courseFee) from course where courseId in (select courseId from registeredcourse where studentId = ?);";
 		public static final String VIEW_GRADE = "select course.courseId,course.courseName,registeredcourse.grade from course inner join registeredcourse on course.courseId = registeredcourse.courseId where registeredcourse.studentId = ?;";	
 		public static final String GET_SEATS = "select seats from course where courseId = ?;";
@@ -48,23 +48,33 @@ public class SQLQueriesConstant {
 		public static final String SET_REGISTRATION_STATUS="update student set isRegistered = true  where studentId=?";
 		public static final String GET_PAYMENT_STATUS=" select isPaid from student where studentId = ? ";
 		public static final String SET_PAYMENT_STATUS="update student set isPaid = true  where studentId=?";
-		public static final String NUMBER_OF_REGISTERED_COURSES=" select studentId from registeredcourse where studentId = ? ";
+		public static final String NUMBER_OF_REGISTERED_COURSES="select count(rc) from RegisteredCourse rc where rc.registeredCourseId.studentId=:studentId";
 		public static final String IS_REGISTERED=" select courseId from registeredcourse where courseId=? and studentId=? ";
 		public static final String GET_PAYMENT_UUID = "select referenceId from notification where notificationId=?";
 		public static final String GET_GRADES = "select grade from registeredcourse where studentId=?";
 		
 		//ProfessorDao queries
-	
-		public static final String UPDATE_PASSWORD="update user set password=? where userId = ? ";
+		public static final String UPDATE_PASSWORD="update user set password=?2 where userId = ?1";
 		public static final String VERIFY_CREDENTIALS="select password from user where userId = ?";
 		public static final String GET_ROLE="select role from user where userId = ?";
 		public static final String GET_COURSES="select * from course where professorId=?";
 		public static final String GET_ENROLLED_STUDENTS="select course.courseId,course.courseName,registeredcourse.studentId from course inner join registeredcourse on course.courseId = registeredcourse.courseId where course.courseId=?";
-		public static final String ADD_GRADE="update registeredcourse set grade=? where courseId=? and studentId=?";
+		public static final String ADD_GRADE="update RegisteredCourse r set r.grade=:grade where r.registeredCourseId.studentId=:studentId and r.registeredCourseId.courseId=:courseId";
 		public static final String GET_PROF_NAME = "select name from user where userId = ?";
 		public static final String REQUEST_COURSE_ASSIGNMENT = "insert into prof_course_request(userId,courseId) values(?,?)";
 		public static final String GET_UNASSIGNED_COURSES = "select * from course where professorId=?";
 		public static final String GET_PROF_COURSE_REQUESTS = "select userId from prof_course_request where courseId=?";
+		
+		//Miscellaeous queries
+		public static final String SEAT_AVAILABLE ="SELECT CASE WHEN c.seats > 0 THEN true ELSE false END FROM Course c WHERE c.courseId = :courseId";
+		public static final String TOTAL_FEES=	"select sum(c.courseFee) from Course c inner join RegisteredCourse r on c.courseId=r.registeredCourseId.courseId where r.registeredCourseId.studentId=:studentId and r.sem=:sem";
+		public static final String EXIST_BY_STUDENT_ID_COURSE_ID="SELECT CASE WHEN COUNT(rc) > 0 THEN true ELSE false END FROM RegisteredCourse rc WHERE rc.registeredCourseId.courseId = :courseId AND rc.registeredCourseId.studentId = :studentId";
+		public static final String ENROLLED_COURSES_BY_STUDENT_ID="SELECT c.courseId,c.seats,c.courseName,c.professorId,c.courseFee,c.sem FROM Course c INNER JOIN RegisteredCourse rc ON c.courseId = rc.courseId WHERE rc.studentId = :studentId And c.sem =:sem";
+		public static final String AVAILABLE_COURSE_BY_STUDENT_ID=	"select * from Course where courseId not in  (select courseId  from registeredcourse where studentId = :studentId) and seats > 0 and sem =:sem";
+		public static final String ENROLLED_STUDENT	="select new com.wibmo.entity.EnrolledStudent(c.courseId ,c.courseName, r.registeredCourseId.studentId) from Course c inner join RegisteredCourse r on c.courseId = r.registeredCourseId.courseId where c.courseId=:courseId";
+		public static final String SET_IS_APPROVED_BY_ID="update Student s set s.isApproved = :approved where s.studentId = :studentId";
+		public static final String SET_ALL_IS_APPROVED="update Student s set s.isApproved = :isApproved";
+		public static final String SET_STUDENT_SEMESTER = "update Student s set s.sem = :sem where s.studentId = :studentId";
 		
 		
 }

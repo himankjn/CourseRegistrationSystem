@@ -106,4 +106,6 @@ public interface AdminServiceInterface
 	 * @return
 	 */
 	public List<String> viewProfCourseRequests(String courseId);
+
+	int getStudentSem(String studentId);
 }

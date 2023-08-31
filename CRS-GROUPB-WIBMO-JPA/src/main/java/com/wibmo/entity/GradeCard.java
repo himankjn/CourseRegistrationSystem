@@ -11,13 +11,9 @@ public class GradeCard implements Serializable
 	private static final long serialVersionUID = 1L;
 	String studentId;
 	double cgpa;
+	int sem;
 	List<RegisteredCourse> regList ;
 	
-	/*public float calCGPA()
-	{
-		return 0;
-	}*/
-
 	/**
 	 * @return the stud
 	 */
@@ -32,7 +28,13 @@ public class GradeCard implements Serializable
 		this.studentId = stud;
 	}
 
-	
+	public int getSem() {
+		return sem;
+	}
+
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
 
 	/**
 	 * @return the cgpa

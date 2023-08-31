@@ -198,13 +198,19 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	
 	public List<RegisteredCourse> generateGradeCard(String studentId)
 	{
+		int sem=getStudentSem(studentId);
 		List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();  
-		registeredCourseRepository.findByRegisteredCourseIdStudentId(studentId).forEach(registeredcourse -> registeredCourses.add(registeredcourse)); 
+		registeredCourseRepository.findByRegisteredCourseIdStudentIdAndSem(studentId,sem).forEach(registeredcourse -> registeredCourses.add(registeredcourse)); 
 		this.setGeneratedReportCardTrue(studentId);
 		return registeredCourses;
 		
 	}
 
+	@Override
+	public int getStudentSem(String studentId) {
+		return studentRepository.findById(studentId).get().getSem();
+	}
+	
 	@Override
 	public void setGeneratedReportCardTrue(String studentId) {
 		studentRepository.setGeneratedReportCardTrue(studentId);

@@ -13,6 +13,7 @@ import com.wibmo.repository.StudentRepository;
 import com.wibmo.service.AdminServiceInterface;
 import com.wibmo.validator.AdminValidator;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,23 +123,17 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	public void approveSingleStudent(String studentId) throws StudentNotFoundForApprovalException {
 		
 	List<Student> studentList=viewPendingAdmissions();
-		try {
-			if(AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
-				throw new StudentNotFoundForApprovalException(studentId);
-			}
-			studentRepository.setIsApprovedById(true, studentId);
+		if(!AdminValidator.isValidUnapprovedStudent(studentId, studentList)) {
+			throw new StudentNotFoundForApprovalException(studentId);
 		}
-		catch(StudentNotFoundForApprovalException e) {
-			
-			throw e;
-		}
+		studentRepository.setIsApprovedById(true, studentId);
 	}
 	
 	/**
 	 * Approve all pending students
 	 */
 	@Override
-	public void approveAllStudents(List<Student> studentList) {
+	public void approveAllStudents() {
 		try {
 			studentRepository.setAllIsApproved(true);
 		}
@@ -153,9 +148,12 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 */
 	@Override
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException {
-		//adminDAOImpl.addProfessor(professor);
-		professorRepository.save(professor);
-		
+		try {
+			professorRepository.save(professor);
+		}
+		catch(Exception e){
+			throw new ProfessorNotAddedException(professor.getProfessorId());
+		}
 	}
 	
 	/**

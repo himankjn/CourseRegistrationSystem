@@ -24,7 +24,7 @@ public interface StudentRepository extends CrudRepository<Student,String>{
 	
 	@Modifying
 	@Transactional
-	@Query(SQLQueriesConstant.SET_ALL_IS_APPROVED)
+	@Query(value=SQLQueriesConstant.SET_ALL_IS_APPROVED, nativeQuery = true)
 	void setAllIsApproved(@Param(value = "isApproved") boolean isApproved);
 
 	@Modifying

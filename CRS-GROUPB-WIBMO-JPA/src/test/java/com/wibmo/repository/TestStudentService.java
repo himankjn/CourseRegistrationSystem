@@ -5,13 +5,10 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.wibmo.constants.GenderConstant;
@@ -29,31 +26,13 @@ public class TestStudentService {
 	@Mock
 	StudentRepository studentRepository;
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Test
 	public void testRegister() throws StudentNotRegisteredException{
 		Student newStudent = new Student();
-		
-		newStudent.setAddress("Hyd");
-		newStudent.setApproved(false);
-		newStudent.setDepartment("CSE");
-		newStudent.setGender(GenderConstant.FEMALE);
-		newStudent.setGradYear(0);
-		newStudent.setName("Avanthi");
-		newStudent.setPaid(false);
-		newStudent.setPassword("Avanthi@123");
-		newStudent.setRegistered(false);
-		newStudent.setReportGenerated(false);
-		newStudent.setRole(RoleConstant.PROFESSOR);
+	
 		newStudent.setStudentId("Avanthi22@yahoo.com");
-		newStudent.setUserId("Avanthi22@yahoo.com");
+		
 		
 		when(studentRepository.save(newStudent)).thenReturn(newStudent);
 		
@@ -83,7 +62,7 @@ public class TestStudentService {
 		newStudent.get().setStudentId("Avanthi22@yahoo.com");
 		newStudent.get().setUserId("Avanthi22@yahoo.com");
 		
-		when(studentRepository.findByUserId(userId)).thenReturn(newStudent.get());
+		when(studentRepository.findByUserId(userId)).thenReturn(newStudent);
 		String actualStudentIdGot = studentService.getStudentId(userId);
 		String expectedStudentId = "Avanthi22@yahoo.com";
 		
@@ -94,7 +73,7 @@ public class TestStudentService {
 	public void testIsApproved() {
 		String studentId = "Avanthi22@yahoo.com";
 		
-		Student newStudent = new Student();
+		Optional<Student> newStudent = Optional.ofNullable(new Student());
 		
 		newStudent.get().setAddress("Hyd");
 		newStudent.get().setApproved(false);
@@ -110,7 +89,7 @@ public class TestStudentService {
 		newStudent.get().setStudentId("Avanthi22@yahoo.com");
 		newStudent.get().setUserId("Avanthi22@yahoo.com");
 		
-		when(studentRepository.findById(studentId).get()).thenReturn(newStudent.get());
+		when(studentRepository.findById(studentId)).thenReturn(newStudent);
 		
 		boolean expectedApprovedStatus = false;
 		boolean actualApprovedStatus = studentService.isApproved(studentId);

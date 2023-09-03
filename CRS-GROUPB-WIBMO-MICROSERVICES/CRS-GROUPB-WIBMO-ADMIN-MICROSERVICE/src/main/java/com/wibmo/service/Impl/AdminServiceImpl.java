@@ -65,7 +65,6 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 */
 	@Override
 	public List<Student> viewPendingAdmissions() {
-		//return adminDAOImpl.viewPendingAdmissions();
 		List<Student> students = new ArrayList<Student>();  
 		studentRepository.findAllByIsApproved(false).forEach(student-> students.add(student));  
 		return students;

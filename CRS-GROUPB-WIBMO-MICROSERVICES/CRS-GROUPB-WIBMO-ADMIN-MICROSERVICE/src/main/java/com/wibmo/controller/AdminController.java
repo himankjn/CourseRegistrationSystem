@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +31,15 @@ import com.wibmo.exception.UserNotFoundException;
 import com.wibmo.service.AdminServiceInterface;
 import com.wibmo.service.NotificationServiceInterface;
 import com.wibmo.service.RegistrationServiceInterface;
+import com.wibmo.service.UserServiceInterface;
 
 /*
  * Rest Controller to handle admin operations
  */
 @RestController
+@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping(value="/admin")
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked","rawtypes" })
 public class AdminController {
 	
 	@Autowired
@@ -47,6 +50,32 @@ public class AdminController {
 	
 	@Autowired
 	private RegistrationServiceInterface registrationService;
+	
+	@Autowired
+	private UserServiceInterface userService;
+	
+	/**
+	 * update password of User
+	 */
+	
+	@RequestMapping(value="updatePassword/{id}/{pass}",method=RequestMethod.PUT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public ResponseEntity updatePassword(@PathVariable("id") String userId,@PathVariable("pass") String password) {
+			boolean isUpdated;
+			try {
+				isUpdated = userService.updatePassword(userId, password);
+			} catch (UserNotFoundException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			if(isUpdated) {
+				return new ResponseEntity("Password Updated!",HttpStatus.OK);
+			}
+			else {
+				return new ResponseEntity("Unable to update password",HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		
+	}
+	
 
 	/**
 	 * Provides list of courses in catalog
@@ -139,7 +168,6 @@ public class AdminController {
 	public ResponseEntity approveSingleStudent(@PathVariable("id") String studentId) {
 		try {
 				adminService.approveSingleStudent(studentId);
-				//send notification from system
 				notificationService.sendNotification(NotificationTypeConstant.APPROVED, studentId, null,0);
 				return new ResponseEntity("Student Id : " +studentId+ " has been approved.", HttpStatus.OK);
 		

@@ -11,13 +11,16 @@ import java.util.ArrayList;
 
 import com.wibmo.entity.Course;
 import com.wibmo.entity.EnrolledStudent;
+import com.wibmo.exception.UserNotFoundException;
 import com.wibmo.service.ProfessorServiceInterface;
+import com.wibmo.service.UserServiceInterface;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,13 +30,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SuppressWarnings({ "rawtypes", "unchecked" })
+@PreAuthorize("hasAuthority('PROFESSOR')")
 @RequestMapping(value = "/professor")
 public class ProfessorController {
 	private static final Logger logger= LogManager.getLogger(ProfessorController.class);
 	
 	@Autowired
 	private ProfessorServiceInterface professorService ;
-
+	
+	@Autowired
+	private UserServiceInterface userService;
+	
+	/**
+	 * update password of User
+	 */
+	
+	@RequestMapping(value="updatePassword/{id}/{pass}",method=RequestMethod.PUT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public ResponseEntity updatePassword(@PathVariable("id") String userId,@PathVariable("pass") String password) {
+			boolean isUpdated;
+			try {
+				isUpdated = userService.updatePassword(userId, password);
+			} catch (UserNotFoundException e) {
+				return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			if(isUpdated) {
+				return new ResponseEntity("Password Updated!",HttpStatus.OK);
+			}
+			else {
+				return new ResponseEntity("Unable to update password",HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		
+	}
+	
 	/**
 	 * Get assigned courses for a professor
 	 * @param profID

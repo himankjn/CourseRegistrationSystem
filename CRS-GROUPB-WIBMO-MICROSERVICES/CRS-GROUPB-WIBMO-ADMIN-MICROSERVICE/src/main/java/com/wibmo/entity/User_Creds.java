@@ -9,6 +9,13 @@ package com.wibmo.entity;
 public class User_Creds {
 		String userName;
 		String password;
+//		String role;
+//		public String getRole() {
+//			return role;
+//		}
+//		public void setRole(String role) {
+//			this.role = role;
+//		}
 		/**
 		 * @return the userName
 		 */

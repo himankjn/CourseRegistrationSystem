@@ -128,7 +128,9 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	public double calculateFee(String studentId) throws SQLException {
 		int sem=getStudentSem(studentId);
-		return courseRepository.calculateFeeForStudentWithSem(studentId,sem);
+		Double x=courseRepository.calculateFeeForStudentWithSem(studentId,sem);
+		if(x==null)return 0;
+		else return x.doubleValue();
 	}
 
 

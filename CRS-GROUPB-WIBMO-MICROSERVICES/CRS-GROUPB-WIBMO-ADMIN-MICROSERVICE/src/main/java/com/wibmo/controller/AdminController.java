@@ -168,9 +168,8 @@ public class AdminController {
 	public ResponseEntity approveSingleStudent(@PathVariable("id") String studentId) {
 		try {
 				adminService.approveSingleStudent(studentId);
-				notificationService.sendNotification(NotificationTypeConstant.APPROVED, studentId, null,0);
+				notificationService.sendStudentApprovalNotification(NotificationTypeConstant.APPROVED, studentId);
 				return new ResponseEntity("Student Id : " +studentId+ " has been approved.", HttpStatus.OK);
-		
 			} 
 		catch (StudentNotFoundForApprovalException e) {
 				return new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
@@ -189,7 +188,7 @@ public class AdminController {
 			adminService.approveAllStudents();
 			//notify
 			for(Student student: studentList){
-				notificationService.sendNotification(NotificationTypeConstant.APPROVED, student.getUserId(), null,0);
+				notificationService.sendStudentApprovalNotification(NotificationTypeConstant.APPROVED, student.getUserId());
 			}
 			return new ResponseEntity("All students approved!",HttpStatus.OK);
 		}

@@ -11,6 +11,7 @@ import com.wibmo.repository.ProfessorRepository;
 import com.wibmo.repository.RegisteredCourseRepository;
 import com.wibmo.repository.StudentRepository;
 import com.wibmo.service.AdminServiceInterface;
+import com.wibmo.service.NotificationServiceInterface;
 import com.wibmo.validator.AdminValidator;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	private ProfessorCourseRequestRepository professorCourseRequestRepository;
 	
 	@Autowired
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 	
 	
 	public List<Course> viewCourses(){
@@ -125,6 +126,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 			throw new StudentNotFoundForApprovalException(studentId);
 		}
 		studentRepository.setIsApprovedById(true, studentId);
+		
 	}
 	
 	/**

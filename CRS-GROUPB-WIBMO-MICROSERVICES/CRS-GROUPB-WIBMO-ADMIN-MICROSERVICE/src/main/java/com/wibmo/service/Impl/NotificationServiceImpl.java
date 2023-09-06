@@ -6,6 +6,8 @@ package com.wibmo.service.Impl;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.NotificationTypeConstant;
@@ -26,9 +28,11 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 
 	@Autowired
 	private NotificationRepository notificationRepository;
-	@Autowired
-	private PaymentRepository paymentRepository;
 
+	@Autowired
+	private KafkaTemplate<String, Notification> kafkaNotificationTemplate;
+	
+	
 	@Override
 	public String getReferenceId(int notificationId) {
 		String referenceId = "";
@@ -41,54 +45,28 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	}
 
 	@Override
-	public int sendNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment,double amount) {
+	public int sendStudentApprovalNotification(NotificationTypeConstant type, String studentId) {
 	
 		int notificationId;
-		if(type==NotificationTypeConstant.PAYED)
-		{
-			//insert into payment, get reference id and add here
-			String referenceId;
-			
-			Payment newPayment = new Payment();
-			referenceId = UUID.randomUUID().toString();
-			newPayment.setAmount(amount);
-			newPayment.setInvoiceId(referenceId);
-			newPayment.setPaymentMode(modeOfPayment.toString());
-			newPayment.setStatus(true);
-			newPayment.setStudentId(studentId);
-			paymentRepository.save(newPayment);
-		
-			
-			Notification newNotification = new Notification();
-			newNotification.setReferenceId(referenceId);
-			newNotification.setUserId(studentId);
-			newNotification.setType(type.toString());
-			notificationId = notificationRepository.save(newNotification).getNotifId();
-		}
-		else {
-			Notification newNotification = new Notification();
-			newNotification.setReferenceId("-");
-			newNotification.setType(type.toString());
-			newNotification.setUserId(studentId);
-			notificationId = notificationRepository.save(newNotification).getNotifId();
-		}
-			
-		
-		switch(type)
-		{
-		case REGISTRATION:
-			System.out.println("Registration successfull. Administration will verify the details and approve it!");
-			break;
-		case APPROVED:
-			System.out.println("Student with id "+studentId+" has been approved!");
-			break;
-		case PAYED:
-			System.out.println("Student with id "+studentId+" fee has been paid");
-		}
+		String notificationTopicName = "notificationTopic";;
+		Notification newNotification = new Notification();
+		newNotification.setReferenceId("-");
+		newNotification.setType(type.toString());
+		newNotification.setUserId(studentId);
+		kafkaNotificationTemplate.send(notificationTopicName,newNotification);
+		notificationId = notificationRepository.save(newNotification).getNotifId();
 		return notificationId;
 	}
+	
+	
 
-
+	@Override
+	@KafkaListener(topics = "notificationTopic")
+	public void listenApprovalNotification(Notification notification) {
+	    {
+	        System.out.println(notification.getUserId()+" is Approved");
+	    }
+	}
 	
 	
 	

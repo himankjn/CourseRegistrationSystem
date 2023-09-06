@@ -36,7 +36,7 @@ public interface NotificationServiceInterface {
 	 * @param modeOfPayment: payment mode used
 	 * @return notification id for the record added in the database
 	 */
-	int sendPaymentNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment, double amount);
+	String sendPaymentNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment, double amount);
 
 	void listenPaymentNotification(Payment payment);
 

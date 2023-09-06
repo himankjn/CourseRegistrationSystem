@@ -51,7 +51,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 
 	
 	@Override
-	public int sendPaymentNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment,double amount) {
+	public String sendPaymentNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment,double amount) {
 	
 		String paymentTopicName = "paymentTopic";
 		Payment newPayment = new Payment();
@@ -63,21 +63,13 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 		newPayment.setStudentId(studentId);
 		kafkaPaymentTemplate.send(paymentTopicName,newPayment);
 		paymentRepository.save(newPayment);
-	
-		
-		Notification newNotification = new Notification();
-		newNotification.setReferenceId(referenceId);
-		newNotification.setUserId(studentId);
-		newNotification.setType(type.toString());
-		kafkaNotificationTemplate.send(paymentTopicName,newNotification);
-		int notificationId = notificationRepository.save(newNotification).getNotifId();
-		return notificationId;
+		return referenceId;
 	}
 
 	@Override
 	public int sendStudentRegistrationNotification(NotificationTypeConstant type, String studentId) {
 	
-		String notificationTopicName = "notificationTopic";;
+		String notificationTopicName = "registrationNotificationTopic";;
 		Notification newNotification = new Notification();
 		newNotification.setReferenceId("-");
 		newNotification.setType(type.toString());
@@ -88,7 +80,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	}
 
 	@Override
-	@KafkaListener(topics = "notificationTopic")
+	@KafkaListener(topics = "registrationNotificationTopic")
 	public void listenStudentRegistrationNotification(Notification notification) {
 	    {
 	        System.out.println(notification.getUserId()+"is registered");
@@ -99,7 +91,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	@KafkaListener(topics = "paymentTopic")
 	public void listenPaymentNotification(Payment payment) {
 	    {
-	        System.out.println(payment.getStudentId()+"has paid: "+payment.getAmount());
+	        System.out.println(payment.getStudentId()+" has paid: "+payment.getAmount());
 	    }
 	}
 	

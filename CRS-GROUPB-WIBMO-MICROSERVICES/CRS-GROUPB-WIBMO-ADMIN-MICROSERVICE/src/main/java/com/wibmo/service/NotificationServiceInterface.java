@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.NotificationTypeConstant;
 import com.wibmo.constants.PaymentModeConstant;
+import com.wibmo.entity.Notification;
 
 
 /**
@@ -34,7 +35,7 @@ public interface NotificationServiceInterface {
 	 * @param modeOfPayment: payment mode used
 	 * @return notification id for the record added in the database
 	 */
-	int sendNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment, double amount);
+	int sendStudentApprovalNotification(NotificationTypeConstant type, String studentId);
 
-
+	public void listenApprovalNotification(Notification notification);
 }

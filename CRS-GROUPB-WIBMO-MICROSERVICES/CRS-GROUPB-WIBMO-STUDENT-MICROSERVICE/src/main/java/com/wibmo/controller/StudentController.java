@@ -60,12 +60,14 @@ public class StudentController {
 	@Autowired
 	private UserServiceInterface userService;
 	
+	@Autowired
+	private StudentServiceInterface studentService;
+	
 	/**
 	 * update password of User
 	 */
 	
 	@RequestMapping(value="updatePassword/{id}/{pass}",method=RequestMethod.PUT)
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ResponseEntity updatePassword(@PathVariable("id") String userId,@PathVariable("pass") String password) {
 			boolean isUpdated;
 			try {
@@ -346,8 +348,8 @@ public class StudentController {
         		break;
         		default: paymentMode = PaymentModeConstant.DEBIT_CARD;
         	}
-        	notificationService.sendNotification(NotificationTypeConstant.PAYED,studentId, paymentMode, feeToBePaid);
         	registrationService.setPaymentStatus(studentId);
+        	notificationService.sendPaymentNotification(NotificationTypeConstant.PAYED,studentId, paymentMode, feeToBePaid);
             return new ResponseEntity("Fee Has been successfully paid by student: "+studentId+" through "+modeOfPayment,HttpStatus.OK);
         } catch(SQLException e){
             return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);

@@ -48,7 +48,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	public int sendStudentApprovalNotification(NotificationTypeConstant type, String studentId) {
 	
 		int notificationId;
-		String notificationTopicName = "approvalNotificationTopic";
+		String notificationTopicName = "approvalTopic";
 		Notification newNotification = new Notification();
 		newNotification.setReferenceId("-");
 		newNotification.setType(type.toString());
@@ -62,7 +62,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 
 
 	@Override
-	@KafkaListener(topics = "approvalNotificationTopic")
+	@KafkaListener(topics = "approvalTopic")
 	public void listenApprovalNotification(Notification notification) {
 	    {
 	        System.out.println(notification.getUserId()+" is Approved");

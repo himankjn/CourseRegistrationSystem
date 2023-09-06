@@ -69,7 +69,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	@Override
 	public int sendStudentRegistrationNotification(NotificationTypeConstant type, String studentId) {
 	
-		String notificationTopicName = "registrationNotificationTopic";;
+		String notificationTopicName = "registrationTopic";;
 		Notification newNotification = new Notification();
 		newNotification.setReferenceId("-");
 		newNotification.setType(type.toString());
@@ -80,7 +80,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	}
 
 	@Override
-	@KafkaListener(topics = "registrationNotificationTopic")
+	@KafkaListener(topics = "registrationTopic")
 	public void listenStudentRegistrationNotification(Notification notification) {
 	    {
 	        System.out.println(notification.getUserId()+"is registered");

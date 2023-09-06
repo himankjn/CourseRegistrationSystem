@@ -6,6 +6,8 @@ package com.wibmo.service.Impl;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.NotificationTypeConstant;
@@ -28,7 +30,14 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	private NotificationRepository notificationRepository;
 	@Autowired
 	private PaymentRepository paymentRepository;
+	
+	@Autowired
+	private KafkaTemplate<String,Payment> kafkaPaymentTemplate;
 
+	@Autowired
+	private KafkaTemplate<String, Notification> kafkaNotificationTemplate;
+	
+	
 	@Override
 	public String getReferenceId(int notificationId) {
 		String referenceId = "";
@@ -44,6 +53,8 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	public int sendNotification(NotificationTypeConstant type, String studentId, PaymentModeConstant modeOfPayment,double amount) {
 	
 		int notificationId;
+		String notificationTopicName = "notificationTopic";;
+		String paymentTopicName = "paymentTopic";;
 		if(type==NotificationTypeConstant.PAYED)
 		{
 			//insert into payment, get reference id and add here
@@ -56,6 +67,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 			newPayment.setPaymentMode(modeOfPayment.toString());
 			newPayment.setStatus(true);
 			newPayment.setStudentId(studentId);
+			kafkaPaymentTemplate.send(paymentTopicName,newPayment);)
 			paymentRepository.save(newPayment);
 		
 			
@@ -63,13 +75,19 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 			newNotification.setReferenceId(referenceId);
 			newNotification.setUserId(studentId);
 			newNotification.setType(type.toString());
+			kafkaNotificationTemplate.send(notificationTopicName,newNotification);
+			
 			notificationId = notificationRepository.save(newNotification).getNotifId();
 		}
 		else {
+			
 			Notification newNotification = new Notification();
 			newNotification.setReferenceId("-");
 			newNotification.setType(type.toString());
 			newNotification.setUserId(studentId);
+			kafkaNotificationTemplate.send(notificationTopicName,newNotification);
+			
+			
 			notificationId = notificationRepository.save(newNotification).getNotifId();
 		}
 			
@@ -88,7 +106,10 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 		return notificationId;
 	}
 
-
+	@KafkaListener(topics = "notificationTopic")
+	public void listenNotification(Notification newNotification) {
+		
+	}
 	
 	
 	

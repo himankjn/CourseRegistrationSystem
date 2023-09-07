@@ -19,7 +19,12 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 /**
  * @author shanmukh
@@ -46,13 +51,15 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	@Autowired
 	private StudentRepository studentRepository;
 	
-	
+	@Cacheable(value="courseCatalog")
 	public List<Course> viewCourses(){
+		System.out.println("Returned from db");
 		List<Course> courses = new ArrayList<Course>();  
 		courseRepository.findAll().forEach(course -> courses.add(course));  
 		return courses;  
 	}
 	
+	@Cacheable(value="professorList")
 	public List<Professor> viewProfessors()
 	{
 		List<Professor> professors = new ArrayList<Professor>();  
@@ -64,6 +71,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * Method to view Students yet to be approved by Admin
 	 * @return List of Students with pending admissions
 	 */
+	@Cacheable("pendingAdmissions")
 	@Override
 	public List<Student> viewPendingAdmissions() {
 		List<Student> students = new ArrayList<Student>();  
@@ -78,10 +86,15 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @param courseList : Courses available in catalog
 	 * @throws CourseFoundException
 	 */
+	
+	
+	@Caching(
+	evict = { @CacheEvict(value="courseCatalog",allEntries = true),
+			@CacheEvict(value="availableCourseList",allEntries=true)},
+	put = {@CachePut(value="course",key="#newCourse.getCourseId()") })
 	@Override
 	public void addCourse(Course newCourse) throws CourseExistsAlreadyException 
 	{
-		
 		List<Course> courseList = viewCourses();
 		try {
 			if(!AdminValidator.isValidNewCourse(newCourse, courseList)) {
@@ -102,6 +115,11 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws CourseNotFoundException 
 	 */
 	@Override
+	@Caching(evict = {
+		    @CacheEvict(value="courseCatalog",allEntries=true),
+		    @CacheEvict(value="availableCourseList",allEntries=true),
+		    @CacheEvict(value = "course", key = "#dropCourseCode")
+		})
 	public void removeCourse(String dropCourseCode) throws CourseNotFoundException, CourseNotDeletedException {
 		List<Course> courseList = viewCourses();
 		if(!AdminValidator.isValidDropCourse(dropCourseCode, courseList)) {
@@ -118,6 +136,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @param studentList 
 	 * @throws StudentNotFoundException 
 	 */
+	@CacheEvict(value="pendingAdmissions",allEntries = true)
 	@Override
 	public void approveSingleStudent(String studentId) throws StudentNotFoundForApprovalException {
 		
@@ -133,6 +152,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * Approve all pending students
 	 */
 	@Override
+	@CacheEvict(value="pendingAdmissions",allEntries = true)
 	public void approveAllStudents() {
 		try {
 			studentRepository.setAllIsApproved(true);
@@ -147,6 +167,9 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws ProfessorNotAddedException
 	 */
 	@Override
+	@Caching(
+			evict = { @CacheEvict(value="professorList",allEntries = true)},
+			put = {@CachePut(value="professor",key="#professor.getProfessorId()") })
 	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException {
 		try {
 			professorRepository.save(professor);
@@ -163,6 +186,10 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 */
 
 	@Override
+	@Caching(evict = {
+		    @CacheEvict(value="professorList",allEntries=true),
+		    @CacheEvict(value = "professor", key = "#professorId")
+		})
 	public void dropProfessor(String professorId) throws ProfessorNotFoundException {
 		List<Professor> professors = viewProfessors();
 		if(!AdminValidator.isValidDropProfessor(professorId, professors)) {
@@ -179,6 +206,9 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws CourseNotFoundException 
 	 * @throws UserNotFoundException 
 	 */
+	@Caching(evict = {
+		    @CacheEvict(value="courseCatalog",allEntries=true)
+		})
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
 	{
 		List<Professor> professors= viewProfessors();
@@ -194,6 +224,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @param studentid 
 	 */
 	
+	@Cacheable(value="registeredCourse",key="studentId")
 	public List<RegisteredCourse> generateGradeCard(String studentId)
 	{
 		int sem=getStudentSem(studentId);
@@ -205,6 +236,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	}
 
 	@Override
+	@Cacheable(value="student",key="studentId")
 	public int getStudentSem(String studentId) {
 		return studentRepository.findById(studentId).get().getSem();
 	}

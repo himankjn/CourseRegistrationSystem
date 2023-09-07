@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.GradeConstant;
@@ -59,7 +60,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws CourseNotApplicableForSemesterException 
 	 */
 	@Override
-	
 	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException, CourseNotApplicableForSemesterException 
 	{
 		List<Course> availableCourseList=viewAvailableCourses(studentId);
@@ -198,7 +198,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	
+	@Cacheable
 	public List<Course> viewAvailableCourses(String studentId) throws SQLException {
 		List<Course> AvailableCourses = new ArrayList<Course>();
 		int sem= getStudentSem(studentId);
@@ -214,7 +214,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		});
 		return AvailableCourses;
 	}
-
+	
 	@Override
 	public int getStudentSem(String studentId) {
 		return studentRepository.findById(studentId).get().getSem();

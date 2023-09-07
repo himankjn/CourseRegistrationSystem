@@ -1,5 +1,6 @@
 package com.wibmo.application;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,6 +41,7 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan("com.wibmo.*")
+@EnableCaching
 @EnableEurekaClient
 @SpringBootApplication
 public class CrsGroupbWibmoAdminMicroserviceApplication {
@@ -70,5 +73,12 @@ public class CrsGroupbWibmoAdminMicroserviceApplication {
 	public InternalResourceViewResolver defaultViewResolver() {
 	   return new InternalResourceViewResolver();
 	}
+//	@Bean
+//	public RedisCacheConfiguration cacheConfiguration() {
+//	    return RedisCacheConfiguration.defaultCacheConfig()
+//	      .entryTtl(Duration.ofMinutes(60))
+//	      .disableCachingNullValues()
+//	      .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+//	}
 
 }

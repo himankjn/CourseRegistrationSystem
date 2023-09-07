@@ -60,8 +60,6 @@ public class StudentController {
 	@Autowired
 	private UserServiceInterface userService;
 	
-	@Autowired
-	private StudentServiceInterface studentService;
 	
 	/**
 	 * update password of User

@@ -32,7 +32,6 @@ import com.wibmo.exception.CourseLimitExceededException;
 import com.wibmo.exception.CourseNotApplicableForSemesterException;
 import com.wibmo.exception.CourseNotFoundException;
 import com.wibmo.exception.SeatNotAvailableException;
-import com.wibmo.service.Impl.AdminServiceImpl;
 import com.wibmo.service.Impl.RegistrationServiceImpl;
 
 @ExtendWith(MockitoExtension.class)

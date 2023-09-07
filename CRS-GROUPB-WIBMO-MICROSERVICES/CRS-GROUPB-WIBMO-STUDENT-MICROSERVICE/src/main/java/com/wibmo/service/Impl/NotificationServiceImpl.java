@@ -62,7 +62,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 		newPayment.setStatus(true);
 		newPayment.setStudentId(studentId);
 		kafkaPaymentTemplate.send(paymentTopicName,newPayment);
-		paymentRepository.save(newPayment);
+//		paymentRepository.save(newPayment);
 		return referenceId;
 	}
 
@@ -75,14 +75,15 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 		newNotification.setType(type.toString());
 		newNotification.setUserId(studentId);
 		kafkaNotificationTemplate.send(notificationTopicName,newNotification);
-		int notificationId = notificationRepository.save(newNotification).getNotifId();
-		return notificationId;
+//		int notificationId = notificationRepository.save(newNotification).getNotifId();
+		return -1;
 	}
 
 	@Override
 	@KafkaListener(topics = "registrationTopic")
 	public void listenStudentRegistrationNotification(Notification notification) {
 	    {
+	    	notificationRepository.save(notification);
 	        System.out.println(notification.getUserId()+"is registered");
 	    }
 	}
@@ -91,6 +92,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	@KafkaListener(topics = "paymentTopic")
 	public void listenPaymentNotification(Payment payment) {
 	    {
+	    	paymentRepository.save(payment);
 	        System.out.println(payment.getStudentId()+" has paid: "+payment.getAmount());
 	    }
 	}

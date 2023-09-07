@@ -63,7 +63,7 @@ public interface AdminServiceInterface
 	 * professor : Professor Object storing details of a professor 
 	 */
 	
-	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
+	public Professor addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
 	
 	/**
 	 * Method to drop professor
@@ -89,7 +89,7 @@ public interface AdminServiceInterface
 	 * @throws CourseExistsAlreadyException;
 	 */
 	
-	public void addCourse(Course course) throws CourseExistsAlreadyException;
+	public Course addCourse(Course course) throws CourseExistsAlreadyException;
 	
 	/**
 	 * Method to assign Course to a Professor

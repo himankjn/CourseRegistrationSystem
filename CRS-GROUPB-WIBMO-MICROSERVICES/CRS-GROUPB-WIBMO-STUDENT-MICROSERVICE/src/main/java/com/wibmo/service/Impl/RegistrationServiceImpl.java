@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.GradeConstant;
@@ -36,7 +36,6 @@ import com.wibmo.validator.StudentValidator;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationServiceInterface {
-	private static final Logger logger = LogManager.getLogger(RegistrationServiceImpl.class);
 	
 	@Autowired
 	private CourseRepository courseRepository;
@@ -60,6 +59,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws CourseNotApplicableForSemesterException 
 	 */
 	@Override
+	@Caching(evict= {@CacheEvict(value="registeredCourse",key="#studentId"),
+			@CacheEvict(value="availableCourseList",key="#studentId"),
+			@CacheEvict(value="courseList",allEntries =true),
+			@CacheEvict(value="course",key="#courseCode")
+	})
 	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException, CourseNotApplicableForSemesterException 
 	{
 		List<Course> availableCourseList=viewAvailableCourses(studentId);
@@ -103,7 +107,11 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	
+	@Caching(evict= {@CacheEvict(value="registeredCourse",key="#studentId"),
+			@CacheEvict(value="availableCourseList",key="#studentId"),
+			@CacheEvict(value="courseList",allEntries =true),
+			@CacheEvict(value="course",key="#courseCode")
+	})
 	public boolean dropCourse(String courseCode, String studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
 		  if(!StudentValidator.isRegistered(courseCode, studentId, registeredCourseList))
 	        {
@@ -128,9 +136,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	@Override
 	public double calculateFee(String studentId) throws SQLException {
 		int sem=getStudentSem(studentId);
-		Double x=courseRepository.calculateFeeForStudentWithSem(studentId,sem);
-		if(x==null)return 0;
-		else return x.doubleValue();
+		return courseRepository.calculateFeeForStudentWithSem(studentId,sem);
 	}
 
 
@@ -141,7 +147,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	
 	public GradeCard viewGradeCard(String studentId) throws SQLException {
 		List<RegisteredCourse> coursesOfStudent = new ArrayList<RegisteredCourse>();
 		int sem=getStudentSem(studentId);
@@ -198,7 +203,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	@Cacheable
+	@Cacheable(value="availableCourseList",key="#studentId")
 	public List<Course> viewAvailableCourses(String studentId) throws SQLException {
 		List<Course> AvailableCourses = new ArrayList<Course>();
 		int sem= getStudentSem(studentId);
@@ -214,19 +219,20 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		});
 		return AvailableCourses;
 	}
-	
+
+	@Cacheable(value="studentSem",key="#studentId")
 	@Override
 	public int getStudentSem(String studentId) {
 		return studentRepository.findById(studentId).get().getSem();
 	}
+	
 	/**
 	 * Method to view the list of courses registered by the student
 	 * @param studentId
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
-	
-	
+	@Cacheable(value="registeredCourse",key="#studentId")
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		List<Course> RegisteredCourses = new ArrayList<Course>();
 		int sem= getStudentSem(studentId);
@@ -250,7 +256,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException
 	 */
 	@Override
-
+	
 	public boolean getRegistrationStatus(String studentId) throws SQLException {
 		java.util.Optional<Student> st = studentRepository.findById(studentId);
 		return st.get().isRegistered();

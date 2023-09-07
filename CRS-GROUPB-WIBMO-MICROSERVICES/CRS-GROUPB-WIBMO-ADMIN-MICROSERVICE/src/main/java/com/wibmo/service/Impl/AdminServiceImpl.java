@@ -71,7 +71,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * Method to view Students yet to be approved by Admin
 	 * @return List of Students with pending admissions
 	 */
-	@Cacheable("pendingAdmissions")
+	@Cacheable(value="pendingAdmissions")
 	@Override
 	public List<Student> viewPendingAdmissions() {
 		List<Student> students = new ArrayList<Student>();  
@@ -89,11 +89,10 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	
 	
 	@Caching(
-	evict = { @CacheEvict(value="courseCatalog",allEntries = true),
-			@CacheEvict(value="availableCourseList",allEntries=true)},
+	evict = { @CacheEvict(value="courseCatalog",allEntries = true),},
 	put = {@CachePut(value="course",key="#newCourse.getCourseId()") })
 	@Override
-	public void addCourse(Course newCourse) throws CourseExistsAlreadyException 
+	public Course addCourse(Course newCourse) throws CourseExistsAlreadyException 
 	{
 		List<Course> courseList = viewCourses();
 		try {
@@ -106,6 +105,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 		catch(CourseExistsAlreadyException e) {
 			throw e;
 		}
+		return newCourse;
 	}
 	
 	/**
@@ -117,7 +117,6 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	@Override
 	@Caching(evict = {
 		    @CacheEvict(value="courseCatalog",allEntries=true),
-		    @CacheEvict(value="availableCourseList",allEntries=true),
 		    @CacheEvict(value = "course", key = "#dropCourseCode")
 		})
 	public void removeCourse(String dropCourseCode) throws CourseNotFoundException, CourseNotDeletedException {
@@ -136,7 +135,11 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @param studentList 
 	 * @throws StudentNotFoundException 
 	 */
-	@CacheEvict(value="pendingAdmissions",allEntries = true)
+	@Caching(evict =  {
+			@CacheEvict(value="pendingAdmissions",allEntries = true),
+			@CacheEvict(value="student",key="#studentId"),
+			@CacheEvict(value="studentList")
+	})
 	@Override
 	public void approveSingleStudent(String studentId) throws StudentNotFoundForApprovalException {
 		
@@ -152,7 +155,11 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * Approve all pending students
 	 */
 	@Override
-	@CacheEvict(value="pendingAdmissions",allEntries = true)
+	@Caching(evict = {
+			@CacheEvict(value="pendingAdmissions",allEntries = true),
+			@CacheEvict(value="student",allEntries=true),
+			@CacheEvict(value="studentList",allEntries=true)
+	})
 	public void approveAllStudents() {
 		try {
 			studentRepository.setAllIsApproved(true);
@@ -170,13 +177,15 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	@Caching(
 			evict = { @CacheEvict(value="professorList",allEntries = true)},
 			put = {@CachePut(value="professor",key="#professor.getProfessorId()") })
-	public void addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException {
+	public Professor addProfessor(Professor professor) throws ProfessorNotAddedException, UserIdAlreadyInUseException {
 		try {
 			professorRepository.save(professor);
 		}
 		catch(Exception e){
 			throw new ProfessorNotAddedException(professor.getProfessorId());
 		}
+		
+		return professor;
 	}
 	
 	/**
@@ -207,7 +216,8 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @throws UserNotFoundException 
 	 */
 	@Caching(evict = {
-		    @CacheEvict(value="courseCatalog",allEntries=true)
+		    @CacheEvict(value="courseCatalog",allEntries=true),
+		    @CacheEvict(value="course",key="#courseCode")
 		})
 	public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException
 	{
@@ -224,7 +234,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @param studentid 
 	 */
 	
-	@Cacheable(value="registeredCourse",key="studentId")
+	@CachePut(value="gradeCard",key="#studentId")
 	public List<RegisteredCourse> generateGradeCard(String studentId)
 	{
 		int sem=getStudentSem(studentId);
@@ -236,11 +246,15 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	}
 
 	@Override
-	@Cacheable(value="student",key="studentId")
+	@Cacheable(value="studentSem",key="studentId")
 	public int getStudentSem(String studentId) {
 		return studentRepository.findById(studentId).get().getSem();
 	}
 	
+	@Caching(evict = {
+			@CacheEvict(value="student",key="#studentId"),
+			@CacheEvict(value="studentList",allEntries=true)
+	})
 	@Override
 	public void setGeneratedReportCardTrue(String studentId) {
 		studentRepository.setGeneratedReportCardTrue(studentId);
@@ -252,6 +266,7 @@ public class AdminServiceImpl implements AdminServiceInterface{
 	 * @param courseId
 	 * @return
 	 */
+
 	public List<String> viewProfCourseRequests(String courseId){
 		List<String> profIds = new ArrayList<String>();  
 		professorCourseRequestRepository.findByCourseId(courseId).forEach(courseRequest -> profIds.add(courseRequest.getuserId())); 

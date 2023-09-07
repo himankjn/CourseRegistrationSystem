@@ -47,14 +47,14 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	@Override
 	public int sendStudentApprovalNotification(NotificationTypeConstant type, String studentId) {
 	
-		int notificationId;
+		int notificationId = 0;
 		String notificationTopicName = "approvalTopic";
 		Notification newNotification = new Notification();
 		newNotification.setReferenceId("-");
 		newNotification.setType(type.toString());
 		newNotification.setUserId(studentId);
 		kafkaNotificationTemplate.send(notificationTopicName,newNotification);
-		notificationId = notificationRepository.save(newNotification).getNotifId();
+//		notificationId = notificationRepository.save(newNotification).getNotifId();
 		return notificationId;
 	}
 	
@@ -65,6 +65,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	@KafkaListener(topics = "approvalTopic")
 	public void listenApprovalNotification(Notification notification) {
 	    {
+	    	notificationRepository.save(notification);
 	        System.out.println(notification.getUserId()+" is Approved");
 	    }
 

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.wibmo.constants.GradeConstant;
@@ -56,7 +59,8 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws CourseNotApplicableForSemesterException 
 	 */
 	@Override
-	
+	@Caching(evict= {@CacheEvict(value="registeredCourse",allEntries = true),
+			@CacheEvict(value="availableCourseList",allEntries=true)})
 	public boolean addCourse(String courseCode, String studentId) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException, CourseAlreadyRegisteredException, CourseNotApplicableForSemesterException 
 	{
 		List<Course> availableCourseList=viewAvailableCourses(studentId);
@@ -100,7 +104,8 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	
+	@Caching(evict= {@CacheEvict(value="registeredCourse",allEntries = true),
+	@CacheEvict(value="availableCourseList",allEntries=true)})
 	public boolean dropCourse(String courseCode, String studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
 		  if(!StudentValidator.isRegistered(courseCode, studentId, registeredCourseList))
 	        {
@@ -136,7 +141,6 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	
 	public GradeCard viewGradeCard(String studentId) throws SQLException {
 		List<RegisteredCourse> coursesOfStudent = new ArrayList<RegisteredCourse>();
 		int sem=getStudentSem(studentId);
@@ -193,7 +197,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException 
 	 */
 	@Override
-	
+	@Cacheable(value="availableCourseList",key="#studentId")
 	public List<Course> viewAvailableCourses(String studentId) throws SQLException {
 		List<Course> AvailableCourses = new ArrayList<Course>();
 		int sem= getStudentSem(studentId);
@@ -214,14 +218,14 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	public int getStudentSem(String studentId) {
 		return studentRepository.findById(studentId).get().getSem();
 	}
+	
 	/**
 	 * Method to view the list of courses registered by the student
 	 * @param studentId
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
-	
-	
+	@Cacheable(value="registeredcourse",key="studentId")
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		List<Course> RegisteredCourses = new ArrayList<Course>();
 		int sem= getStudentSem(studentId);

@@ -28,9 +28,6 @@ import com.wibmo.exception.InvalidCourseAssignmentRequestException;
 import com.wibmo.repository.CourseRepository;
 import com.wibmo.repository.ProfessorRepository;
 import com.wibmo.repository.StudentRepository;
-import com.wibmo.service.AdminServiceInterface;
-import com.wibmo.service.StudentServiceInterface;
-import com.wibmo.service.Impl.AdminServiceImpl;
 import com.wibmo.service.Impl.ProfessorServiceImpl;
 import com.wibmo.validator.AdminValidator;
 import com.wibmo.validator.ProfessorValidator;
@@ -72,8 +69,6 @@ class ProfessorRepositoryTest {
 	@Mock
 	CourseRepository courseRepository;
 
-	@Mock
-	StudentRepository studentRepository;
 
 	@Mock 
 	RegisteredCourseRepository registeredCourseRepository;

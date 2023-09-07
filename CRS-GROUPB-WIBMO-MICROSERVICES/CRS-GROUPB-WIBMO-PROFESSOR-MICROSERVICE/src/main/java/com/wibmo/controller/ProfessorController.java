@@ -46,7 +46,6 @@ public class ProfessorController {
 	 */
 	
 	@RequestMapping(value="updatePassword/{id}/{pass}",method=RequestMethod.PUT)
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ResponseEntity updatePassword(@PathVariable("id") String userId,@PathVariable("pass") String password) {
 			boolean isUpdated;
 			try {

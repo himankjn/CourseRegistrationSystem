@@ -57,8 +57,19 @@ public interface CourseRepository extends CrudRepository<Course,String>{
 	 */
 	Iterable<Course> findByInstructorId(String profId);
 	
+	/**
+	 * calculate Total fee for student
+	 * @param studentId
+	 * @param sem
+	 * @return total fee
+	 */
 	@Query(SQLQueriesConstant.TOTAL_FEES)
 	double calculateFeeForStudentWithSem(String studentId,int sem);
 
+	/**
+	 * find course using courseId
+	 * @param courseCode
+	 * @return
+	 */
 	Optional<Course> findByCourseId(String courseCode);
 }

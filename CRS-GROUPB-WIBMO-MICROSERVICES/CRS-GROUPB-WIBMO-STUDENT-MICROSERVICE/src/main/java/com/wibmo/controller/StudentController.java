@@ -90,7 +90,7 @@ public class StudentController {
 	 * @return ResponseEntity
 	 * @throws CourseAlreadyRegisteredException 
 	 */
-	@RequestMapping(value="/semRegistration/{sId}/{sem}",method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST, value="/semRegistration/{sId}/{sem}")
 	private ResponseEntity registerCourses(@PathVariable("sId") String studentId,@PathVariable("sem")int sem, @RequestBody List<Course> courseList) throws CourseAlreadyRegisteredException
 	{
 		List<Course> registeredCourses=new ArrayList<Course>();

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wibmo.constants.GradeConstant;
@@ -15,6 +16,7 @@ import com.wibmo.entity.RegisteredCourse;
 import com.wibmo.entity.RegisteredCourseId;
 import com.wibmo.constants.SQLQueriesConstant;
 
+@Repository
 public interface RegisteredCourseRepository extends CrudRepository<RegisteredCourse,RegisteredCourseId>{
 
 	Iterable<RegisteredCourse> findByRegisteredCourseIdStudentIdAndSem(String studentId,int sem);

@@ -256,6 +256,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 	 * @throws SQLException
 	 */
 	@Override
+	
 	public boolean getRegistrationStatus(String studentId) throws SQLException {
 		java.util.Optional<Student> st = studentRepository.findById(studentId);
 		return st.get().isRegistered();
@@ -292,6 +293,7 @@ public class RegistrationServiceImpl implements RegistrationServiceInterface {
 		if(st.isEmpty())throw new SQLException("Student Id not found!");
 		st.get().setPaid(true);
 		studentRepository.save(st.get());
+		
 	}
 
 	@Override

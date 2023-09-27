@@ -14,9 +14,9 @@ export default function AddCourseForm(props) {
           <legend>
             <span className="number">1</span> Course Info
           </legend>
-          <input type="text" name="courseId" placeholder="Course Code *" />
-          <input type="text" name="courseName" placeholder="Course Name *" />
-          <input type="number" name="courseFee" placeholder="Course Fee *"/>
+          <input type="text" name="courseId" required placeholder="Course Code *" />
+          <input type="text" name="courseName" required placeholder="Course Name *" />
+          <input type="number" name="courseFee" required placeholder="Course Fee *"/>
           <label htmlFor="sem">Semester:</label>
           <select id="sem" name="sem">
             <optgroup label="Sem">

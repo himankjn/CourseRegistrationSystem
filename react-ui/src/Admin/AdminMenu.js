@@ -1,11 +1,9 @@
 import { useNavigate} from "react-router-dom";
 import React from "react";
 import Button from "../UI/Button";
-import Background from "../UI/Background";
 import '../UI/style.css'
-import Header from "../UI/Header";
 
-export default function AdminMenu() {
+export default function AdminMenu(props) {
   const navigate = useNavigate();
 
   const showCourseCatalogueHandler = () => {
@@ -22,10 +20,7 @@ export default function AdminMenu() {
   
   return (
     <React.Fragment >
-      <Background>
-        <Header />
-      </Background>
-        <h1 className='heading text-center'>Welcome Admin!</h1>
+        <h1 className='heading text-center'>Welcome Admin</h1>
         <Button type="button" onClick={showCourseCatalogueHandler} text="Course Catalogue" />
         <Button type="button" onClick={showInstructorsHandler} text="Instructors" />
         <Button type="button" onClick={addCourseHandler} text="Add Course" />
@@ -33,6 +28,9 @@ export default function AdminMenu() {
         <Button type="button" text="Approve Student(s)" />
         <Button type="button" onClick={addCourseHandler} text="Course Assignment to professor" />
         <Button type="button" onClick={addCourseHandler} text="Course Assignment Requests" />
+
+
+        <Button className="logout-btn" type="button" onClick={props.onLogout} text="Logout" />
     </React.Fragment>
   );
 }

@@ -4,13 +4,12 @@ import React from "react";
 import { DataGridComponent } from "./DataGridComponent";
 import Background from "../UI/Background";
 import Header from "../UI/Header";
-import '../UI/style.css'
-
-const adminLoginUrl = "http://localhost:8081/admin/login";
-const adminCourseCatalogUrl = "http://localhost:8081/admin/courseCatalog";
+import "../UI/style.css";
 
 function CourseCatalogComponent() {
   const [data, setData] = useState([]);
+  const adminCourseCatalogUrl= "http://localhost:8081/admin/courseCatalog"
+  
   let columns = [
     {
       field: "courseId",
@@ -44,27 +43,16 @@ function CourseCatalogComponent() {
     },
   ];
   const fetchData = () => {
+    const authToken=localStorage.getItem('jwtToken')
+    const adminCourseCatalogConfig = {
+      headers: {
+        Authorization: "Bearer ".concat(authToken),
+      },
+    };
     axios
-      .post(adminLoginUrl, {
-        userName: "admin123@gmail.com",
-        password: "admin",
-      })
-      .then(function (response) {
-        const authToken = response.data;
-        const adminCourseCatalogConfig = {
-          headers: {
-            Authorization: "Bearer ".concat(authToken),
-          },
-        };
-
-        axios
-          .get(adminCourseCatalogUrl, adminCourseCatalogConfig)
-          .then((response) => {
-            setData(response.data);
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
+      .get(adminCourseCatalogUrl, adminCourseCatalogConfig)
+      .then((response) => {
+        setData(response.data);
       });
   };
 
@@ -78,7 +66,7 @@ function CourseCatalogComponent() {
         <Header />
       </Background>
 
-      <h2 className='heading text-center'> Course Catalogue</h2>
+      <h2 className="heading text-center"> Course Catalogue</h2>
       <DataGridComponent rows={data} columns={columns} rowId="courseId" />
     </React.Fragment>
   );

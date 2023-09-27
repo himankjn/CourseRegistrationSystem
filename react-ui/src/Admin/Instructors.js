@@ -6,8 +6,7 @@ import Background from "../UI/Background";
 import Header from "../UI/Header";
 import '../UI/style.css'
 
-const adminLoginUrl = "http://localhost:8081/admin/login";
-const adminCourseCatalogUrl = "http://localhost:8081/admin/instructors";
+const adminInstructorsUrl = "http://localhost:8081/admin/instructors";
 
 function CourseCatalogComponent() {
   const [data, setData] = useState([]);
@@ -58,28 +57,18 @@ function CourseCatalogComponent() {
       width: 150,
     },
   ];
-  const fetchData = () => {
-    axios
-      .post(adminLoginUrl, {
-        userName: "admin123@gmail.com",
-        password: "admin",
-      })
-      .then(function (response) {
-        const authToken = response.data;
-        const adminCourseCatalogConfig = {
-          headers: {
-            Authorization: "Bearer ".concat(authToken),
-          },
-        };
 
-        axios
-          .get(adminCourseCatalogUrl, adminCourseCatalogConfig)
-          .then((response) => {
-            setData(response.data);
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
+  const fetchData = () => {
+    const authToken=localStorage.getItem('jwtToken')
+    const adminCourseCatalogConfig = {
+      headers: {
+        Authorization: "Bearer ".concat(authToken),
+      },
+    };
+    axios
+      .get(adminInstructorsUrl, adminCourseCatalogConfig)
+      .then((response) => {
+        setData(response.data);
       });
   };
 

@@ -1,20 +1,24 @@
 import axios from "axios";
 import React from "react";
 import Background from "../UI/Background";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "../UI/Header";
 import "../UI/style.css";
 import AddCourseForm from "./AddCourseForm";
 
-const adminLoginUrl = "http://localhost:8081/admin/login";
-const adminAddCourseUrl = "http://localhost:8081/admin/addCourse";
-
 function AddCourse() {
+  const adminAddCourseUrl = "http://localhost:8081/admin/addCourse";
 
-  const showToastMessage = () => {
-    toast.success('Added New Course to Catalog !', {
-        position: toast.POSITION.TOP_RIGHT
+  const showSuccessToast = () => {
+    toast.success("Added New Course to Catalog !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
+  const showErrorToast = () => {
+    toast.error("Unable to add course. Try again!", {
+      position: toast.POSITION.TOP_RIGHT,
     });
   };
 
@@ -26,42 +30,32 @@ function AddCourse() {
     const sem = +event.target.elements.sem.value;
     const instructorId = event.target.elements.instructorId.value;
 
+    const authToken = localStorage.getItem("jwtToken");
+    const adminAddCourseConfig = {
+      headers: {
+        Authorization: "Bearer ".concat(authToken),
+      },
+    };
     axios
-      .post(adminLoginUrl, {
-        userName: "admin123@gmail.com",
-        password: "admin",
-      })
-      .then(function (response) {
-        const authToken = response.data;
-        const adminAddCourseConfig = {
-          headers: {
-            Authorization: "Bearer ".concat(authToken),
-          },
-        };
-
-        axios
-          .post(
-            adminAddCourseUrl,
-            {
-              courseFee: courseFee,
-              courseId: courseId,
-              courseName: courseName,
-              instructorId: instructorId,
-              seats: seats,
-              sem: sem,
-            },
-            adminAddCourseConfig
-          )
-          .then((response) => {
-            if(response.status===200){
-              showToastMessage();
-            }
-            console.log(response.status)
-            console.log(response.data)
-          });
+      .post(
+        adminAddCourseUrl,
+        {
+          courseFee: courseFee,
+          courseId: courseId,
+          courseName: courseName,
+          instructorId: instructorId,
+          seats: seats,
+          sem: sem,
+        },
+        adminAddCourseConfig
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          showSuccessToast();
+        }
       })
       .catch((err) => {
-        console.log(err.message);
+        showErrorToast();
       });
   }
 

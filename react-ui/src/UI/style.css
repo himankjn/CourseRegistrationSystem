@@ -57,3 +57,14 @@
                1px 20px 30px rgba(16, 16, 16, 0.3),
                1px 25px 50px rgba(16, 16, 16, 0.2);
 }
+
+.logout-btn{
+  background-color: #fbc2c2;
+  color: red;
+  box-shadow: none
+}
+
+.logout-btn:hover {
+  box-shadow: none;
+  transform: scale(1.05) rotate(-1deg);
+}

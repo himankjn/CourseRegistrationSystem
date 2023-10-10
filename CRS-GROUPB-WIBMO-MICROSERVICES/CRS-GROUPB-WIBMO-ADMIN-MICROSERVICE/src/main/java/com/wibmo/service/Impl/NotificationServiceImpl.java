@@ -66,6 +66,7 @@ public class NotificationServiceImpl implements NotificationServiceInterface{
 	public void listenApprovalNotification(Notification notification) {
 	    {
 	    	notificationRepository.save(notification);
+	    	//save to notificaiton db instead of consuming  and then read from db for student specific notfication
 	        System.out.println(notification.getUserId()+" is Approved");
 	    }
 

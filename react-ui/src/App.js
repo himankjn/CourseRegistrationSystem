@@ -7,6 +7,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from './HomePage';
 import AddCourse from './Admin/AddCourse';
+import ReportCard from './Admin/ReportCard';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/admin/courseCatalog" element={<CourseCatalogComponent />} />
           <Route path="/admin/instructors" element={<Instructors />} />
           <Route path="/admin/addCourse" element={<AddCourse />} />
+          <Route path="/admin/generateReportCard" element={<ReportCard />} />
+          
         </Routes>
       </Router>
     </React.Fragment>

@@ -68,3 +68,46 @@
   box-shadow: none;
   transform: scale(1.05) rotate(-1deg);
 }
+
+/* styles for report card */
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.student {
+  border-style: solid;
+  padding: 10px;
+  margin: 10px;
+}
+
+.score-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.score,
+.date {
+  padding-right: 20px;
+  margin-bottom: 10px;
+  border-style: hidden hidden solid hidden;
+}
+
+.score {
+  color: rgb(146, 50, 33);
+}
+
+.student-name {
+  color: rgb(146, 50, 33);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.bio {
+  margin: 20px;
+  color: rgba(18, 18, 22, 0.89);
+}

@@ -28,3 +28,13 @@
 |         4. Exit                    |
 |====================================|
 15:58:57,795  INFO CRSApplicationClient,main:60 - Exit!
+17:05:49,286  INFO CRSApplicationClient,main:42 - 
+===================!WELCOME TO CRS APPLICATION!====================
+=======================28-09-2023 17:05:49========================
+|====================================|
+|         Enter you choice:          |
+|         1. Student Registration    |
+|         2. Login                   |
+|         3. Update Password         |
+|         4. Exit                    |
+|====================================|
